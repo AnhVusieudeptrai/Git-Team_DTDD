@@ -1,3 +1,23 @@
 <resources>
-    <string name="app_name">ECOTRACK</string>
+    <!-- Màn hình 1 -->
+    <string name="welcome_title">Chào mừng đến với ECOTRACK!</string>
+    <string name="welcome_subtitle">Nơi hành trình sống xanh của bạn bắt đầu. Cùng nhau kiến tạo một tương lai bền vững!</string>
+    <string name="button_next">Tiếp tục</string>
+
+    <!-- Màn hình 2 -->
+    <string name="tracking_title">Theo dõi dễ dàng, động lực mỗi ngày</string>
+    <string name="tracking_subtitle">Ghi lại thói quen, nhận điểm thưởng, lên cấp độ và xây dựng những điều thật mới mẻ.</string>
+
+    <!-- Màn hình 3 -->
+    <string name="join_title">Tham gia ECOTRACK</string>
+    <string name="connect_subtitle">Kết nối và truyền cảm hứng</string>
+    <string name="share_text">Chia sẻ thành tích, học hỏi mẹo hay và cùng bạn bè lan tỏa lối sống bền vững.</string>
+    <string name="login_with_google">Đăng nhập bằng Google</string>
+    <string name="login_with_facebook">Đăng nhập bằng Facebook</string>
+    <string name="login_with_apple">Đăng nhập bằng Apple ID</string>
+    <string name="or">HOẶC</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Mật khẩu</string>
+    <string name="start_now">Bắt đầu ngay</string>
+    <string name="no_account">Bạn chưa có tài khoản? Đăng ký ngay</string>
 </resources>
