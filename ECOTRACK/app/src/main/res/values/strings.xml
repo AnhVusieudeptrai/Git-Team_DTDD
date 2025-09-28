@@ -1,3 +1,17 @@
 <resources>
+    <!-- App name -->
     <string name="app_name">ECOTRACK</string>
+
+    <!-- Main page (trang 1) -->
+    <string name="main_title">ECOTRACK</string>
+    <string name="main_subtitle">Ứng dụng theo dõi lối sống xanh</string>
+
+    <!-- Community page -->
+    <string name="community_title">Kết nối và truyền cảm hứng</string>
+    <string name="community_subtitle">Chia sẻ cảm hứng, hành trình xanh của bạn để lan tỏa năng lượng tích cực.</string>
+    <string name="community_image_desc">Ảnh cộng đồng</string>
+    <string name="ic_co2">CO2 icon</string>
+    <string name="ic_plastic">Plastic icon</string>
+    <string name="ic_water">Water icon</string>
+    <string name="habit_completed">Đã hoàn thành</string>
 </resources>
