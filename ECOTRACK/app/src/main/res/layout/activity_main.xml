@@ -1,19 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="@color/white"
+    android:padding="16dp">
 
+    <!-- Tiêu đề -->
     <TextView
+        android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Chào mừng đến với ECOTRACK!"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Phụ đề -->
+    <TextView
+        android:id="@+id/tvSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nơi hành trình sống xanh của bạn bắt đầu!"
+        android:textSize="14sp"
+        android:textColor="@color/gray"
+        android:layout_below="@id/tvTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Ảnh Trái đất (m tự bỏ file ic_globe.png vào drawable) -->
+    <ImageView
+        android:id="@+id/imgGlobe"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_below="@id/tvSubtitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_globle" />
+
+    <!-- Chip cấp độ -->
+    <TextView
+        android:id="@+id/tvLevel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cấp độ 5"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:background="@drawable/bg_chip_level"
+        android:padding="6dp"
+        android:layout_below="@id/imgGlobe"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="12dp"/>
+
+    <!-- Nút Google -->
+    <Button
+        android:id="@+id/btnGoogle"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/tvLevel"
+        android:layout_marginTop="20dp"
+        android:text="Đăng nhập Google"
+        android:drawableLeft="@drawable/ic_google"
+        android:background="@drawable/bg_button_social"
+        android:textColor="@color/white"/>
+
+    <!-- Nút Apple -->
+    <Button
+        android:id="@+id/btnApple"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/btnGoogle"
+        android:layout_marginTop="12dp"
+        android:text="Đăng nhập Apple ID"
+        android:drawableLeft="@drawable/ic_apple"
+        android:background="@drawable/bg_button_social"
+        android:textColor="@color/white"/>
+
+    <!-- Điểm -->
+    <TextView
+        android:id="@+id/tvPoint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Điểm: 1250 / 2000"
+        android:textSize="16sp"
+        android:layout_below="@id/btnApple"
+        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true"/>
+
+    <!-- Ô nhập email -->
+    <EditText
+        android:id="@+id/edtEmail"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Email hoặc số điện thoại"
+        android:layout_below="@id/tvPoint"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/bg_input"
+        android:padding="10dp"/>
+
+    <!-- Gợi ý đăng ký -->
+    <TextView
+        android:id="@+id/tvSignup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bạn chưa có tài khoản? Đăng ký ngay"
+        android:textSize="14sp"
+        android:textColor="@color/blue"
+        android:layout_below="@id/edtEmail"
+        android:layout_marginTop="12dp"
+        android:layout_centerHorizontal="true"/>
+
+    <!-- Nút chính -->
+
+    <!-- Thanh điều hướng dưới -->
+    <Button
+        android:id="@+id/btnContinue"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/tvSignup"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/bg_button_primary"
+        android:text="Tiếp tục"
+        android:textColor="@color/white" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/bottom_nav_menu"
+        app:itemIconTint="@color/black"
+        app:itemTextColor="@color/black"
+        android:background="@color/white"/>
+
+</RelativeLayout>
