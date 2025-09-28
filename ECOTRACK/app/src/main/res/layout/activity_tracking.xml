@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/tracking_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <!-- Nội dung scroll -->
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottomNavigationView"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <!-- Tiêu đề -->
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:text="Theo dõi để gắng, động lực mỗi ngày"
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <!-- Subtitle -->
+            <TextView
+                android:id="@+id/tvSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:gravity="center"
+                android:text="Ghi lại thói quen, hành động xanh thường, lên cấp và nhận phần thưởng thú vị mỗi ngày."
+                android:textColor="@color/gray"
+                android:textSize="14sp" />
+
+            <!-- Hình minh họa -->
+            <ImageView
+                android:id="@+id/imgIllustration"
+                android:layout_width="200dp"
+                android:layout_height="150dp"
+                android:contentDescription="illustration"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_leaf_illustration" />
+
+            <!-- Card Streak -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_card"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tvStreak"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Streak: 7 ngày ra khỏi phòng"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Duy trì liên tục thói quen xanh để nhận thưởng."
+                    android:textColor="@color/gray"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- Biểu đồ -->
+            <ImageView
+                android:id="@+id/imgChart"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:layout_marginTop="20dp"
+                android:contentDescription="Biểu đồ"
+                android:scaleType="fitCenter"
+                android:src="@drawable/nh_chp_m_n_h_nh_2025_09_28_223033" />
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Bottom Navigation -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/bottom_nav_menu_tracking"
+        app:labelVisibilityMode="labeled"
+    app:itemIconTint="@color/nav_item_color"
+    app:itemTextColor="@color/nav_item_color"
+    android:background="?android:attr/windowBackground"/>
+
+
+
+</RelativeLayout>
