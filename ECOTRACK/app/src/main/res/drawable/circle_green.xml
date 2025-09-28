@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+
+    <!-- Màu xanh cho task đã hoàn thành -->
+    <solid android:color="#4CAF50" />
+
+    <!-- Kích thước cố định -->
+    <size
+        android:width="16dp"
+        android:height="16dp" />
+
+</shape>
