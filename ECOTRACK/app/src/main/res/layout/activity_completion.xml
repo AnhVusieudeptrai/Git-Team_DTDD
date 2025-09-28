@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_completion"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    tools:context=".MainActivity">
+
+    <!-- Header Card -->
+    <View
+        android:id="@+id/headerCardBg"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/completion_header_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Logo and App Name -->
+    <ImageView
+        android:id="@+id/logoIcon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/_fbf3a1d_b7b1_4f84_ba83_994625e842f8"
+        app:layout_constraintStart_toStartOf="@+id/headerCardBg"
+        app:layout_constraintTop_toTopOf="@+id/headerCardBg" />
+
+    <TextView
+        android:id="@+id/appName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:text="ECOTRACK"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:letterSpacing="0.1"
+        app:layout_constraintBottom_toBottomOf="@+id/logoIcon"
+        app:layout_constraintStart_toEndOf="@+id/logoIcon"
+        app:layout_constraintTop_toTopOf="@+id/logoIcon" />
+
+    <!-- Task Title -->
+    <TextView
+        android:id="@+id/taskTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="24dp"
+        android:text="Tắt đèn khi ra khỏi phòng"
+        android:textColor="#FFFFFF"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/headerCardBg"
+        app:layout_constraintStart_toStartOf="@+id/headerCardBg"
+        app:layout_constraintTop_toBottomOf="@+id/logoIcon" />
+
+    <!-- Task Description -->
+    <TextView
+        android:id="@+id/taskDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:text="Giảm tiêu thụ điện năng và tiết kiệm chi phí"
+        android:textColor="#E8F5E8"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/headerCardBg"
+        app:layout_constraintStart_toStartOf="@+id/headerCardBg"
+        app:layout_constraintTop_toBottomOf="@+id/taskTitle" />
+
+    <!-- Celebration Background -->
+
+    <!-- Decoration Elements -->
+    <!-- Star 1 -->
+
+    <View
+        android:id="@+id/celebrationBg"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/celebration_bg"
+        app:layout_constraintBottom_toTopOf="@+id/actionButtonsContainer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/headerCardBg"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/star1"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/_836512"
+        app:layout_constraintStart_toStartOf="@+id/celebrationBg"
+        app:layout_constraintTop_toTopOf="@+id/celebrationBg" />
+
+    <!-- Leaf 1 -->
+
+    <!-- Main Completion Circle -->
+    <ImageView
+        android:id="@+id/leaf1"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="132dp"
+        android:src="@drawable/_2998123_ecology_green_leaf_plant_spring_icon"
+        app:layout_constraintEnd_toEndOf="@+id/celebrationBg"
+        app:layout_constraintTop_toTopOf="@+id/celebrationBg" />
+
+    <View
+        android:id="@+id/completionCircleBg"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:background="@drawable/completion_circle_bg"
+        app:layout_constraintBottom_toBottomOf="@+id/celebrationBg"
+        app:layout_constraintEnd_toEndOf="@+id/celebrationBg"
+        app:layout_constraintStart_toStartOf="@+id/celebrationBg"
+        app:layout_constraintTop_toTopOf="@+id/celebrationBg" />
+
+    <!-- Completion Text -->
+    <TextView
+        android:id="@+id/completionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Đã hoàn\nthành!"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/completionCircleBg"
+        app:layout_constraintEnd_toEndOf="@+id/completionCircleBg"
+        app:layout_constraintStart_toStartOf="@+id/completionCircleBg"
+        app:layout_constraintTop_toTopOf="@+id/completionCircleBg" />
+
+    <!-- EXP Badge -->
+    <TextView
+        android:id="@+id/expBadge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/exp_badge_bg"
+        android:elevation="4dp"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="8dp"
+        android:text="+10 EXP"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/celebrationBg"
+        app:layout_constraintTop_toTopOf="@+id/completionCircleBg" />
+
+    <!-- Star 2 -->
+    <ImageView
+        android:id="@+id/star2"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="60dp"
+        android:src="@drawable/_80762"
+        app:layout_constraintBottom_toBottomOf="@+id/celebrationBg"
+        app:layout_constraintStart_toStartOf="@+id/celebrationBg" />
+
+    <!-- Heart -->
+    <ImageView
+        android:id="@+id/heart"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="120dp"
+        android:src="@drawable/_3668865_beauty_health_heart_icon"
+        app:layout_constraintBottom_toBottomOf="@+id/celebrationBg"
+        app:layout_constraintStart_toStartOf="@+id/celebrationBg" />
+
+    <!-- Light Bulb -->
+    <ImageView
+        android:id="@+id/lightBulb"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="80dp"
+        android:src="@drawable/_8443574"
+        app:layout_constraintBottom_toBottomOf="@+id/celebrationBg"
+        app:layout_constraintEnd_toEndOf="@+id/celebrationBg" />
+
+    <!-- Leaf 2 -->
+    <ImageView
+        android:id="@+id/leaf2"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginBottom="40dp"
+        android:src="@drawable/_3668865_beauty_health_heart_icon"
+        app:layout_constraintBottom_toBottomOf="@+id/celebrationBg"
+        app:layout_constraintStart_toStartOf="@+id/celebrationBg" />
+
+    <!-- Confetti dots -->
+    <View
+        android:id="@+id/confetti1"
+        android:layout_width="8dp"
+        android:layout_height="8dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/confetti_dot"
+        app:layout_constraintStart_toStartOf="@+id/celebrationBg"
+        app:layout_constraintTop_toTopOf="@+id/celebrationBg" />
+
+    <View
+        android:id="@+id/confetti2"
+        android:layout_width="6dp"
+        android:layout_height="6dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="100dp"
+        android:background="@drawable/confetti_dot_orange"
+        app:layout_constraintEnd_toEndOf="@+id/celebrationBg"
+        app:layout_constraintTop_toTopOf="@+id/celebrationBg" />
+
+    <View
+        android:id="@+id/confetti3"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_marginStart="200dp"
+        android:layout_marginBottom="100dp"
+        android:background="@drawable/confetti_dot_blue"
+        app:layout_constraintBottom_toBottomOf="@+id/celebrationBg"
+        app:layout_constraintStart_toStartOf="@+id/celebrationBg" />
+
+    <!-- Action Buttons Container -->
+
+    <!-- Bottom Navigation Bar -->
+    <LinearLayout
+        android:id="@+id/actionButtonsContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="88dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <!-- Skip Button -->
+        <TextView
+            android:id="@+id/btnSkip"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_skip_bg"
+            android:gravity="center"
+            android:text="Bỏ qua hôm nay"
+            android:textColor="#666666"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <!-- Edit Button -->
+        <LinearLayout
+            android:id="@+id/btnEdit"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_edit_bg"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chỉnh sửa"
+                android:textColor="#666666"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/iconedit" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/bottomNavBg"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/bottom_nav_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/actionButtonsContainer" />
+
+    <!-- Bottom Nav Item 1 - Home (Updated Position) -->
+    <ImageView
+        android:id="@+id/navItem1"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="12dp"
+        android:src="@drawable/_836512"
+        app:layout_constraintStart_toStartOf="@+id/bottomNavBg"
+        app:layout_constraintTop_toTopOf="@+id/bottomNavBg" />
+
+    <TextView
+        android:id="@+id/navText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="Home"
+        android:textColor="#4CAF50"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="@+id/navItem1"
+        app:layout_constraintStart_toStartOf="@+id/navItem1"
+        app:layout_constraintTop_toBottomOf="@+id/navItem1" />
+
+    <!-- Bottom Nav Item 2 - Khám phá -->
+    <ImageView
+        android:id="@+id/navItem2"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/_546299"
+        app:layout_constraintEnd_toStartOf="@+id/navItem3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/navItem1"
+        app:layout_constraintTop_toTopOf="@+id/bottomNavBg" />
+
+    <TextView
+        android:id="@+id/navText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="Khám phá"
+        android:textColor="#666666"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="@+id/navItem2"
+        app:layout_constraintStart_toStartOf="@+id/navItem2"
+        app:layout_constraintTop_toBottomOf="@+id/navItem2" />
+
+    <!-- Bottom Nav Item 3 - Plus -->
+    <View
+        android:id="@+id/navItem3"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/nav_item_center_bg"
+        app:layout_constraintBottom_toBottomOf="@+id/bottomNavBg"
+        app:layout_constraintEnd_toStartOf="@+id/navItem4"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/navItem2"
+        app:layout_constraintTop_toTopOf="@+id/bottomNavBg" />
+
+    <TextView
+        android:id="@+id/plusIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/navItem3"
+        app:layout_constraintEnd_toEndOf="@+id/navItem3"
+        app:layout_constraintStart_toStartOf="@+id/navItem3"
+        app:layout_constraintTop_toTopOf="@+id/navItem3" />
+
+    <!-- Bottom Nav Item 4 - Cộng đồng -->
+    <ImageView
+        android:id="@+id/navItem4"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/_651541"
+        app:layout_constraintEnd_toStartOf="@+id/navItem5"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/navItem3"
+        app:layout_constraintTop_toTopOf="@+id/bottomNavBg" />
+
+    <TextView
+        android:id="@+id/navText4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="Cộng đồng"
+        android:textColor="#666666"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="@+id/navItem4"
+        app:layout_constraintStart_toStartOf="@+id/navItem4"
+        app:layout_constraintTop_toBottomOf="@+id/navItem4" />
+
+    <!-- Bottom Nav Item 5 - Hồ sơ -->
+    <ImageView
+        android:id="@+id/navItem5"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/_564534_customer_man_user_account_profile_icon"
+        app:layout_constraintEnd_toEndOf="@+id/bottomNavBg"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/navItem4"
+        app:layout_constraintTop_toTopOf="@+id/bottomNavBg" />
+
+    <TextView
+        android:id="@+id/navText5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="Hồ sơ"
+        android:textColor="#666666"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="@+id/navItem5"
+        app:layout_constraintStart_toStartOf="@+id/navItem5"
+        app:layout_constraintTop_toBottomOf="@+id/navItem5" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
