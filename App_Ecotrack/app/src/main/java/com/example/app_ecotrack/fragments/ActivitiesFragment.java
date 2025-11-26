@@ -133,4 +133,55 @@ public class ActivitiesFragment extends Fragment {
         return completed;
     }
 
-   
+    private void filterActivities() {
+        filteredList.clear();
+        String searchText = etSearch.getText().toString().toLowerCase().trim();
+        String selectedCategory = spCategory.getSelectedItem().toString();
+
+        for (Activity activity : activityList) {
+            boolean matchesSearch = searchText.isEmpty() ||
+                    activity.getName().toLowerCase().contains(searchText) ||
+                    activity.getDescription().toLowerCase().contains(searchText);
+
+            boolean matchesCategory = selectedCategory.equals("Tất cả") ||
+                    getCategoryInVietnamese(activity.getCategory()).equals(selectedCategory);
+
+            if (matchesSearch && matchesCategory) {
+                filteredList.add(activity);
+            }
+        }
+        adapter.notifyDataSetChanged();
+    }
+
+    private String getCategoryInVietnamese(String category) {
+        switch (category) {
+            case "transport": return "Giao thông";
+            case "energy": return "Năng lượng";
+            case "water": return "Nước";
+            case "waste": return "Rác thải";
+            case "green": return "Cây xanh";
+            case "consumption": return "Tiêu dùng";
+            default: return category;
+        }
+    }
+
+    private void completeActivity(Activity activity) {
+        boolean success = db.completeActivity(userId, activity.getId(), activity.getPoints());
+        if (success) {
+            Toast.makeText(requireContext(), "🎉 Hoàn thành! +" + activity.getPoints() + " điểm",
+                    Toast.LENGTH_SHORT).show();
+            loadActivities();
+            if (getActivity() instanceof MainActivity) {
+                ((MainActivity) getActivity()).refreshData();
+            }
+        } else {
+            Toast.makeText(requireContext(), "Có lỗi xảy ra!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadActivities();
+    }
+}
