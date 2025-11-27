@@ -64,3 +64,36 @@ public class ActivityAdapter extends RecyclerView.Adapter<ActivityAdapter.Activi
         });
     }
 
+    @Override
+    public int getItemCount() {
+        return activityList.size();
+    }
+
+    private String getCategoryName(String category) {
+        switch (category) {
+            case "transport": return "🚴 Giao thông";
+            case "energy": return "💡 Năng lượng";
+            case "water": return "💧 Nước";
+            case "waste": return "♻️ Rác thải";
+            case "green": return "🌳 Cây xanh";
+            case "consumption": return "🛒 Tiêu dùng";
+            default: return category;
+        }
+    }
+
+    static class ActivityViewHolder extends RecyclerView.ViewHolder {
+        CardView cardView;
+        TextView tvName, tvDescription, tvPoints, tvCategory;
+        Button btnComplete;
+
+        public ActivityViewHolder(@NonNull View itemView) {
+            super(itemView);
+            cardView = (CardView) itemView;
+            tvName = itemView.findViewById(R.id.tvActivityName);
+            tvDescription = itemView.findViewById(R.id.tvActivityDescription);
+            tvPoints = itemView.findViewById(R.id.tvActivityPoints);
+            tvCategory = itemView.findViewById(R.id.tvActivityCategory);
+            btnComplete = itemView.findViewById(R.id.btnComplete);
+        }
+    }
+}
