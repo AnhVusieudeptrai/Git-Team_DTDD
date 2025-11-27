@@ -12,10 +12,8 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.example.app_ecotrack.DatabaseHelper;
-import com.example.app_ecotrack.LeaderboardActivity;
 import com.example.app_ecotrack.MainActivity;
 import com.example.app_ecotrack.R;
-import com.example.app_ecotrack.RewardsActivity;
 
 public class HomeFragment extends Fragment {
     private TextView tvTodayPoints, tvWeekPoints, tvTotalPoints, tvTodayActivities, tvTotalActivities, tvRank;
@@ -131,15 +129,15 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        cardRewards.setOnClickListener(v -> {
-            android.content.Intent intent = new android.content.Intent(getActivity(), RewardsActivity.class);
-            startActivity(intent);
-        });
+//        cardRewards.setOnClickListener(v -> {
+//            android.content.Intent intent = new android.content.Intent(getActivity(), RewardsActivity.class);
+//            startActivity(intent);
+//        });
 
-        cardLeaderboard.setOnClickListener(v -> {
-            android.content.Intent intent = new android.content.Intent(getActivity(), LeaderboardActivity.class);
-            startActivity(intent);
-        });
+//        cardLeaderboard.setOnClickListener(v -> {
+//            android.content.Intent intent = new android.content.Intent(getActivity(), LeaderboardActivity.class);
+//            startActivity(intent);
+//        });
     }
 
     @Override

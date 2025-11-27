@@ -98,25 +98,25 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.action_leaderboard) {
-            startActivity(new Intent(this, LeaderboardActivity.class));
-            return true;
-        } else if (id == R.id.action_rewards) {
-            startActivity(new Intent(this, RewardsActivity.class));
-            return true;
-        } else if (id == R.id.action_settings) {
-            startActivity(new Intent(this, SettingsActivity.class));
-            return true;
-        } else if (id == R.id.action_logout) {
-            logout();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        int id = item.getItemId();
+//
+//        if (id == R.id.action_leaderboard) {
+//            startActivity(new Intent(this, LeaderboardActivity.class));
+//            return true;
+//        } else if (id == R.id.action_rewards) {
+//            startActivity(new Intent(this, RewardsActivity.class));
+//            return true;
+//        } else if (id == R.id.action_settings) {
+//            startActivity(new Intent(this, SettingsActivity.class));
+//            return true;
+//        } else if (id == R.id.action_logout) {
+//            logout();
+//            return true;
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
     private void logout() {
         prefs.edit().clear().apply();
