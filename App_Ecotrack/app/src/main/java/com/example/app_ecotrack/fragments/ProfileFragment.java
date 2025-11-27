@@ -15,10 +15,7 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.example.app_ecotrack.DatabaseHelper;
-import com.example.app_ecotrack.LeaderboardActivity;
 import com.example.app_ecotrack.R;
-import com.example.app_ecotrack.RewardsActivity;
-import com.example.app_ecotrack.SettingsActivity;
 
 public class ProfileFragment extends Fragment {
     private TextView tvFullname, tvUsername, tvEmail, tvTotalPoints, tvLevel, tvTotalActivities, tvRank;
@@ -40,7 +37,7 @@ public class ProfileFragment extends Fragment {
         initViews(view);
         loadProfileData();
         loadAchievements();
-        setupClickListeners();
+//        setupClickListeners();
 
         return view;
     }
@@ -181,22 +178,22 @@ public class ProfileFragment extends Fragment {
         return view;
     }
 
-    private void setupClickListeners() {
-        cardLeaderboard.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), LeaderboardActivity.class);
-            startActivity(intent);
-        });
-
-        cardRewards.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), RewardsActivity.class);
-            startActivity(intent);
-        });
-
-        cardSettings.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), SettingsActivity.class);
-            startActivity(intent);
-        });
-    }
+//    private void setupClickListeners() {
+//        cardLeaderboard.setOnClickListener(v -> {
+//            Intent intent = new Intent(getActivity(), LeaderboardActivity.class);
+//            startActivity(intent);
+//        });
+//
+//        cardRewards.setOnClickListener(v -> {
+//            Intent intent = new Intent(getActivity(), RewardsActivity.class);
+//            startActivity(intent);
+//        });
+//
+//        cardSettings.setOnClickListener(v -> {
+//            Intent intent = new Intent(getActivity(), SettingsActivity.class);
+//            startActivity(intent);
+//        });
+//    }
 
     @Override
     public void onResume() {
