@@ -1,0 +1,188 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.app_ecotrack"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="24"
+9        android:targetSdkVersion="36" />
+10
+11    <permission
+11-->[androidx.core:core:1.13.0] C:\Users\Admin\.gradle\caches\8.13\transforms\25d2a57d872a7f1da640ce950a40d91b\transformed\core-1.13.0\AndroidManifest.xml:22:5-24:47
+12        android:name="com.example.app_ecotrack.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+12-->[androidx.core:core:1.13.0] C:\Users\Admin\.gradle\caches\8.13\transforms\25d2a57d872a7f1da640ce950a40d91b\transformed\core-1.13.0\AndroidManifest.xml:23:9-81
+13        android:protectionLevel="signature" />
+13-->[androidx.core:core:1.13.0] C:\Users\Admin\.gradle\caches\8.13\transforms\25d2a57d872a7f1da640ce950a40d91b\transformed\core-1.13.0\AndroidManifest.xml:24:9-44
+14
+15    <uses-permission android:name="com.example.app_ecotrack.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+15-->[androidx.core:core:1.13.0] C:\Users\Admin\.gradle\caches\8.13\transforms\25d2a57d872a7f1da640ce950a40d91b\transformed\core-1.13.0\AndroidManifest.xml:26:5-97
+15-->[androidx.core:core:1.13.0] C:\Users\Admin\.gradle\caches\8.13\transforms\25d2a57d872a7f1da640ce950a40d91b\transformed\core-1.13.0\AndroidManifest.xml:26:22-94
+16
+17    <application
+17-->C:\Users\Admin\OneDrive\Documents\Git-Team_DTDD\App_Ecotrack\app\src\main\AndroidManifest.xml:4:5-33:19
+18        android:allowBackup="true"
+18-->C:\Users\Admin\OneDrive\Documents\Git-Team_DTDD\App_Ecotrack\app\src\main\AndroidManifest.xml:5:9-35
+19        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+19-->[androidx.core:core:1.13.0] C:\Users\Admin\.gradle\caches\8.13\transforms\25d2a57d872a7f1da640ce950a40d91b\transformed\core-1.13.0\AndroidManifest.xml:28:18-86
+20        android:debuggable="true"
+21        android:extractNativeLibs="false"
+22        android:icon="@mipmap/ic_launcher"
+22-->C:\Users\Admin\OneDrive\Documents\Git-Team_DTDD\App_Ecotrack\app\src\main\AndroidManifest.xml:6:9-43
+23        android:label="@string/app_name"
+23-->C:\Users\Admin\OneDrive\Documents\Git-Team_DTDD\App_Ecotrack\app\src\main\AndroidManifest.xml:7:9-41
+24        android:roundIcon="@mipmap/ic_launcher_round"
+24-->C:\Users\Admin\OneDrive\Documents\Git-Team_DTDD\App_Ecotrack\app\src\main\AndroidManifest.xml:8:9-54
+25        android:supportsRtl="true"
+25-->C:\Users\Admin\OneDrive\Documents\Git-Team_DTDD\App_Ecotrack\app\src\main\AndroidManifest.xml:9:9-35
+26        android:testOnly="true"
+27        android:theme="@style/Theme.EcoTrack" >
+27-->C:\Users\Admin\OneDrive\Documents\Git-Team_DTDD\App_Ecotrack\app\src\main\AndroidManifest.xml:10:9-46
+28        <activity
+28-->C:\Users\Admin\OneDrive\Documents\Git-Team_DTDD\App_Ecotrack\app\src\main\AndroidManifest.xml:13:9-21:20
+29            android:name="com.example.app_ecotrack.SplashActivity"
+29-->C:\Users\Admin\OneDrive\Documents\Git-Team_DTDD\App_Ecotrack\app\src\main\AndroidManifest.xml:14:13-43
+30            android:exported="true"
+30-->C:\Users\Admin\OneDrive\Documents\Git-Team_DTDD\App_Ecotrack\app\src\main\AndroidManifest.xml:15:13-36
+31            android:theme="@style/Theme.EcoTrack.Splash" >
+31-->C:\Users\Admin\OneDrive\Documents\Git-Team_DTDD\App_Ecotrack\app\src\main\AndroidManifest.xml:16:13-57
+32            <intent-filter>
+32-->C:\Users\Admin\OneDrive\Documents\Git-Team_DTDD\App_Ecotrack\app\src\main\AndroidManifest.xml:17:13-20:29
+33                <action android:name="android.intent.action.MAIN" />
+33-->C:\Users\Admin\OneDrive\Documents\Git-Team_DTDD\App_Ecotrack\app\src\main\AndroidManifest.xml:18:17-69
+33-->C:\Users\Admin\OneDrive\Documents\Git-Team_DTDD\App_Ecotrack\app\src\main\AndroidManifest.xml:18:25-66
+34
+35                <category android:name="android.intent.category.LAUNCHER" />
+35-->C:\Users\Admin\OneDrive\Documents\Git-Team_DTDD\App_Ecotrack\app\src\main\AndroidManifest.xml:19:17-77
+35-->C:\Users\Admin\OneDrive\Documents\Git-Team_DTDD\App_Ecotrack\app\src\main\AndroidManifest.xml:19:27-74
+36            </intent-filter>
+37        </activity>
+38        <activity
+38-->C:\Users\Admin\OneDrive\Documents\Git-Team_DTDD\App_Ecotrack\app\src\main\AndroidManifest.xml:23:9-76
+39            android:name="com.example.app_ecotrack.LoginActivity"
+39-->C:\Users\Admin\OneDrive\Documents\Git-Team_DTDD\App_Ecotrack\app\src\main\AndroidManifest.xml:23:19-48
+40            android:exported="false" />
+40-->C:\Users\Admin\OneDrive\Documents\Git-Team_DTDD\App_Ecotrack\app\src\main\AndroidManifest.xml:23:49-73
+41        <activity
+41-->C:\Users\Admin\OneDrive\Documents\Git-Team_DTDD\App_Ecotrack\app\src\main\AndroidManifest.xml:24:9-79
+42            android:name="com.example.app_ecotrack.RegisterActivity"
+42-->C:\Users\Admin\OneDrive\Documents\Git-Team_DTDD\App_Ecotrack\app\src\main\AndroidManifest.xml:24:19-51
+43            android:exported="false" />
+43-->C:\Users\Admin\OneDrive\Documents\Git-Team_DTDD\App_Ecotrack\app\src\main\AndroidManifest.xml:24:52-76
+44        <activity
+44-->C:\Users\Admin\OneDrive\Documents\Git-Team_DTDD\App_Ecotrack\app\src\main\AndroidManifest.xml:25:9-75
+45            android:name="com.example.app_ecotrack.MainActivity"
+45-->C:\Users\Admin\OneDrive\Documents\Git-Team_DTDD\App_Ecotrack\app\src\main\AndroidManifest.xml:25:19-47
+46            android:exported="false" />
+46-->C:\Users\Admin\OneDrive\Documents\Git-Team_DTDD\App_Ecotrack\app\src\main\AndroidManifest.xml:25:48-72
+47        <activity
+47-->C:\Users\Admin\OneDrive\Documents\Git-Team_DTDD\App_Ecotrack\app\src\main\AndroidManifest.xml:26:9-76
+48            android:name="com.example.app_ecotrack.AdminActivity"
+48-->C:\Users\Admin\OneDrive\Documents\Git-Team_DTDD\App_Ecotrack\app\src\main\AndroidManifest.xml:26:19-48
+49            android:exported="false" />
+49-->C:\Users\Admin\OneDrive\Documents\Git-Team_DTDD\App_Ecotrack\app\src\main\AndroidManifest.xml:26:49-73
+50        <activity
+50-->C:\Users\Admin\OneDrive\Documents\Git-Team_DTDD\App_Ecotrack\app\src\main\AndroidManifest.xml:27:9-82
+51            android:name="com.example.app_ecotrack.LeaderboardActivity"
+51-->C:\Users\Admin\OneDrive\Documents\Git-Team_DTDD\App_Ecotrack\app\src\main\AndroidManifest.xml:27:19-54
+52            android:exported="false" />
+52-->C:\Users\Admin\OneDrive\Documents\Git-Team_DTDD\App_Ecotrack\app\src\main\AndroidManifest.xml:27:55-79
+53        <activity
+53-->C:\Users\Admin\OneDrive\Documents\Git-Team_DTDD\App_Ecotrack\app\src\main\AndroidManifest.xml:28:9-78
+54            android:name="com.example.app_ecotrack.RewardsActivity"
+54-->C:\Users\Admin\OneDrive\Documents\Git-Team_DTDD\App_Ecotrack\app\src\main\AndroidManifest.xml:28:19-50
+55            android:exported="false" />
+55-->C:\Users\Admin\OneDrive\Documents\Git-Team_DTDD\App_Ecotrack\app\src\main\AndroidManifest.xml:28:51-75
+56        <activity
+56-->C:\Users\Admin\OneDrive\Documents\Git-Team_DTDD\App_Ecotrack\app\src\main\AndroidManifest.xml:29:9-79
+57            android:name="com.example.app_ecotrack.SettingsActivity"
+57-->C:\Users\Admin\OneDrive\Documents\Git-Team_DTDD\App_Ecotrack\app\src\main\AndroidManifest.xml:29:19-51
+58            android:exported="false" />
+58-->C:\Users\Admin\OneDrive\Documents\Git-Team_DTDD\App_Ecotrack\app\src\main\AndroidManifest.xml:29:52-76
+59        <activity
+59-->C:\Users\Admin\OneDrive\Documents\Git-Team_DTDD\App_Ecotrack\app\src\main\AndroidManifest.xml:30:9-92
+60            android:name="com.example.app_ecotrack.AdminManageActivitiesActivity"
+60-->C:\Users\Admin\OneDrive\Documents\Git-Team_DTDD\App_Ecotrack\app\src\main\AndroidManifest.xml:30:19-64
+61            android:exported="false" />
+61-->C:\Users\Admin\OneDrive\Documents\Git-Team_DTDD\App_Ecotrack\app\src\main\AndroidManifest.xml:30:65-89
+62        <activity
+62-->C:\Users\Admin\OneDrive\Documents\Git-Team_DTDD\App_Ecotrack\app\src\main\AndroidManifest.xml:31:9-87
+63            android:name="com.example.app_ecotrack.AdminManageUsersActivity"
+63-->C:\Users\Admin\OneDrive\Documents\Git-Team_DTDD\App_Ecotrack\app\src\main\AndroidManifest.xml:31:19-59
+64            android:exported="false" />
+64-->C:\Users\Admin\OneDrive\Documents\Git-Team_DTDD\App_Ecotrack\app\src\main\AndroidManifest.xml:31:60-84
+65        <activity
+65-->C:\Users\Admin\OneDrive\Documents\Git-Team_DTDD\App_Ecotrack\app\src\main\AndroidManifest.xml:32:9-86
+66            android:name="com.example.app_ecotrack.AdminStatisticsActivity"
+66-->C:\Users\Admin\OneDrive\Documents\Git-Team_DTDD\App_Ecotrack\app\src\main\AndroidManifest.xml:32:19-58
+67            android:exported="false" />
+67-->C:\Users\Admin\OneDrive\Documents\Git-Team_DTDD\App_Ecotrack\app\src\main\AndroidManifest.xml:32:59-83
+68
+69        <provider
+69-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Admin\.gradle\caches\8.13\transforms\eea06e3f11327653673cfb076061f644\transformed\emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
+70            android:name="androidx.startup.InitializationProvider"
+70-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Admin\.gradle\caches\8.13\transforms\eea06e3f11327653673cfb076061f644\transformed\emoji2-1.3.0\AndroidManifest.xml:25:13-67
+71            android:authorities="com.example.app_ecotrack.androidx-startup"
+71-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Admin\.gradle\caches\8.13\transforms\eea06e3f11327653673cfb076061f644\transformed\emoji2-1.3.0\AndroidManifest.xml:26:13-68
+72            android:exported="false" >
+72-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Admin\.gradle\caches\8.13\transforms\eea06e3f11327653673cfb076061f644\transformed\emoji2-1.3.0\AndroidManifest.xml:27:13-37
+73            <meta-data
+73-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Admin\.gradle\caches\8.13\transforms\eea06e3f11327653673cfb076061f644\transformed\emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
+74                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+74-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Admin\.gradle\caches\8.13\transforms\eea06e3f11327653673cfb076061f644\transformed\emoji2-1.3.0\AndroidManifest.xml:30:17-75
+75                android:value="androidx.startup" />
+75-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Admin\.gradle\caches\8.13\transforms\eea06e3f11327653673cfb076061f644\transformed\emoji2-1.3.0\AndroidManifest.xml:31:17-49
+76            <meta-data
+76-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\Admin\.gradle\caches\8.13\transforms\9824b1b181bb0849dfa4157d7644cdfc\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:29:13-31:52
+77                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+77-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\Admin\.gradle\caches\8.13\transforms\9824b1b181bb0849dfa4157d7644cdfc\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:30:17-78
+78                android:value="androidx.startup" />
+78-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\Admin\.gradle\caches\8.13\transforms\9824b1b181bb0849dfa4157d7644cdfc\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:31:17-49
+79            <meta-data
+79-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Admin\.gradle\caches\8.13\transforms\ac9474413129dff2fc04668b3611dc99\transformed\profileinstaller-1.4.0\AndroidManifest.xml:29:13-31:52
+80                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+80-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Admin\.gradle\caches\8.13\transforms\ac9474413129dff2fc04668b3611dc99\transformed\profileinstaller-1.4.0\AndroidManifest.xml:30:17-85
+81                android:value="androidx.startup" />
+81-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Admin\.gradle\caches\8.13\transforms\ac9474413129dff2fc04668b3611dc99\transformed\profileinstaller-1.4.0\AndroidManifest.xml:31:17-49
+82        </provider>
+83
+84        <receiver
+84-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Admin\.gradle\caches\8.13\transforms\ac9474413129dff2fc04668b3611dc99\transformed\profileinstaller-1.4.0\AndroidManifest.xml:34:9-52:20
+85            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+85-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Admin\.gradle\caches\8.13\transforms\ac9474413129dff2fc04668b3611dc99\transformed\profileinstaller-1.4.0\AndroidManifest.xml:35:13-76
+86            android:directBootAware="false"
+86-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Admin\.gradle\caches\8.13\transforms\ac9474413129dff2fc04668b3611dc99\transformed\profileinstaller-1.4.0\AndroidManifest.xml:36:13-44
+87            android:enabled="true"
+87-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Admin\.gradle\caches\8.13\transforms\ac9474413129dff2fc04668b3611dc99\transformed\profileinstaller-1.4.0\AndroidManifest.xml:37:13-35
+88            android:exported="true"
+88-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Admin\.gradle\caches\8.13\transforms\ac9474413129dff2fc04668b3611dc99\transformed\profileinstaller-1.4.0\AndroidManifest.xml:38:13-36
+89            android:permission="android.permission.DUMP" >
+89-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Admin\.gradle\caches\8.13\transforms\ac9474413129dff2fc04668b3611dc99\transformed\profileinstaller-1.4.0\AndroidManifest.xml:39:13-57
+90            <intent-filter>
+90-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Admin\.gradle\caches\8.13\transforms\ac9474413129dff2fc04668b3611dc99\transformed\profileinstaller-1.4.0\AndroidManifest.xml:40:13-42:29
+91                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+91-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Admin\.gradle\caches\8.13\transforms\ac9474413129dff2fc04668b3611dc99\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:17-91
+91-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Admin\.gradle\caches\8.13\transforms\ac9474413129dff2fc04668b3611dc99\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:25-88
+92            </intent-filter>
+93            <intent-filter>
+93-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Admin\.gradle\caches\8.13\transforms\ac9474413129dff2fc04668b3611dc99\transformed\profileinstaller-1.4.0\AndroidManifest.xml:43:13-45:29
+94                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+94-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Admin\.gradle\caches\8.13\transforms\ac9474413129dff2fc04668b3611dc99\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:17-85
+94-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Admin\.gradle\caches\8.13\transforms\ac9474413129dff2fc04668b3611dc99\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:25-82
+95            </intent-filter>
+96            <intent-filter>
+96-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Admin\.gradle\caches\8.13\transforms\ac9474413129dff2fc04668b3611dc99\transformed\profileinstaller-1.4.0\AndroidManifest.xml:46:13-48:29
+97                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+97-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Admin\.gradle\caches\8.13\transforms\ac9474413129dff2fc04668b3611dc99\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:17-88
+97-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Admin\.gradle\caches\8.13\transforms\ac9474413129dff2fc04668b3611dc99\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:25-85
+98            </intent-filter>
+99            <intent-filter>
+99-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Admin\.gradle\caches\8.13\transforms\ac9474413129dff2fc04668b3611dc99\transformed\profileinstaller-1.4.0\AndroidManifest.xml:49:13-51:29
+100                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+100-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Admin\.gradle\caches\8.13\transforms\ac9474413129dff2fc04668b3611dc99\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:17-95
+100-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Admin\.gradle\caches\8.13\transforms\ac9474413129dff2fc04668b3611dc99\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:25-92
+101            </intent-filter>
+102        </receiver>
+103    </application>
+104
+105</manifest>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#000000</color>
+    <color name="blue">#2196F3</color>
+    <color name="facebook_blue">#4267B2</color>
+    <color name="google_red">#DB4437</color>
+    <color name="gray">#9E9E9E</color>
+    <color name="gray_dark">#616161</color>
+    <color name="gray_light">#F5F5F5</color>
+    <color name="green_accent">#66BB6A</color>
+    <color name="green_bg_light">#E8F5E9</color>
+    <color name="green_dark">#388E3C</color>
+    <color name="green_light">#81C784</color>
+    <color name="green_primary">#4CAF50</color>
+    <color name="orange">#FF9800</color>
+    <color name="red">#F44336</color>
+    <color name="white">#FFFFFF</color>
+    <color name="yellow">#FFC107</color>
+    <string name="app_name">EcoTrack</string>
+    <style name="Theme.EcoTrack" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <item name="colorPrimary">@color/green_primary</item>
+        <item name="colorPrimaryDark">@color/green_dark</item>
+        <item name="colorAccent">@color/green_accent</item>
+    </style>
+    <style name="Theme.EcoTrack.Splash" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowBackground">@color/green_primary</item>
+    </style>
+</resources>
