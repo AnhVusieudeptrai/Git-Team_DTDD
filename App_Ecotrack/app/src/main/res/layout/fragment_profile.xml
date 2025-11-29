@@ -360,21 +360,7 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- Achievements -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Thành Tựu"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/green_primary"
-                android:layout_marginBottom="12dp"/>
 
-            <LinearLayout
-                android:id="@+id/containerAchievements"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"/>
 
         </LinearLayout>
     </LinearLayout>
