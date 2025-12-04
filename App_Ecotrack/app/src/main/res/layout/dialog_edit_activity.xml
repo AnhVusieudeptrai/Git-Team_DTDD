@@ -14,5 +14,22 @@
         android:background="@drawable/bg_search"
         android:layout_marginBottom="12dp"/>
 
-   
+    <EditText
+        android:id="@+id/etEditDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Mô tả"
+        android:padding="12dp"
+        android:background="@drawable/bg_search"
+        android:layout_marginBottom="12dp"/>
+
+    <EditText
+        android:id="@+id/etEditPoints"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Điểm"
+        android:inputType="number"
+        android:padding="12dp"
+        android:background="@drawable/bg_search"/>
+
 </LinearLayout>
