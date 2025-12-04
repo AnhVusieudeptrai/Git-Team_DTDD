@@ -27,25 +27,7 @@
                 android:textSize="48sp"
                 android:layout_marginBottom="8dp"/>
 
-            <TextView
-                android:id="@+id/tvAchievementName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Thành tựu"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:textColor="@color/gray_dark"
-                android:gravity="center"
-                android:layout_marginBottom="4dp"/>
-
-            <TextView
-                android:id="@+id/tvAchievementDesc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Mô tả"
-                android:textSize="12sp"
-                android:textColor="@color/gray"
-                android:gravity="center"/>
+          
         </LinearLayout>
 
         <View
