@@ -72,40 +72,6 @@ public class LeaderboardActivity extends AppCompatActivity {
         }
     }
 
-    private View createRankView(int rank, String name, int points, int level, int activities, boolean isCurrentUser) {
-        View view = LayoutInflater.from(this).inflate(R.layout.item_leaderboard, containerLeaderboard, false);
-
-        TextView tvRank = view.findViewById(R.id.tvRank);
-        TextView tvName = view.findViewById(R.id.tvName);
-        TextView tvPoints = view.findViewById(R.id.tvPoints);
-        TextView tvLevel = view.findViewById(R.id.tvLevel);
-        TextView tvActivities = view.findViewById(R.id.tvActivities);
-        View highlightView = view.findViewById(R.id.highlightView);
-
-        if (rank == 1) {
-            tvRank.setText("🥇");
-        } else if (rank == 2) {
-            tvRank.setText("🥈");
-        } else if (rank == 3) {
-            tvRank.setText("🥉");
-        } else {
-            tvRank.setText("#" + rank);
-        }
-
-        tvName.setText(name);
-        tvPoints.setText(points + " điểm");
-        tvLevel.setText("Cấp " + level);
-        tvActivities.setText(activities + " hoạt động");
-
-        if (isCurrentUser) {
-            highlightView.setVisibility(View.VISIBLE);
-            view.setBackgroundColor(0xFFE8F5E9);
-        } else {
-            highlightView.setVisibility(View.GONE);
-        }
-
-        return view;
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
