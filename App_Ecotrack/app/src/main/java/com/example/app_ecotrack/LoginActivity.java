@@ -67,7 +67,6 @@ public class LoginActivity extends AppCompatActivity {
             editor.putInt("points", points);
             editor.putInt("level", level);
             editor.apply();
-
             cursor.close();
 
             Toast.makeText(this, "Chào mừng " + fullname + "!", Toast.LENGTH_SHORT).show();
