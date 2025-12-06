@@ -53,7 +53,35 @@ public class HomeFragment extends Fragment {
         cardLeaderboard = view.findViewById(R.id.cardLeaderboard);
     }
 
+    private void loadData() {
+        // Today's points
+        int todayPoints = db.getTodayPoints(userId);
+        tvTodayPoints.setText(String.valueOf(todayPoints));
 
+        // Week points
+        int weekPoints = getWeekPoints();
+        tvWeekPoints.setText(String.valueOf(weekPoints));
+
+        // Total points
+        int totalPoints = prefs.getInt("points", 0);
+        tvTotalPoints.setText(String.valueOf(totalPoints));
+
+        // Today's activities count
+        Cursor todayCursor = db.getTodayActivities(userId);
+        int todayCount = todayCursor != null ? todayCursor.getCount() : 0;
+        tvTodayActivities.setText(String.valueOf(todayCount));
+        if (todayCursor != null) todayCursor.close();
+
+        // Total activities count
+        Cursor totalCursor = db.getUserActivities(userId);
+        int totalCount = totalCursor != null ? totalCursor.getCount() : 0;
+        tvTotalActivities.setText(String.valueOf(totalCount));
+        if (totalCursor != null) totalCursor.close();
+
+        // Rank
+        int rank = getUserRank();
+        tvRank.setText("#" + rank);
+    }
 
     private int getWeekPoints() {
         long weekAgo = System.currentTimeMillis() - (7 * 24 * 60 * 60 * 1000);
@@ -78,7 +106,21 @@ public class HomeFragment extends Fragment {
         return weekPoints;
     }
 
-
+    private int getUserRank() {
+        Cursor leaderboard = db.getLeaderboard();
+        int rank = 1;
+        if (leaderboard != null) {
+            while (leaderboard.moveToNext()) {
+                int id = leaderboard.getInt(leaderboard.getColumnIndexOrThrow("id"));
+                if (id == userId) {
+                    break;
+                }
+                rank++;
+            }
+            leaderboard.close();
+        }
+        return rank;
+    }
 
     private void setupClickListeners() {
         cardActivities.setOnClickListener(v -> {

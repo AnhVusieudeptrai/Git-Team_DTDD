@@ -61,7 +61,35 @@ public class ProfileFragment extends Fragment {
         containerAchievements = view.findViewById(R.id.containerAchievements);
     }
 
-    
+    private void loadProfileData() {
+        Cursor cursor = db.getUserById(userId);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            String fullname = cursor.getString(cursor.getColumnIndexOrThrow("fullname"));
+            String username = cursor.getString(cursor.getColumnIndexOrThrow("username"));
+            String email = cursor.getString(cursor.getColumnIndexOrThrow("email"));
+            int points = cursor.getInt(cursor.getColumnIndexOrThrow("points"));
+            int level = cursor.getInt(cursor.getColumnIndexOrThrow("level"));
+
+            tvFullname.setText(fullname);
+            tvUsername.setText("@" + username);
+            tvEmail.setText(email);
+            tvTotalPoints.setText(String.valueOf(points));
+            tvLevel.setText(String.valueOf(level));
+
+            cursor.close();
+        }
+
+        // Total activities
+        Cursor actCursor = db.getUserActivities(userId);
+        int totalAct = actCursor != null ? actCursor.getCount() : 0;
+        tvTotalActivities.setText(String.valueOf(totalAct));
+        if (actCursor != null) actCursor.close();
+
+        // Rank
+        int rank = getUserRank();
+        tvRank.setText("#" + rank);
+    }
 
     private int getUserRank() {
         Cursor leaderboard = db.getLeaderboard();
