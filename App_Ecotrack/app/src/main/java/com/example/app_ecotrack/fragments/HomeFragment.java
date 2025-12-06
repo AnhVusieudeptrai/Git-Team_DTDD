@@ -78,7 +78,7 @@ public class HomeFragment extends Fragment {
         return weekPoints;
     }
 
-    
+
 
     private void setupClickListeners() {
         cardActivities.setOnClickListener(v -> {
