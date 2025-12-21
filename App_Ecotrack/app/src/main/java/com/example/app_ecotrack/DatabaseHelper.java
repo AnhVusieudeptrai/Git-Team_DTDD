@@ -5,25 +5,92 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "EcoTrack.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2; // Tăng version để trigger onUpgrade
+    private static final String TAG = "DatabaseHelper";
 
     // Tables
     private static final String TABLE_USERS = "users";
     private static final String TABLE_ACTIVITIES = "activities";
     private static final String TABLE_USER_ACTIVITIES = "user_activities";
+    
+    private Context context;
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        this.context = context;
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        Log.d(TAG, "Creating database from SQL file...");
+        
+        try {
+            // Đọc và thực thi file SQL từ assets
+            executeSqlFromAssets(db, "ecotrack_database.sql");
+            Log.d(TAG, "Database created successfully from SQL file");
+        } catch (Exception e) {
+            Log.e(TAG, "Error creating database from SQL file: " + e.getMessage());
+            // Fallback: tạo database theo cách cũ
+            createDatabaseManually(db);
+        }
+    }
+    
+    /**
+     * Đọc và thực thi file SQL từ thư mục assets
+     */
+    private void executeSqlFromAssets(SQLiteDatabase db, String sqlFileName) throws IOException {
+        InputStream inputStream = context.getAssets().open(sqlFileName);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+        
+        StringBuilder sqlBuilder = new StringBuilder();
+        String line;
+        
+        while ((line = reader.readLine()) != null) {
+            // Bỏ qua comment và dòng trống
+            line = line.trim();
+            if (line.isEmpty() || line.startsWith("--")) {
+                continue;
+            }
+            
+            sqlBuilder.append(line).append(" ");
+            
+            // Nếu gặp dấu ; thì thực thi câu lệnh SQL
+            if (line.endsWith(";")) {
+                String sql = sqlBuilder.toString().trim();
+                if (!sql.isEmpty()) {
+                    try {
+                        db.execSQL(sql);
+                        Log.d(TAG, "Executed SQL: " + sql.substring(0, Math.min(50, sql.length())) + "...");
+                    } catch (Exception e) {
+                        Log.e(TAG, "Error executing SQL: " + sql);
+                        Log.e(TAG, "Error: " + e.getMessage());
+                    }
+                }
+                sqlBuilder.setLength(0); // Clear builder
+            }
+        }
+        
+        reader.close();
+        inputStream.close();
+    }
+    
+    /**
+     * Tạo database theo cách thủ công (fallback method)
+     */
+    private void createDatabaseManually(SQLiteDatabase db) {
+        Log.d(TAG, "Creating database manually...");
+        
         // Create Users table
         String createUsersTable = "CREATE TABLE " + TABLE_USERS + " (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -59,6 +126,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "FOREIGN KEY(activity_id) REFERENCES " + TABLE_ACTIVITIES + "(id))";
         db.execSQL(createUserActivitiesTable);
 
+        // Insert default data
+        insertDefaultUsers(db);
+        insertDefaultActivities(db);
+    }
+    
+    /**
+     * Chèn dữ liệu người dùng mặc định
+     */
+    private void insertDefaultUsers(SQLiteDatabase db) {
         // Insert default admin
         ContentValues admin = new ContentValues();
         admin.put("username", "admin");
@@ -82,9 +158,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         user.put("level", 2);
         user.put("created_at", getCurrentDateTime());
         db.insert(TABLE_USERS, null, user);
-
-        // Insert default activities
-        insertDefaultActivities(db);
     }
 
     private void insertDefaultActivities(SQLiteDatabase db) {
@@ -95,7 +168,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 {"Phân loại rác", "Phân loại rác thải tại nguồn", "20", "waste", "recycle"},
                 {"Tắm nước nhanh", "Giảm thời gian tắm để tiết kiệm nước", "10", "water", "shower"},
                 {"Trồng cây xanh", "Trồng và chăm sóc cây xanh", "30", "green", "tree"},
-                {"Sử dụng đồ tái chế", "Ưu tiên sử dụng sản phẩm làm từ nguyên liệu tái chế", "15", "recycle", "product"},
+                {"Sử dụng đồ tái chế", "Ưu tiên sử dụng sản phẩm làm từ nguyên liệu tái chế", "15", "consumption", "product"},
                 {"Không sử dụng ống hút nhựa", "Từ chối ống hút nhựa khi uống nước", "10", "waste", "straw"},
                 {"Đi bộ đường ngắn", "Đi bộ thay vì đi xe cho quãng đường ngắn", "15", "transport", "walk"},
                 {"Tắt vòi nước khi đánh răng", "Tiết kiệm nước khi đánh răng", "10", "water", "faucet"}
@@ -115,10 +188,69 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        Log.d(TAG, "Upgrading database from version " + oldVersion + " to " + newVersion);
+        
+        // Xóa các bảng cũ
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER_ACTIVITIES);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_ACTIVITIES);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
+        
+        // Tạo lại database
         onCreate(db);
+    }
+    
+    /**
+     * Phương thức để reset database (xóa và tạo lại)
+     */
+    public void resetDatabase() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        onUpgrade(db, DATABASE_VERSION, DATABASE_VERSION);
+    }
+    
+    /**
+     * Kiểm tra xem database có dữ liệu không
+     */
+    public boolean isDatabaseEmpty() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM " + TABLE_USERS, null);
+        boolean isEmpty = true;
+        if (cursor != null && cursor.moveToFirst()) {
+            isEmpty = cursor.getInt(0) == 0;
+            cursor.close();
+        }
+        return isEmpty;
+    }
+    
+    /**
+     * Lấy thông tin database
+     */
+    public String getDatabaseInfo() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        StringBuilder info = new StringBuilder();
+        
+        // Đếm số lượng bản ghi trong mỗi bảng
+        Cursor usersCursor = db.rawQuery("SELECT COUNT(*) FROM " + TABLE_USERS, null);
+        Cursor activitiesCursor = db.rawQuery("SELECT COUNT(*) FROM " + TABLE_ACTIVITIES, null);
+        Cursor userActivitiesCursor = db.rawQuery("SELECT COUNT(*) FROM " + TABLE_USER_ACTIVITIES, null);
+        
+        if (usersCursor != null && usersCursor.moveToFirst()) {
+            info.append("Users: ").append(usersCursor.getInt(0)).append("\n");
+            usersCursor.close();
+        }
+        
+        if (activitiesCursor != null && activitiesCursor.moveToFirst()) {
+            info.append("Activities: ").append(activitiesCursor.getInt(0)).append("\n");
+            activitiesCursor.close();
+        }
+        
+        if (userActivitiesCursor != null && userActivitiesCursor.moveToFirst()) {
+            info.append("User Activities: ").append(userActivitiesCursor.getInt(0)).append("\n");
+            userActivitiesCursor.close();
+        }
+        
+        info.append("Database Version: ").append(DATABASE_VERSION);
+        
+        return info.toString();
     }
 
     // User methods

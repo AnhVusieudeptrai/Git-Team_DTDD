@@ -11,7 +11,7 @@ import androidx.cardview.widget.CardView;
 
 public class AdminActivity extends AppCompatActivity {
     private TextView tvAdminName, tvTotalUsers, tvTotalActivities, tvTotalCompleted, tvTotalPoints;
-    private CardView cardManageActivities, cardManageUsers, cardStatistics, cardLogout;
+    private CardView cardManageActivities, cardManageUsers, cardStatistics, cardDatabaseManager, cardLogout;
     private DatabaseHelper db;
     private int adminId;
 
@@ -44,6 +44,7 @@ public class AdminActivity extends AppCompatActivity {
         cardManageActivities = findViewById(R.id.cardManageActivities);
         cardManageUsers = findViewById(R.id.cardManageUsers);
         cardStatistics = findViewById(R.id.cardStatistics);
+        cardDatabaseManager = findViewById(R.id.cardDatabaseManager);
         cardLogout = findViewById(R.id.cardLogout);
     }
 
@@ -88,6 +89,11 @@ public class AdminActivity extends AppCompatActivity {
 
         cardStatistics.setOnClickListener(v -> {
             Intent intent = new Intent(AdminActivity.this, AdminStatisticsActivity.class);
+            startActivity(intent);
+        });
+
+        cardDatabaseManager.setOnClickListener(v -> {
+            Intent intent = new Intent(AdminActivity.this, DatabaseManagerActivity.class);
             startActivity(intent);
         });
 
