@@ -1,0 +1,150 @@
+[
+    {
+        "merged": "com.example.ecotrack.app-debug-34:/drawable_character_with_badges.png.flat",
+        "source": "com.example.ecotrack.app-main-36:/drawable/character_with_badges.png"
+    },
+    {
+        "merged": "com.example.ecotrack.app-debug-34:/drawable_family_recycling.png.flat",
+        "source": "com.example.ecotrack.app-main-36:/drawable/family_recycling.png"
+    },
+    {
+        "merged": "com.example.ecotrack.app-debug-34:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.example.ecotrack.app-main-36:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "com.example.ecotrack.app-debug-34:/mipmap-anydpi-v26_ic_channel.xml.flat",
+        "source": "com.example.ecotrack.app-main-36:/mipmap-anydpi-v26/ic_channel.xml"
+    },
+    {
+        "merged": "com.example.ecotrack.app-debug-34:/mipmap-xhdpi_ic_earth_in_hands.png.flat",
+        "source": "com.example.ecotrack.app-main-36:/mipmap-xhdpi/ic_earth_in_hands.png"
+    },
+    {
+        "merged": "com.example.ecotrack.app-debug-34:/layout_activity_main.xml.flat",
+        "source": "com.example.ecotrack.app-main-36:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.example.ecotrack.app-debug-34:/drawable_button_chip_neutral.xml.flat",
+        "source": "com.example.ecotrack.app-main-36:/drawable/button_chip_neutral.xml"
+    },
+    {
+        "merged": "com.example.ecotrack.app-debug-34:/drawable_ic_google.png.flat",
+        "source": "com.example.ecotrack.app-main-36:/drawable/ic_google.png"
+    },
+    {
+        "merged": "com.example.ecotrack.app-debug-34:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.ecotrack.app-main-36:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.ecotrack.app-debug-34:/drawable_ic_logo_ecotrack.png.flat",
+        "source": "com.example.ecotrack.app-main-36:/drawable/ic_logo_ecotrack.png"
+    },
+    {
+        "merged": "com.example.ecotrack.app-debug-34:/drawable_button_background_white.xml.flat",
+        "source": "com.example.ecotrack.app-main-36:/drawable/button_background_white.xml"
+    },
+    {
+        "merged": "com.example.ecotrack.app-debug-34:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.example.ecotrack.app-main-36:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.example.ecotrack.app-debug-34:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.ecotrack.app-main-36:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.ecotrack.app-debug-34:/drawable_page_indicator_dot_selected.xml.flat",
+        "source": "com.example.ecotrack.app-main-36:/drawable/page_indicator_dot_selected.xml"
+    },
+    {
+        "merged": "com.example.ecotrack.app-debug-34:/drawable_ic_apple.png.flat",
+        "source": "com.example.ecotrack.app-main-36:/drawable/ic_apple.png"
+    },
+    {
+        "merged": "com.example.ecotrack.app-debug-34:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.example.ecotrack.app-main-36:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.ecotrack.app-debug-34:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.ecotrack.app-main-36:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.ecotrack.app-debug-34:/xml_data_extraction_rules.xml.flat",
+        "source": "com.example.ecotrack.app-main-36:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "com.example.ecotrack.app-debug-34:/mipmap-xhdpi_ic_channel.png.flat",
+        "source": "com.example.ecotrack.app-main-36:/mipmap-xhdpi/ic_channel.png"
+    },
+    {
+        "merged": "com.example.ecotrack.app-debug-34:/layout_activity_onboarding_screen1.xml.flat",
+        "source": "com.example.ecotrack.app-main-36:/layout/activity_onboarding_screen1.xml"
+    },
+    {
+        "merged": "com.example.ecotrack.app-debug-34:/drawable_earth_in_hands.png.flat",
+        "source": "com.example.ecotrack.app-main-36:/drawable/earth_in_hands.png"
+    },
+    {
+        "merged": "com.example.ecotrack.app-debug-34:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.example.ecotrack.app-main-36:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.ecotrack.app-debug-34:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "com.example.ecotrack.app-main-36:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.ecotrack.app-debug-34:/layout_activity_register.xml.flat",
+        "source": "com.example.ecotrack.app-main-36:/layout/activity_register.xml"
+    },
+    {
+        "merged": "com.example.ecotrack.app-debug-34:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.ecotrack.app-main-36:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.ecotrack.app-debug-34:/layout_activity_onboarding_screen3.xml.flat",
+        "source": "com.example.ecotrack.app-main-36:/layout/activity_onboarding_screen3.xml"
+    },
+    {
+        "merged": "com.example.ecotrack.app-debug-34:/drawable_edittext_background.xml.flat",
+        "source": "com.example.ecotrack.app-main-36:/drawable/edittext_background.xml"
+    },
+    {
+        "merged": "com.example.ecotrack.app-debug-34:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.ecotrack.app-main-36:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.ecotrack.app-debug-34:/drawable_button_background_green.xml.flat",
+        "source": "com.example.ecotrack.app-main-36:/drawable/button_background_green.xml"
+    },
+    {
+        "merged": "com.example.ecotrack.app-debug-34:/drawable_page_indicator_dot_unselected.xml.flat",
+        "source": "com.example.ecotrack.app-main-36:/drawable/page_indicator_dot_unselected.xml"
+    },
+    {
+        "merged": "com.example.ecotrack.app-debug-34:/drawable_ic_facebook.png.flat",
+        "source": "com.example.ecotrack.app-main-36:/drawable/ic_facebook.png"
+    },
+    {
+        "merged": "com.example.ecotrack.app-debug-34:/layout_activity_onboarding_screen2.xml.flat",
+        "source": "com.example.ecotrack.app-main-36:/layout/activity_onboarding_screen2.xml"
+    },
+    {
+        "merged": "com.example.ecotrack.app-debug-34:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.example.ecotrack.app-main-36:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.example.ecotrack.app-debug-34:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.example.ecotrack.app-main-36:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "com.example.ecotrack.app-debug-34:/xml_backup_rules.xml.flat",
+        "source": "com.example.ecotrack.app-main-36:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "com.example.ecotrack.app-debug-34:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.ecotrack.app-main-36:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.ecotrack.app-debug-34:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.ecotrack.app-main-36:/mipmap-xhdpi/ic_launcher_round.webp"
+    }
+]
