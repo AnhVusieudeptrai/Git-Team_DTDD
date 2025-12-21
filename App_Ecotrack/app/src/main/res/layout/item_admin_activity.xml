@@ -76,10 +76,10 @@
                 android:id="@+id/btnEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sửa"
-                android:textColor="@color/white"
+                android:layout_marginEnd="8dp"
                 android:backgroundTint="@color/blue"
-                android:layout_marginEnd="8dp"/>
+                android:text="Sửa"
+                android:textColor="@color/white" />
 
             <Button
                 android:id="@+id/btnDelete"
