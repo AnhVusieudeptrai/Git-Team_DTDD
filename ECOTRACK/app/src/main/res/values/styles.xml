@@ -1,5 +1,9 @@
 <resources>
 
+    <style name="AppText" parent="Widget.AppCompat.TextView" />
+
+    <style name="AppInput" parent="Widget.AppCompat.EditText" />
+
     <!-- Font: dùng sans-serif mặc định; nếu có font tuỳ chỉnh, thêm /res/font và thay thế fontFamily -->
     <style name="AppText.Title">
         <item name="android:textColor">@color/colorTextPrimary</item>
