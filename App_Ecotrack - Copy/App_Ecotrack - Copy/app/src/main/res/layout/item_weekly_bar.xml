@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="0dp"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:orientation="vertical"
+    android:gravity="bottom|center_horizontal"
+    android:padding="4dp">
+
+    <TextView
+        android:id="@+id/tvPoints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:textColor="@color/green_primary"
+        android:layout_marginBottom="4dp"/>
+
+    <View
+        android:id="@+id/bar"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="@color/green_primary"
+        android:layout_marginBottom="4dp"/>
+
+    <TextView
+        android:id="@+id/tvDay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="T2"
+        android:textSize="12sp"
+        android:textColor="@color/gray"/>
+</LinearLayout>
