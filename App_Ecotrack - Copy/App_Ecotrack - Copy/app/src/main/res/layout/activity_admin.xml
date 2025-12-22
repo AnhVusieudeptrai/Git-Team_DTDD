@@ -14,7 +14,14 @@
         android:background="@color/green_primary"
         android:padding="20dp">
 
-    
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🌱 EcoTrack Admin"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_marginBottom="8dp"/>
 
         <TextView
             android:id="@+id/tvAdminName"
