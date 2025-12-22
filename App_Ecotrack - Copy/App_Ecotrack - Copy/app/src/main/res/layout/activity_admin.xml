@@ -14,14 +14,7 @@
         android:background="@color/green_primary"
         android:padding="20dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="🌱 EcoTrack Admin"
-            android:textSize="50sp"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:layout_marginBottom="8dp"/>
+       
 
         <TextView
             android:id="@+id/tvAdminName"
@@ -51,7 +44,7 @@
                 android:layout_marginBottom="16dp">
 
                 <com.google.android.material.card.MaterialCardView
-                    android:layout_width="0dp"
+                    android:layout_width="45dp"
                     android:layout_height="120dp"
                     android:layout_weight="1"
                     android:layout_marginEnd="8dp"
