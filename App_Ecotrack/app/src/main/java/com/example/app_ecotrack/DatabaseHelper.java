@@ -16,7 +16,7 @@ import java.util.Locale;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "EcoTrack.db";
-    private static final int DATABASE_VERSION = 2; // Tăng version để trigger onUpgrade
+    private static final int DATABASE_VERSION = 3; // Tăng version để trigger onUpgrade và load từ SQL file
     private static final String TAG = "DatabaseHelper";
 
     // Tables
