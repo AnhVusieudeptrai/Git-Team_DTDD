@@ -2,9 +2,21 @@ const express = require('express');
 const { body, validationResult } = require('express-validator');
 const User = require('../models/User');
 const { generateToken, auth } = require('../middleware/auth');
-const { OAuth2Client } = require('google-auth-library');
 
 const router = express.Router();
+
+// Lazy load Google OAuth client
+let OAuth2Client = null;
+const getGoogleClient = () => {
+  if (!OAuth2Client) {
+    try {
+      OAuth2Client = require('google-auth-library').OAuth2Client;
+    } catch (e) {
+      console.log('Google Auth Library not available');
+    }
+  }
+  return OAuth2Client;
+};
 
 // Register with email/password
 router.post('/register', [
@@ -90,9 +102,14 @@ router.post('/login', [
 // Google Sign-In (verify ID token from Android)
 router.post('/google', async (req, res) => {
   try {
+    const GoogleOAuth2Client = getGoogleClient();
+    if (!GoogleOAuth2Client || !process.env.GOOGLE_CLIENT_ID) {
+      return res.status(501).json({ error: 'Google Sign-In not configured' });
+    }
+    
     const { idToken } = req.body;
     
-    const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+    const client = new GoogleOAuth2Client(process.env.GOOGLE_CLIENT_ID);
     const ticket = await client.verifyIdToken({
       idToken,
       audience: process.env.GOOGLE_CLIENT_ID
