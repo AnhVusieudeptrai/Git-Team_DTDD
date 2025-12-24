@@ -235,6 +235,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.query(TABLE_USERS, null, "id=?", new String[]{String.valueOf(userId)}, null, null, null);
     }
 
+    public boolean updateUserPasswordByUsernameOrEmail(String identifier, String newPassword) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("password", newPassword);
+        int rows = db.update(TABLE_USERS, values, "username=? OR email=?", new String[]{identifier, identifier});
+        return rows > 0;
+    }
+
     public boolean updateUserPoints(int userId, int points) {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = getUserById(userId);

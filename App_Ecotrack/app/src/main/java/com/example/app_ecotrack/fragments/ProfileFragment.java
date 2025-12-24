@@ -1,5 +1,6 @@
 package com.example.app_ecotrack.fragments;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -34,7 +35,7 @@ public class ProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
         db = new DatabaseHelper(requireContext());
-        prefs = requireActivity().getSharedPreferences("EcoTrackPrefs", requireContext().MODE_PRIVATE);
+        prefs = requireActivity().getSharedPreferences("EcoTrackPrefs", Context.MODE_PRIVATE);
         userId = prefs.getInt("userId", -1);
 
         initViews(view);
@@ -63,28 +64,38 @@ public class ProfileFragment extends Fragment {
 
     private void loadProfileData() {
         Cursor cursor = db.getUserById(userId);
+        if (cursor != null) {
+            try {
+                if (cursor.moveToFirst()) {
+                    String fullname = cursor.getString(cursor.getColumnIndexOrThrow("fullname"));
+                    String username = cursor.getString(cursor.getColumnIndexOrThrow("username"));
+                    String email = cursor.getString(cursor.getColumnIndexOrThrow("email"));
+                    int points = cursor.getInt(cursor.getColumnIndexOrThrow("points"));
+                    int level = cursor.getInt(cursor.getColumnIndexOrThrow("level"));
 
-        if (cursor != null && cursor.moveToFirst()) {
-            String fullname = cursor.getString(cursor.getColumnIndexOrThrow("fullname"));
-            String username = cursor.getString(cursor.getColumnIndexOrThrow("username"));
-            String email = cursor.getString(cursor.getColumnIndexOrThrow("email"));
-            int points = cursor.getInt(cursor.getColumnIndexOrThrow("points"));
-            int level = cursor.getInt(cursor.getColumnIndexOrThrow("level"));
-
-            tvFullname.setText(fullname);
-            tvUsername.setText("@" + username);
-            tvEmail.setText(email);
-            tvTotalPoints.setText(String.valueOf(points));
-            tvLevel.setText(String.valueOf(level));
-
-            cursor.close();
+                    tvFullname.setText(fullname);
+                    tvUsername.setText("@" + username);
+                    tvEmail.setText(email);
+                    tvTotalPoints.setText(String.valueOf(points));
+                    tvLevel.setText(String.valueOf(level));
+                }
+            } finally {
+                cursor.close();
+            }
         }
 
         // Total activities
         Cursor actCursor = db.getUserActivities(userId);
-        int totalAct = actCursor != null ? actCursor.getCount() : 0;
-        tvTotalActivities.setText(String.valueOf(totalAct));
-        if (actCursor != null) actCursor.close();
+        if (actCursor != null) {
+            try {
+                int totalAct = actCursor.getCount();
+                tvTotalActivities.setText(String.valueOf(totalAct));
+            } finally {
+                actCursor.close();
+            }
+        } else {
+            tvTotalActivities.setText("0");
+        }
 
         // Rank
         int rank = getUserRank();
@@ -95,14 +106,17 @@ public class ProfileFragment extends Fragment {
         Cursor leaderboard = db.getLeaderboard();
         int rank = 1;
         if (leaderboard != null) {
-            while (leaderboard.moveToNext()) {
-                int id = leaderboard.getInt(leaderboard.getColumnIndexOrThrow("id"));
-                if (id == userId) {
-                    break;
+            try {
+                while (leaderboard.moveToNext()) {
+                    int id = leaderboard.getInt(leaderboard.getColumnIndexOrThrow("id"));
+                    if (id == userId) {
+                        break;
+                    }
+                    rank++;
                 }
-                rank++;
+            } finally {
+                leaderboard.close();
             }
-            leaderboard.close();
         }
         return rank;
     }
@@ -112,8 +126,14 @@ public class ProfileFragment extends Fragment {
 
         int points = prefs.getInt("points", 0);
         Cursor cursor = db.getUserActivities(userId);
-        int activitiesCount = cursor != null ? cursor.getCount() : 0;
-        if (cursor != null) cursor.close();
+        int activitiesCount = 0;
+        if (cursor != null) {
+            try {
+                activitiesCount = cursor.getCount();
+            } finally {
+                cursor.close();
+            }
+        }
 
         // Define achievements
         Achievement[] achievements = {
@@ -136,24 +156,30 @@ public class ProfileFragment extends Fragment {
         int count = 0;
 
         if (cursor != null) {
-            while (cursor.moveToNext()) {
-                int activityId = cursor.getInt(cursor.getColumnIndexOrThrow("activity_id"));
-                Cursor actCursor = db.getAllActivities();
+            try {
+                while (cursor.moveToNext()) {
+                    int activityId = cursor.getInt(cursor.getColumnIndexOrThrow("activity_id"));
+                    Cursor actCursor = db.getAllActivities();
 
-                if (actCursor != null) {
-                    while (actCursor.moveToNext()) {
-                        if (actCursor.getInt(actCursor.getColumnIndexOrThrow("id")) == activityId) {
-                            String cat = actCursor.getString(actCursor.getColumnIndexOrThrow("category"));
-                            if (cat.equals(category)) {
-                                count++;
+                    if (actCursor != null) {
+                        try {
+                            while (actCursor.moveToNext()) {
+                                if (actCursor.getInt(actCursor.getColumnIndexOrThrow("id")) == activityId) {
+                                    String cat = actCursor.getString(actCursor.getColumnIndexOrThrow("category"));
+                                    if (category.equals(cat)) {
+                                        count++;
+                                    }
+                                    break;
+                                }
                             }
-                            break;
+                        } finally {
+                            actCursor.close();
                         }
                     }
-                    actCursor.close();
                 }
+            } finally {
+                cursor.close();
             }
-            cursor.close();
         }
         return count;
     }
@@ -183,17 +209,17 @@ public class ProfileFragment extends Fragment {
 
     private void setupClickListeners() {
         cardLeaderboard.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), LeaderboardActivity.class);
+            Intent intent = new Intent(requireActivity(), LeaderboardActivity.class);
             startActivity(intent);
         });
 
         cardRewards.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), RewardsActivity.class);
+            Intent intent = new Intent(requireActivity(), RewardsActivity.class);
             startActivity(intent);
         });
 
         cardSettings.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), SettingsActivity.class);
+            Intent intent = new Intent(requireActivity(), SettingsActivity.class);
             startActivity(intent);
         });
     }

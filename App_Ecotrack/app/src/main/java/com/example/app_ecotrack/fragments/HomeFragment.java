@@ -1,5 +1,6 @@
 package com.example.app_ecotrack.fragments;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -38,7 +39,7 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         db = new DatabaseHelper(requireContext());
-        prefs = requireActivity().getSharedPreferences("EcoTrackPrefs", requireContext().MODE_PRIVATE);
+        prefs = requireActivity().getSharedPreferences("EcoTrackPrefs", Context.MODE_PRIVATE);
         userId = prefs.getInt("userId", -1);
 
         initViews(view);

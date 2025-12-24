@@ -14,6 +14,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText etUsername, etPassword;
     private Button btnLogin;
     private TextView tvRegister;
+    private TextView tvForgotPassword;
     private DatabaseHelper db;
 
     @Override
@@ -31,12 +32,16 @@ public class LoginActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.etPassword);
         btnLogin = findViewById(R.id.btnLogin);
         tvRegister = findViewById(R.id.tvRegister);
+        tvForgotPassword = findViewById(R.id.tvForgotPassword);
     }
 
     private void setupListeners() {
         btnLogin.setOnClickListener(v -> login());
         tvRegister.setOnClickListener(v -> {
             startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+        });
+        tvForgotPassword.setOnClickListener(v -> {
+            startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class));
         });
     }
 
@@ -50,35 +55,42 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         Cursor cursor = db.checkUser(username, password);
-        if (cursor != null && cursor.moveToFirst()) {
-            int userId = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
-            String role = cursor.getString(cursor.getColumnIndexOrThrow("role"));
-            String fullname = cursor.getString(cursor.getColumnIndexOrThrow("fullname"));
-            int points = cursor.getInt(cursor.getColumnIndexOrThrow("points"));
-            int level = cursor.getInt(cursor.getColumnIndexOrThrow("level"));
+        if (cursor != null) {
+            try {
+                if (cursor.moveToFirst()) {
+                    int userId = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
+                    String role = cursor.getString(cursor.getColumnIndexOrThrow("role"));
+                    String fullname = cursor.getString(cursor.getColumnIndexOrThrow("fullname"));
+                    int points = cursor.getInt(cursor.getColumnIndexOrThrow("points"));
+                    int level = cursor.getInt(cursor.getColumnIndexOrThrow("level"));
 
-            // Save session
-            SharedPreferences prefs = getSharedPreferences("EcoTrackPrefs", MODE_PRIVATE);
-            SharedPreferences.Editor editor = prefs.edit();
-            editor.putInt("userId", userId);
-            editor.putString("username", username);
-            editor.putString("fullname", fullname);
-            editor.putString("role", role);
-            editor.putInt("points", points);
-            editor.putInt("level", level);
-            editor.apply();
-            cursor.close();
+                    // Save session
+                    SharedPreferences prefs = getSharedPreferences("EcoTrackPrefs", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putInt("userId", userId);
+                    editor.putString("username", username);
+                    editor.putString("fullname", fullname);
+                    editor.putString("role", role);
+                    editor.putInt("points", points);
+                    editor.putInt("level", level);
+                    editor.apply();
 
-            Toast.makeText(this, "Chào mừng " + fullname + "!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Chào mừng " + fullname + "!", Toast.LENGTH_SHORT).show();
 
-            Intent intent;
-            if ("admin".equals(role)) {
-                intent = new Intent(LoginActivity.this, AdminActivity.class);
-            } else {
-                intent = new Intent(LoginActivity.this, MainActivity.class);
+                    Intent intent;
+                    if ("admin".equals(role)) {
+                        intent = new Intent(LoginActivity.this, AdminActivity.class);
+                    } else {
+                        intent = new Intent(LoginActivity.this, MainActivity.class);
+                    }
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Toast.makeText(this, "Tên đăng nhập hoặc mật khẩu không đúng", Toast.LENGTH_SHORT).show();
+                }
+            } finally {
+                cursor.close();
             }
-            startActivity(intent);
-            finish();
         } else {
             Toast.makeText(this, "Tên đăng nhập hoặc mật khẩu không đúng", Toast.LENGTH_SHORT).show();
         }
