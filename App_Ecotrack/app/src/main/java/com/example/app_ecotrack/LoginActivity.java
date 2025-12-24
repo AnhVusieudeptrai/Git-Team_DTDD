@@ -23,7 +23,7 @@ public class LoginActivity extends AppCompatActivity {
 
         db = new DatabaseHelper(this);
         initViews();
-//        setupListeners();
+        setupListeners();
     }
 
     private void initViews() {
@@ -33,12 +33,12 @@ public class LoginActivity extends AppCompatActivity {
         tvRegister = findViewById(R.id.tvRegister);
     }
 
-//    private void setupListeners() {
-//        btnLogin.setOnClickListener(v -> login());
-//        tvRegister.setOnClickListener(v -> {
-//            startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
-//        });
-//    }
+    private void setupListeners() {
+        btnLogin.setOnClickListener(v -> login());
+        tvRegister.setOnClickListener(v -> {
+            startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+        });
+    }
 
     private void login() {
         String username = etUsername.getText().toString().trim();
@@ -72,12 +72,12 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this, "Chào mừng " + fullname + "!", Toast.LENGTH_SHORT).show();
 
             Intent intent;
-//            if (role.equals("admin")) {
-//                intent = new Intent(LoginActivity.this, AdminActivity.class);
-//            } else {
-//                intent = new Intent(LoginActivity.this, MainActivity.class);
-//            }
-//            startActivity(intent);
+            if ("admin".equals(role)) {
+                intent = new Intent(LoginActivity.this, AdminActivity.class);
+            } else {
+                intent = new Intent(LoginActivity.this, MainActivity.class);
+            }
+            startActivity(intent);
             finish();
         } else {
             Toast.makeText(this, "Tên đăng nhập hoặc mật khẩu không đúng", Toast.LENGTH_SHORT).show();
