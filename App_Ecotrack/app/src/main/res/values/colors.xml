@@ -1,19 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="green_primary">#4CAF50</color>
-    <color name="green_dark">#388E3C</color>
-    <color name="green_light">#81C784</color>
-    <color name="green_accent">#66BB6A</color>
+    <!-- Primary Green Palette -->
+    <color name="green_primary">#2E7D32</color>
+    <color name="green_dark">#1B5E20</color>
+    <color name="green_light">#66BB6A</color>
+    <color name="green_accent">#00C853</color>
     <color name="green_bg_light">#E8F5E9</color>
+    <color name="green_soft">#A5D6A7</color>
+    
+    <!-- Gradient Colors -->
+    <color name="gradient_start">#1B5E20</color>
+    <color name="gradient_center">#2E7D32</color>
+    <color name="gradient_end">#43A047</color>
+    
+    <!-- Nature Colors -->
+    <color name="leaf_green">#4CAF50</color>
+    <color name="forest_green">#388E3C</color>
+    <color name="mint">#00BFA5</color>
+    <color name="teal">#009688</color>
+    <color name="sky_blue">#03A9F4</color>
+    <color name="ocean_blue">#0288D1</color>
+    
+    <!-- Basic Colors -->
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="gray_light">#F5F5F5</color>
     <color name="gray">#9E9E9E</color>
     <color name="gray_dark">#616161</color>
+    <color name="background_light">#FAFAFA</color>
+    
+    <!-- Social Colors -->
     <color name="facebook_blue">#4267B2</color>
     <color name="google_red">#DB4437</color>
+    
+    <!-- Accent Colors -->
     <color name="red">#F44336</color>
     <color name="blue">#2196F3</color>
     <color name="orange">#FF9800</color>
     <color name="yellow">#FFC107</color>
+    <color name="purple">#9C27B0</color>
+    <color name="pink">#E91E63</color>
+    
+    <!-- Card Colors -->
+    <color name="card_energy">#FFF8E1</color>
+    <color name="card_water">#E1F5FE</color>
+    <color name="card_transport">#E8F5E9</color>
+    <color name="card_waste">#FBE9E7</color>
+    
+    <!-- Streak Colors -->
+    <color name="streak_fire">#FF5722</color>
+    <color name="streak_gold">#FFD700</color>
+    
+    <!-- Achievement Colors -->
+    <color name="bronze">#CD7F32</color>
+    <color name="silver">#C0C0C0</color>
+    <color name="gold">#FFD700</color>
+    <color name="platinum">#E5E4E2</color>
 </resources>
