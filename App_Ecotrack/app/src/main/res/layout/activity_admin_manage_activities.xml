@@ -99,9 +99,9 @@
                         android:id="@+id/btnAddActivity"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:backgroundTint="@color/blue"
                         android:text="Thêm Hoạt Động"
-                        android:textColor="@color/green_primary"
-                        android:backgroundTint="@color/white"/>
+                        android:textColor="@color/background_light" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
