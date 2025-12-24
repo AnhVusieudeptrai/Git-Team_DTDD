@@ -49,11 +49,9 @@ public class AdminActivity extends AppCompatActivity {
     }
 
     private void loadStatistics() {
-        // Count total users
-        Cursor usersCursor = db.getAllUsers();
-        int totalUsers = usersCursor != null ? usersCursor.getCount() : 0;
+        // Count total users (excluding admin)
+        int totalUsers = db.getTotalUsers();
         tvTotalUsers.setText(String.valueOf(totalUsers));
-        if (usersCursor != null) usersCursor.close();
 
         // Count total activities
         Cursor activitiesCursor = db.getAllActivities();
@@ -61,18 +59,12 @@ public class AdminActivity extends AppCompatActivity {
         tvTotalActivities.setText(String.valueOf(totalActivities));
         if (activitiesCursor != null) activitiesCursor.close();
 
-        // Count completed activities and total points
-        int totalCompleted = 0;
-        int totalPoints = 0;
-        Cursor pointsCursor = db.getAllUsers();
-        if (pointsCursor != null) {
-            while (pointsCursor.moveToNext()) {
-                totalPoints += pointsCursor.getInt(pointsCursor.getColumnIndexOrThrow("points"));
-            }
-            pointsCursor.close();
-        }
-        
+        // Count completed activities
+        int totalCompleted = db.getTotalCompletedActivities();
         tvTotalCompleted.setText(String.valueOf(totalCompleted));
+        
+        // Total points of all users
+        int totalPoints = db.getTotalPointsAllUsers();
         tvTotalPoints.setText(String.valueOf(totalPoints));
     }
 

@@ -422,4 +422,59 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private String getCurrentDateTime() {
         return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(new Date());
     }
+
+    // Xóa user theo ID
+    public boolean deleteUser(int userId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        // Xóa các hoạt động của user trước
+        db.delete(TABLE_USER_ACTIVITIES, "user_id=?", new String[]{String.valueOf(userId)});
+        // Xóa user
+        int result = db.delete(TABLE_USERS, "id=?", new String[]{String.valueOf(userId)});
+        return result > 0;
+    }
+
+    // Cập nhật thông tin user
+    public boolean updateUser(int userId, String fullname, String email, String role) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("fullname", fullname);
+        values.put("email", email);
+        values.put("role", role);
+        int result = db.update(TABLE_USERS, values, "id=?", new String[]{String.valueOf(userId)});
+        return result > 0;
+    }
+
+    // Kiểm tra username đã tồn tại chưa
+    public boolean isUsernameExists(String username) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_USERS, new String[]{"id"}, "username=?", 
+                new String[]{username}, null, null, null);
+        boolean exists = cursor != null && cursor.getCount() > 0;
+        if (cursor != null) cursor.close();
+        return exists;
+    }
+
+    // Lấy tổng số hoạt động đã hoàn thành của tất cả users
+    public int getTotalCompletedActivities() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM " + TABLE_USER_ACTIVITIES, null);
+        int count = 0;
+        if (cursor != null && cursor.moveToFirst()) {
+            count = cursor.getInt(0);
+            cursor.close();
+        }
+        return count;
+    }
+
+    // Lấy tổng điểm của tất cả users
+    public int getTotalPointsAllUsers() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT SUM(points) FROM " + TABLE_USERS, null);
+        int total = 0;
+        if (cursor != null && cursor.moveToFirst()) {
+            total = cursor.getInt(0);
+            cursor.close();
+        }
+        return total;
+    }
 }
