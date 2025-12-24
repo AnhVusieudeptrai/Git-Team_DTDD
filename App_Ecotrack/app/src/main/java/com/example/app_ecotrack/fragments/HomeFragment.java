@@ -1,15 +1,10 @@
 package com.example.app_ecotrack.fragments;
-
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,16 +14,10 @@ import androidx.fragment.app.Fragment;
 import com.example.app_ecotrack.DatabaseHelper;
 import com.example.app_ecotrack.MainActivity;
 import com.example.app_ecotrack.R;
-import com.google.android.material.card.MaterialCardView;
 
 public class HomeFragment extends Fragment {
     private TextView tvTodayPoints, tvWeekPoints, tvTotalPoints, tvTodayActivities, tvTotalActivities, tvRank;
-    private TextView tvCurrentStreak, tvLongestStreak, tvBadgeCount;
-    private TextView tvChallengeTitle, tvChallengeDesc, tvChallengeBonus, tvChallengeProgress;
-    private TextView tvEcoTip;
-    private ProgressBar progressChallenge;
     private CardView cardActivities, cardRewards, cardLeaderboard;
-    private MaterialCardView cardStreak, cardDailyChallenge;
     private DatabaseHelper db;
     private SharedPreferences prefs;
     private int userId;
@@ -39,16 +28,19 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         db = new DatabaseHelper(requireContext());
-        prefs = requireActivity().getSharedPreferences("EcoTrackPrefs", Context.MODE_PRIVATE);
-        userId = prefs.getInt("userId", -1);
+        prefs = requireActivity().getSharedPreferences("EcoTrackPrefs", requireContext().MODE_PRIVATE);
+        
+        // userId is stored as String from API response
+        String userIdStr = prefs.getString("userId", "-1");
+        try {
+            userId = Integer.parseInt(userIdStr);
+        } catch (NumberFormatException e) {
+            userId = -1;
+        }
 
         initViews(view);
         loadData();
-        loadStreakData();
-        loadDailyChallenge();
-        loadEcoTip();
         setupClickListeners();
-        setupAnimations(view);
 
         return view;
     }
@@ -61,41 +53,9 @@ public class HomeFragment extends Fragment {
         tvTotalActivities = view.findViewById(R.id.tvTotalActivities);
         tvRank = view.findViewById(R.id.tvRank);
 
-        // Streak views
-        tvCurrentStreak = view.findViewById(R.id.tvCurrentStreak);
-        tvLongestStreak = view.findViewById(R.id.tvLongestStreak);
-        tvBadgeCount = view.findViewById(R.id.tvBadgeCount);
-        cardStreak = view.findViewById(R.id.cardStreak);
-
-        // Daily Challenge views
-        cardDailyChallenge = view.findViewById(R.id.cardDailyChallenge);
-        tvChallengeTitle = view.findViewById(R.id.tvChallengeTitle);
-        tvChallengeDesc = view.findViewById(R.id.tvChallengeDesc);
-        tvChallengeBonus = view.findViewById(R.id.tvChallengeBonus);
-        tvChallengeProgress = view.findViewById(R.id.tvChallengeProgress);
-        progressChallenge = view.findViewById(R.id.progressChallenge);
-
-        // Eco Tip
-        tvEcoTip = view.findViewById(R.id.tvEcoTip);
-
         cardActivities = view.findViewById(R.id.cardActivities);
         cardRewards = view.findViewById(R.id.cardRewards);
         cardLeaderboard = view.findViewById(R.id.cardLeaderboard);
-    }
-
-    private void setupAnimations(View view) {
-        // Animate cards on load
-        if (cardStreak != null) {
-            cardStreak.setAlpha(0f);
-            cardStreak.setTranslationY(50);
-            cardStreak.animate().alpha(1f).translationY(0).setDuration(500).setStartDelay(100).start();
-        }
-
-        if (cardDailyChallenge != null) {
-            cardDailyChallenge.setAlpha(0f);
-            cardDailyChallenge.setTranslationY(50);
-            cardDailyChallenge.animate().alpha(1f).translationY(0).setDuration(500).setStartDelay(200).start();
-        }
     }
 
     private void loadData() {
@@ -107,8 +67,19 @@ public class HomeFragment extends Fragment {
         int weekPoints = getWeekPoints();
         tvWeekPoints.setText(String.valueOf(weekPoints));
 
-        // Total points
-        int totalPoints = prefs.getInt("points", 0);
+        // Total points - stored as int but may be string from API
+        int totalPoints = 0;
+        try {
+            totalPoints = prefs.getInt("points", 0);
+        } catch (ClassCastException e) {
+            // If stored as string, parse it
+            String pointsStr = prefs.getString("points", "0");
+            try {
+                totalPoints = Integer.parseInt(pointsStr);
+            } catch (NumberFormatException ex) {
+                totalPoints = 0;
+            }
+        }
         tvTotalPoints.setText(String.valueOf(totalPoints));
 
         // Today's activities count
@@ -126,51 +97,6 @@ public class HomeFragment extends Fragment {
         // Rank
         int rank = getUserRank();
         tvRank.setText("#" + rank);
-
-        // Badge count
-        int badgeCount = db.getUserBadgeCount(userId);
-        tvBadgeCount.setText("🏅 " + badgeCount);
-    }
-
-    private void loadStreakData() {
-        int[] streakData = db.getUserStreak(userId);
-        tvCurrentStreak.setText(String.valueOf(streakData[0]));
-        tvLongestStreak.setText(streakData[1] + " ngày");
-    }
-
-    private void loadDailyChallenge() {
-        Cursor cursor = db.getDailyChallenge();
-        if (cursor != null && !cursor.isAfterLast()) {
-            String title = cursor.getString(cursor.getColumnIndexOrThrow("title"));
-            String desc = cursor.getString(cursor.getColumnIndexOrThrow("description"));
-            int targetCount = cursor.getInt(cursor.getColumnIndexOrThrow("target_count"));
-            int bonusPoints = cursor.getInt(cursor.getColumnIndexOrThrow("bonus_points"));
-            String category = cursor.getString(cursor.getColumnIndexOrThrow("category"));
-
-            tvChallengeTitle.setText(title);
-            tvChallengeDesc.setText(desc);
-            tvChallengeBonus.setText("+" + bonusPoints);
-
-            // Get current progress
-            int currentCount = db.getTodayCategoryCount(userId, category);
-            int progress = Math.min(currentCount, targetCount);
-            
-            tvChallengeProgress.setText(progress + "/" + targetCount);
-            progressChallenge.setMax(targetCount);
-            progressChallenge.setProgress(progress);
-
-            // Check if completed
-            if (progress >= targetCount) {
-                tvChallengeTitle.setText("✅ " + title);
-            }
-
-            cursor.close();
-        }
-    }
-
-    private void loadEcoTip() {
-        String tip = db.getRandomEcoTip();
-        tvEcoTip.setText(tip);
     }
 
     private int getWeekPoints() {
@@ -215,31 +141,27 @@ public class HomeFragment extends Fragment {
     private void setupClickListeners() {
         cardActivities.setOnClickListener(v -> {
             if (getActivity() instanceof MainActivity) {
+                ((MainActivity) getActivity()).findViewById(R.id.viewPager);
                 androidx.viewpager2.widget.ViewPager2 viewPager = getActivity().findViewById(R.id.viewPager);
                 viewPager.setCurrentItem(1);
             }
         });
 
-        cardLeaderboard.setOnClickListener(v -> {
-            android.content.Intent intent = new android.content.Intent(getActivity(), 
-                    com.example.app_ecotrack.LeaderboardActivity.class);
-            startActivity(intent);
-        });
+//        cardRewards.setOnClickListener(v -> {
+//            android.content.Intent intent = new android.content.Intent(getActivity(), RewardsActivity.class);
+//            startActivity(intent);
+//        });
 
-        cardRewards.setOnClickListener(v -> {
-            android.content.Intent intent = new android.content.Intent(getActivity(), 
-                    com.example.app_ecotrack.RewardsActivity.class);
-            startActivity(intent);
-        });
+//        cardLeaderboard.setOnClickListener(v -> {
+//            android.content.Intent intent = new android.content.Intent(getActivity(), LeaderboardActivity.class);
+//            startActivity(intent);
+//        });
     }
 
     @Override
     public void onResume() {
         super.onResume();
         loadData();
-        loadStreakData();
-        loadDailyChallenge();
-        loadEcoTip();
         if (getActivity() instanceof MainActivity) {
             ((MainActivity) getActivity()).refreshData();
         }

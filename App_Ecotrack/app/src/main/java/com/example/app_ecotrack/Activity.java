@@ -3,6 +3,7 @@ package com.example.app_ecotrack;
 
 public class Activity {
     private int id;
+    private String apiId; // ID từ API (MongoDB ObjectId)
     private String name;
     private String description;
     private int points;
@@ -29,6 +30,10 @@ public class Activity {
     // Getters
     public int getId() {
         return id;
+    }
+
+    public String getApiId() {
+        return apiId;
     }
 
     public String getName() {
@@ -62,6 +67,10 @@ public class Activity {
     // Setters
     public void setId(int id) {
         this.id = id;
+    }
+
+    public void setApiId(String apiId) {
+        this.apiId = apiId;
     }
 
     public void setName(String name) {

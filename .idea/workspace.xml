@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8779a8f1-28c2-4996-abef-da9360dd2232" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/App_Ecotrack/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/App_Ecotrack/app/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App_Ecotrack/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/App_Ecotrack/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App_Ecotrack/app/src/main/java/com/example/app_ecotrack/Activity.java" beforeDir="false" afterPath="$PROJECT_DIR$/App_Ecotrack/app/src/main/java/com/example/app_ecotrack/Activity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App_Ecotrack/app/src/main/java/com/example/app_ecotrack/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/App_Ecotrack/app/src/main/java/com/example/app_ecotrack/LoginActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App_Ecotrack/app/src/main/java/com/example/app_ecotrack/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/App_Ecotrack/app/src/main/java/com/example/app_ecotrack/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App_Ecotrack/app/src/main/java/com/example/app_ecotrack/RegisterActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/App_Ecotrack/app/src/main/java/com/example/app_ecotrack/RegisterActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App_Ecotrack/app/src/main/java/com/example/app_ecotrack/fragments/ActivitiesFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/App_Ecotrack/app/src/main/java/com/example/app_ecotrack/fragments/ActivitiesFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App_Ecotrack/app/src/main/res/layout/activity_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/App_Ecotrack/app/src/main/res/layout/activity_login.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;khoavo1501&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/AnhVusieudeptrai/Git-Team_DTDD.git&quot;,
+    &quot;accountId&quot;: &quot;980f524d-1b2e-40c3-b8a1-ae5177606e23&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="33JpLc6fDiIVV5x8CIeGsqv9PfI" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "Khoa-Zo",
+    "last_opened_file_path": "D:/WorkSpace/Androi/Git-Team_DTDD"
+  }
+}]]></component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8779a8f1-28c2-4996-abef-da9360dd2232" name="Changes" comment="" />
+      <created>1759044974328</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1759044974328</updated>
+    </task>
+    <servers />
+  </component>
+</project>

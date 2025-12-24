@@ -72,7 +72,7 @@
                 android:layout_marginStart="8dp"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="6dp"
-                app:cardBackgroundColor="@color/green_primary">
+                app:cardBackgroundColor="@color/green_accent">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -263,161 +263,6 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cardStreak"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp"
-            android:layout_marginBottom="16dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Chuỗi ngày"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/gray_dark" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="12dp">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Hiện tại"
-                            android:textSize="12sp"
-                            android:textColor="@color/gray_dark" />
-
-                        <TextView
-                            android:id="@+id/tvCurrentStreak"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="0"
-                            android:textSize="24sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/green_primary" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Dài nhất"
-                            android:textSize="12sp"
-                            android:textColor="@color/gray_dark" />
-
-                        <TextView
-                            android:id="@+id/tvLongestStreak"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="0 ngày"
-                            android:textSize="24sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/green_primary" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/tvBadgeCount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="🏅 0"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/green_primary"
-                        android:layout_gravity="center_vertical" />
-                </LinearLayout>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cardDailyChallenge"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp"
-            android:layout_marginBottom="16dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <TextView
-                    android:id="@+id/tvChallengeTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Thử thách hôm nay"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/gray_dark" />
-
-                <TextView
-                    android:id="@+id/tvChallengeDesc"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:textSize="14sp"
-                    android:textColor="@color/gray_dark"
-                    android:layout_marginTop="6dp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center_vertical">
-
-                    <TextView
-                        android:id="@+id/tvChallengeBonus"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="+0"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/orange" />
-
-                    <TextView
-                        android:id="@+id/tvChallengeProgress"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="0/0"
-                        android:textSize="14sp"
-                        android:textColor="@color/gray_dark"
-                        android:layout_marginStart="12dp" />
-                </LinearLayout>
-
-                <ProgressBar
-                    android:id="@+id/progressChallenge"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="8dp"
-                    android:layout_marginTop="10dp"
-                    android:progress="0" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
         <!-- Quick Actions -->
         <TextView
             android:layout_width="wrap_content"
@@ -589,7 +434,6 @@
                         android:textColor="@color/white"/>
 
                     <TextView
-                        android:id="@+id/tvEcoTip"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Hoàn thành ít nhất 3 hoạt động mỗi ngày để nâng cấp nhanh hơn!"

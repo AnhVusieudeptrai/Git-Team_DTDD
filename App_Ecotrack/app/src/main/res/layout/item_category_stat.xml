@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginBottom="5dp">
+        android:layout_marginBottom="8dp">
 
         <TextView
             android:id="@+id/tvCategoryIcon"
@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:text="🚴"
             android:textSize="24sp"
-            android:layout_marginEnd="5dp"/>
+            android:layout_marginEnd="8dp"/>
 
         <TextView
             android:id="@+id/tvCategoryName"
@@ -25,18 +25,18 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Giao thông"
-            android:textColor="@color/gray_dark"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/gray_dark"/>
 
         <TextView
             android:id="@+id/tvCategoryCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0 lần"
-            android:textColor="@color/green_primary"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/green_primary"/>
     </LinearLayout>
 
     <ProgressBar

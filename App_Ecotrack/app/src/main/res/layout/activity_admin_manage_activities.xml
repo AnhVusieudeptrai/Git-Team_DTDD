@@ -11,19 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/green_primary"
-        app:titleTextColor="@color/white">
-
-        <ImageButton
-            android:id="@+id/btnBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start|center_vertical"
-            android:background="@android:color/transparent"
-            android:contentDescription="Back"
-            android:src="@android:drawable/ic_menu_revert"
-            app:tint="@color/white" />
-
-    </androidx.appcompat.widget.Toolbar>
+        app:titleTextColor="@color/white"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -99,9 +87,9 @@
                         android:id="@+id/btnAddActivity"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:backgroundTint="@color/blue"
                         android:text="Thêm Hoạt Động"
-                        android:textColor="@color/background_light" />
+                        android:textColor="@color/green_primary"
+                        android:backgroundTint="@color/white"/>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorBackground">#FFFFFF</color>
+    <color name="colorButtonText">#FFFFFF</color>
+    <color name="colorHintText">#BDBDBD</color>
+    <color name="colorInputBorder">#E0E0E0</color>
+    <color name="colorPrimaryGreen">#A5D6A7</color>
+    <color name="colorPrimaryGreenDark">#1B5E20</color>
+    <color name="colorSurfaceChip">#F2F4F7</color>
+    <color name="colorTextPrimary">#000000</color>
+    <color name="colorTextSecondary">#757575</color>
+    <string name="button_next">Tiếp tục</string>
+    <string name="connect_subtitle">Kết nối và truyền cảm hứng</string>
+    <string name="email_hint">Email</string>
+    <string name="join_title">Tham gia ECOTRACK</string>
+    <string name="login_with_apple">Đăng nhập bằng Apple ID</string>
+    <string name="login_with_ecotrack">Đăng nhập bằng Ecotrack</string>
+    <string name="login_with_facebook">Đăng nhập bằng Facebook</string>
+    <string name="login_with_google">Đăng nhập bằng Google</string>
+    <string name="no_account">Bạn chưa có tài khoản? Đăng ký ngay</string>
+    <string name="or">HOẶC</string>
+    <string name="password_hint">Mật khẩu</string>
+    <string name="share_text">Chia sẻ thành tích, học hỏi mẹo hay và cùng bạn bè lan tỏa lối sống bền vững.</string>
+    <string name="start_now">Bắt đầu ngay</string>
+    <string name="tracking_subtitle">Ghi lại thói quen, nhận điểm thưởng, lên cấp độ và xây dựng những điều thật mới mẻ.</string>
+    <string name="tracking_title">Theo dõi dễ dàng, động lực mỗi ngày</string>
+    <string name="welcome_subtitle">Nơi hành trình sống xanh của bạn bắt đầu. Cùng nhau kiến tạo một tương lai bền vững!</string>
+    <string name="welcome_title">Chào mừng đến với ECOTRACK!</string>
+    <style name="AppButton.Primary" parent="android:Widget.Material.Button">
+        <item name="android:background">@drawable/button_background_green</item>
+        <item name="android:textColor">@color/colorButtonText</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:paddingRight">20dp</item>
+        <item name="android:minHeight">48dp</item>
+    </style>
+    <style name="AppButton.Secondary" parent="android:Widget.Material.Button">
+        <item name="android:background">@drawable/button_background_white</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:drawablePadding">10dp</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+    </style>
+    <style name="AppInput" parent="Widget.AppCompat.EditText"/>
+    <style name="AppInput.EditText">
+        <item name="android:background">@drawable/edittext_background</item>
+        <item name="android:paddingLeft">14dp</item>
+        <item name="android:paddingRight">14dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:textColorHint">@color/colorHintText</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+    <style name="AppText" parent="Widget.AppCompat.TextView"/>
+    <style name="AppText.PageIndicator">
+        <item name="android:textColor">@color/colorTextSecondary</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+    <style name="AppText.Subtitle">
+        <item name="android:textColor">@color/colorTextSecondary</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:lineSpacingExtra">2sp</item>
+    </style>
+    <style name="AppText.Title">
+        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:lineSpacingExtra">2sp</item>
+    </style>
+    <style name="Base.Theme.ECOTRACK" parent="Theme.Material3.DayNight.NoActionBar">
+        
+        
+    </style>
+    <style name="Theme.ECOTRACK" parent="Base.Theme.ECOTRACK"/>
+</resources>

@@ -2,27 +2,33 @@ package com.example.app_ecotrack;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
+import com.example.app_ecotrack.api.ApiClient;
+import com.example.app_ecotrack.api.models.AuthResponse;
+import com.example.app_ecotrack.api.models.RegisterRequest;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText etFullname, etUsername, etPassword, etEmail;
     private Button btnRegister;
     private TextView tvLogin;
-    private CardView cardRegister;
-    private DatabaseHelper db;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        db = new DatabaseHelper(this);
         initViews();
         setupAnimation();
         setupListeners();
@@ -35,15 +41,15 @@ public class RegisterActivity extends AppCompatActivity {
         etEmail = findViewById(R.id.etEmail);
         btnRegister = findViewById(R.id.btnRegister);
         tvLogin = findViewById(R.id.tvLogin);
-        cardRegister = findViewById(R.id.cardRegister);
+        progressBar = findViewById(R.id.progressBar);
+        
+        if (progressBar != null) {
+            progressBar.setVisibility(View.GONE);
+        }
     }
 
     private void setupAnimation() {
-        if (cardRegister != null) {
-            cardRegister.setAlpha(0f);
-            cardRegister.setTranslationY(100);
-            cardRegister.animate().alpha(1f).translationY(0).setDuration(800).setStartDelay(200).start();
-        }
+        // Animation removed - cardRegister not needed
     }
 
     private void setupListeners() {
@@ -65,14 +71,46 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        boolean result = db.insertUser(username, password, fullname, email);
+        if (password.length() < 6) {
+            Toast.makeText(this, "Mật khẩu phải có ít nhất 6 ký tự", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-        if (result) {
-            Toast.makeText(this, "Đăng ký thành công!", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-            finish();
-        } else {
-            Toast.makeText(this, "Đăng ký thất bại! Tên đăng nhập đã tồn tại.", Toast.LENGTH_SHORT).show();
+        setLoading(true);
+
+        RegisterRequest request = new RegisterRequest(username, password, fullname, email);
+        ApiClient.getApiService().register(request).enqueue(new Callback<AuthResponse>() {
+            @Override
+            public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
+                setLoading(false);
+                
+                if (response.isSuccessful() && response.body() != null) {
+                    Toast.makeText(RegisterActivity.this, 
+                            "Đăng ký thành công! Vui lòng đăng nhập.", 
+                            Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                    finish();
+                } else {
+                    Toast.makeText(RegisterActivity.this, 
+                            "Đăng ký thất bại! Tên đăng nhập hoặc email đã tồn tại.", 
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AuthResponse> call, Throwable t) {
+                setLoading(false);
+                Toast.makeText(RegisterActivity.this, 
+                        "Lỗi kết nối: " + t.getMessage(), 
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void setLoading(boolean isLoading) {
+        btnRegister.setEnabled(!isLoading);
+        if (progressBar != null) {
+            progressBar.setVisibility(isLoading ? View.VISIBLE : View.GONE);
         }
     }
 }

@@ -1,6 +1,5 @@
 package com.example.app_ecotrack.fragments;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -16,10 +15,7 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.example.app_ecotrack.DatabaseHelper;
-import com.example.app_ecotrack.LeaderboardActivity;
 import com.example.app_ecotrack.R;
-import com.example.app_ecotrack.RewardsActivity;
-import com.example.app_ecotrack.SettingsActivity;
 
 public class ProfileFragment extends Fragment {
     private TextView tvFullname, tvUsername, tvEmail, tvTotalPoints, tvLevel, tvTotalActivities, tvRank;
@@ -35,13 +31,13 @@ public class ProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
         db = new DatabaseHelper(requireContext());
-        prefs = requireActivity().getSharedPreferences("EcoTrackPrefs", Context.MODE_PRIVATE);
+        prefs = requireActivity().getSharedPreferences("EcoTrackPrefs", requireContext().MODE_PRIVATE);
         userId = prefs.getInt("userId", -1);
 
         initViews(view);
         loadProfileData();
         loadAchievements();
-        setupClickListeners();
+//        setupClickListeners();
 
         return view;
     }
@@ -64,38 +60,28 @@ public class ProfileFragment extends Fragment {
 
     private void loadProfileData() {
         Cursor cursor = db.getUserById(userId);
-        if (cursor != null) {
-            try {
-                if (cursor.moveToFirst()) {
-                    String fullname = cursor.getString(cursor.getColumnIndexOrThrow("fullname"));
-                    String username = cursor.getString(cursor.getColumnIndexOrThrow("username"));
-                    String email = cursor.getString(cursor.getColumnIndexOrThrow("email"));
-                    int points = cursor.getInt(cursor.getColumnIndexOrThrow("points"));
-                    int level = cursor.getInt(cursor.getColumnIndexOrThrow("level"));
 
-                    tvFullname.setText(fullname);
-                    tvUsername.setText("@" + username);
-                    tvEmail.setText(email);
-                    tvTotalPoints.setText(String.valueOf(points));
-                    tvLevel.setText(String.valueOf(level));
-                }
-            } finally {
-                cursor.close();
-            }
+        if (cursor != null && cursor.moveToFirst()) {
+            String fullname = cursor.getString(cursor.getColumnIndexOrThrow("fullname"));
+            String username = cursor.getString(cursor.getColumnIndexOrThrow("username"));
+            String email = cursor.getString(cursor.getColumnIndexOrThrow("email"));
+            int points = cursor.getInt(cursor.getColumnIndexOrThrow("points"));
+            int level = cursor.getInt(cursor.getColumnIndexOrThrow("level"));
+
+            tvFullname.setText(fullname);
+            tvUsername.setText("@" + username);
+            tvEmail.setText(email);
+            tvTotalPoints.setText(String.valueOf(points));
+            tvLevel.setText(String.valueOf(level));
+
+            cursor.close();
         }
 
         // Total activities
         Cursor actCursor = db.getUserActivities(userId);
-        if (actCursor != null) {
-            try {
-                int totalAct = actCursor.getCount();
-                tvTotalActivities.setText(String.valueOf(totalAct));
-            } finally {
-                actCursor.close();
-            }
-        } else {
-            tvTotalActivities.setText("0");
-        }
+        int totalAct = actCursor != null ? actCursor.getCount() : 0;
+        tvTotalActivities.setText(String.valueOf(totalAct));
+        if (actCursor != null) actCursor.close();
 
         // Rank
         int rank = getUserRank();
@@ -106,17 +92,14 @@ public class ProfileFragment extends Fragment {
         Cursor leaderboard = db.getLeaderboard();
         int rank = 1;
         if (leaderboard != null) {
-            try {
-                while (leaderboard.moveToNext()) {
-                    int id = leaderboard.getInt(leaderboard.getColumnIndexOrThrow("id"));
-                    if (id == userId) {
-                        break;
-                    }
-                    rank++;
+            while (leaderboard.moveToNext()) {
+                int id = leaderboard.getInt(leaderboard.getColumnIndexOrThrow("id"));
+                if (id == userId) {
+                    break;
                 }
-            } finally {
-                leaderboard.close();
+                rank++;
             }
+            leaderboard.close();
         }
         return rank;
     }
@@ -126,14 +109,8 @@ public class ProfileFragment extends Fragment {
 
         int points = prefs.getInt("points", 0);
         Cursor cursor = db.getUserActivities(userId);
-        int activitiesCount = 0;
-        if (cursor != null) {
-            try {
-                activitiesCount = cursor.getCount();
-            } finally {
-                cursor.close();
-            }
-        }
+        int activitiesCount = cursor != null ? cursor.getCount() : 0;
+        if (cursor != null) cursor.close();
 
         // Define achievements
         Achievement[] achievements = {
@@ -156,30 +133,24 @@ public class ProfileFragment extends Fragment {
         int count = 0;
 
         if (cursor != null) {
-            try {
-                while (cursor.moveToNext()) {
-                    int activityId = cursor.getInt(cursor.getColumnIndexOrThrow("activity_id"));
-                    Cursor actCursor = db.getAllActivities();
+            while (cursor.moveToNext()) {
+                int activityId = cursor.getInt(cursor.getColumnIndexOrThrow("activity_id"));
+                Cursor actCursor = db.getAllActivities();
 
-                    if (actCursor != null) {
-                        try {
-                            while (actCursor.moveToNext()) {
-                                if (actCursor.getInt(actCursor.getColumnIndexOrThrow("id")) == activityId) {
-                                    String cat = actCursor.getString(actCursor.getColumnIndexOrThrow("category"));
-                                    if (category.equals(cat)) {
-                                        count++;
-                                    }
-                                    break;
-                                }
+                if (actCursor != null) {
+                    while (actCursor.moveToNext()) {
+                        if (actCursor.getInt(actCursor.getColumnIndexOrThrow("id")) == activityId) {
+                            String cat = actCursor.getString(actCursor.getColumnIndexOrThrow("category"));
+                            if (cat.equals(category)) {
+                                count++;
                             }
-                        } finally {
-                            actCursor.close();
+                            break;
                         }
                     }
+                    actCursor.close();
                 }
-            } finally {
-                cursor.close();
             }
+            cursor.close();
         }
         return count;
     }
@@ -207,22 +178,22 @@ public class ProfileFragment extends Fragment {
         return view;
     }
 
-    private void setupClickListeners() {
-        cardLeaderboard.setOnClickListener(v -> {
-            Intent intent = new Intent(requireActivity(), LeaderboardActivity.class);
-            startActivity(intent);
-        });
-
-        cardRewards.setOnClickListener(v -> {
-            Intent intent = new Intent(requireActivity(), RewardsActivity.class);
-            startActivity(intent);
-        });
-
-        cardSettings.setOnClickListener(v -> {
-            Intent intent = new Intent(requireActivity(), SettingsActivity.class);
-            startActivity(intent);
-        });
-    }
+//    private void setupClickListeners() {
+//        cardLeaderboard.setOnClickListener(v -> {
+//            Intent intent = new Intent(getActivity(), LeaderboardActivity.class);
+//            startActivity(intent);
+//        });
+//
+//        cardRewards.setOnClickListener(v -> {
+//            Intent intent = new Intent(getActivity(), RewardsActivity.class);
+//            startActivity(intent);
+//        });
+//
+//        cardSettings.setOnClickListener(v -> {
+//            Intent intent = new Intent(getActivity(), SettingsActivity.class);
+//            startActivity(intent);
+//        });
+//    }
 
     @Override
     public void onResume() {
