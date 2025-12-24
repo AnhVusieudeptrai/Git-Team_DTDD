@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.app_ecotrack.DatabaseHelper;
 import com.example.app_ecotrack.R;
+import com.example.app_ecotrack.RewardsActivity;
 import com.example.app_ecotrack.SettingsActivity;
 
 public class ProfileFragment extends Fragment {
@@ -180,6 +181,11 @@ public class ProfileFragment extends Fragment {
     }
 
     private void setupClickListeners() {
+        cardRewards.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), RewardsActivity.class);
+            startActivity(intent);
+        });
+
         cardSettings.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), SettingsActivity.class);
             startActivity(intent);
