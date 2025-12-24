@@ -1,26 +1,31 @@
 package com.example.app_ecotrack;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.app_ecotrack.adapters.ViewPagerAdapter;
+import com.example.app_ecotrack.api.ApiClient;
+import com.example.app_ecotrack.api.models.ProfileResponse;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager2 viewPager;
     private TextView tvUserName, tvPoints, tvLevel;
     private SharedPreferences prefs;
-    private DatabaseHelper db;
-    private int userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +33,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         prefs = getSharedPreferences("EcoTrackPrefs", MODE_PRIVATE);
-        db = new DatabaseHelper(this);
-        userId = prefs.getInt("userId", -1);
+        
+        // Load auth token
+        ApiClient.loadToken(this);
 
         initViews();
         setupToolbar();
@@ -68,28 +74,41 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadUserInfo() {
+        // Load from SharedPreferences first (for quick display)
         String fullname = prefs.getString("fullname", "User");
         int points = prefs.getInt("points", 0);
         int level = prefs.getInt("level", 1);
 
-        // Update from database to get latest data
-        Cursor cursor = db.getUserById(userId);
-        if (cursor != null && cursor.moveToFirst()) {
-            points = cursor.getInt(cursor.getColumnIndexOrThrow("points"));
-            level = cursor.getInt(cursor.getColumnIndexOrThrow("level"));
-
-            // Update SharedPreferences
-            SharedPreferences.Editor editor = prefs.edit();
-            editor.putInt("points", points);
-            editor.putInt("level", level);
-            editor.apply();
-
-            cursor.close();
-        }
-
         tvUserName.setText(fullname);
         tvPoints.setText(points + " điểm");
         tvLevel.setText("Cấp " + level);
+
+        // Then update from API
+        ApiClient.getApiService().getProfile().enqueue(new Callback<ProfileResponse>() {
+            @Override
+            public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    ProfileResponse profile = response.body();
+                    
+                    // Update UI
+                    tvUserName.setText(profile.user.fullname);
+                    tvPoints.setText(profile.user.points + " điểm");
+                    tvLevel.setText("Cấp " + profile.user.level);
+
+                    // Update SharedPreferences
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putInt("points", profile.user.points);
+                    editor.putInt("level", profile.user.level);
+                    editor.putString("fullname", profile.user.fullname);
+                    editor.apply();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProfileResponse> call, Throwable t) {
+                // Silent fail - use cached data
+            }
+        });
     }
 
     @Override
@@ -98,28 +117,25 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        int id = item.getItemId();
-//
-//        if (id == R.id.action_leaderboard) {
-//            startActivity(new Intent(this, LeaderboardActivity.class));
-//            return true;
-//        } else if (id == R.id.action_rewards) {
-//            startActivity(new Intent(this, RewardsActivity.class));
-//            return true;
-//        } else if (id == R.id.action_settings) {
-//            startActivity(new Intent(this, SettingsActivity.class));
-//            return true;
-//        } else if (id == R.id.action_logout) {
-//            logout();
-//            return true;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_leaderboard) {
+            startActivity(new Intent(this, LeaderboardActivity.class));
+            return true;
+        } else if (id == R.id.action_logout) {
+            logout();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     private void logout() {
+        // Clear token and preferences
+        ApiClient.clearAuthToken();
         prefs.edit().clear().apply();
+        
         Intent intent = new Intent(this, LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);

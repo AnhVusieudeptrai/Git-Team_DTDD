@@ -29,7 +29,14 @@ public class HomeFragment extends Fragment {
 
         db = new DatabaseHelper(requireContext());
         prefs = requireActivity().getSharedPreferences("EcoTrackPrefs", requireContext().MODE_PRIVATE);
-        userId = prefs.getInt("userId", -1);
+        
+        // userId is stored as String from API response
+        String userIdStr = prefs.getString("userId", "-1");
+        try {
+            userId = Integer.parseInt(userIdStr);
+        } catch (NumberFormatException e) {
+            userId = -1;
+        }
 
         initViews(view);
         loadData();
@@ -60,8 +67,19 @@ public class HomeFragment extends Fragment {
         int weekPoints = getWeekPoints();
         tvWeekPoints.setText(String.valueOf(weekPoints));
 
-        // Total points
-        int totalPoints = prefs.getInt("points", 0);
+        // Total points - stored as int but may be string from API
+        int totalPoints = 0;
+        try {
+            totalPoints = prefs.getInt("points", 0);
+        } catch (ClassCastException e) {
+            // If stored as string, parse it
+            String pointsStr = prefs.getString("points", "0");
+            try {
+                totalPoints = Integer.parseInt(pointsStr);
+            } catch (NumberFormatException ex) {
+                totalPoints = 0;
+            }
+        }
         tvTotalPoints.setText(String.valueOf(totalPoints));
 
         // Today's activities count
