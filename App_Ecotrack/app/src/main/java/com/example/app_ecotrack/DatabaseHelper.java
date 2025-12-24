@@ -589,4 +589,91 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int dayOfYear = java.util.Calendar.getInstance().get(java.util.Calendar.DAY_OF_YEAR);
         return tips[dayOfYear % tips.length];
     }
+
+    // ==================== ADDITIONAL METHODS ====================
+
+    public int getTotalPoints() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT SUM(points) FROM " + TABLE_USERS + " WHERE role='user'", null);
+        int total = 0;
+        if (cursor != null && cursor.moveToFirst()) {
+            total = cursor.getInt(0);
+            cursor.close();
+        }
+        return total;
+    }
+
+    public int getTotalActivitiesCount() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM " + TABLE_ACTIVITIES, null);
+        int count = 0;
+        if (cursor != null && cursor.moveToFirst()) {
+            count = cursor.getInt(0);
+            cursor.close();
+        }
+        return count;
+    }
+
+    public int getUserActivityCount(int userId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM " + TABLE_USER_ACTIVITIES + " WHERE user_id=?", 
+                new String[]{String.valueOf(userId)});
+        int count = 0;
+        if (cursor != null && cursor.moveToFirst()) {
+            count = cursor.getInt(0);
+            cursor.close();
+        }
+        return count;
+    }
+
+    public boolean updateUserProfile(int userId, String fullname, String email) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("fullname", fullname);
+        values.put("email", email);
+        int result = db.update(TABLE_USERS, values, "id=?", new String[]{String.valueOf(userId)});
+        return result > 0;
+    }
+
+    public boolean updateUserPassword(int userId, String newPassword) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("password", newPassword);
+        int result = db.update(TABLE_USERS, values, "id=?", new String[]{String.valueOf(userId)});
+        return result > 0;
+    }
+
+    public boolean checkPassword(int userId, String password) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_USERS, null, "id=? AND password=?", 
+                new String[]{String.valueOf(userId), password}, null, null, null);
+        boolean valid = cursor != null && cursor.getCount() > 0;
+        if (cursor != null) cursor.close();
+        return valid;
+    }
+
+    public boolean deleteUser(int userId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        // Delete user's activities first
+        db.delete(TABLE_USER_ACTIVITIES, "user_id=?", new String[]{String.valueOf(userId)});
+        db.delete(TABLE_USER_STREAKS, "user_id=?", new String[]{String.valueOf(userId)});
+        db.delete(TABLE_USER_BADGES, "user_id=?", new String[]{String.valueOf(userId)});
+        // Delete user
+        int result = db.delete(TABLE_USERS, "id=?", new String[]{String.valueOf(userId)});
+        return result > 0;
+    }
+
+    public int getUserRank(int userId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(
+                "SELECT COUNT(*) + 1 FROM " + TABLE_USERS + 
+                " WHERE role='user' AND points > (SELECT points FROM " + TABLE_USERS + " WHERE id=?)", 
+                new String[]{String.valueOf(userId)});
+        int rank = 1;
+        if (cursor != null && cursor.moveToFirst()) {
+            rank = cursor.getInt(0);
+            cursor.close();
+        }
+        return rank;
+    }
 }
