@@ -32,7 +32,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hành động xanh - Tương lai bền vững"
+            android:text="Hành động xanh - Tương lai xanh"
             android:textSize="14sp"
             android:textColor="@color/gray"
             android:layout_marginBottom="32dp"/>
