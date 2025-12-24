@@ -65,9 +65,9 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        boolean result = db.insertUser(username, password, fullname, email, "user");
+        boolean result = db.insertUser(username, password, fullname, email);
 
-        if (false) {
+        if (result) {
             Toast.makeText(this, "Đăng ký thành công!", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
             finish();
