@@ -25,6 +25,7 @@ public class ForgotPasswordFragment extends Fragment {
 
     private FragmentForgotPasswordBinding binding;
     private AuthViewModel viewModel;
+    private String currentEmail;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -83,21 +84,17 @@ public class ForgotPasswordFragment extends Fragment {
                     showLoading(true);
                     break;
                 case SUCCESS:
-                    showLoading(false);
-                    break;
                 case ERROR:
-                    showLoading(false);
-                    break;
                 case IDLE:
                     showLoading(false);
                     break;
             }
         });
 
-        // Observe forgot password success - Requirement 1.6
+        // Observe forgot password success - Navigate to reset password screen
         viewModel.getForgotPasswordSuccess().observe(getViewLifecycleOwner(), success -> {
-            if (success != null && success) {
-                showSuccessMessage();
+            if (success != null && success && currentEmail != null) {
+                navigateToResetPassword();
             }
         });
 
@@ -134,6 +131,8 @@ public class ForgotPasswordFragment extends Fragment {
         }
 
         if (isValid) {
+            // Save email for navigation
+            currentEmail = email;
             // Hide keyboard
             hideKeyboard();
             // Attempt forgot password
@@ -158,16 +157,23 @@ public class ForgotPasswordFragment extends Fragment {
     }
 
     /**
-     * Hiển thị thông báo thành công
-     * Requirement 1.6: show confirmation
+     * Navigate to reset password screen with email
      */
-    private void showSuccessMessage() {
-        binding.cardSuccess.setVisibility(View.VISIBLE);
-        binding.tvSuccessMessage.setText(getString(R.string.reset_email_sent));
-        
-        // Disable submit button after success
-        binding.btnSubmit.setEnabled(false);
-        binding.btnSubmit.setAlpha(0.5f);
+    private void navigateToResetPassword() {
+        if (getView() != null && currentEmail != null) {
+            // Show success message briefly
+            binding.cardSuccess.setVisibility(View.VISIBLE);
+            binding.tvSuccessMessage.setText(getString(R.string.reset_email_sent));
+            
+            // Navigate after short delay
+            binding.getRoot().postDelayed(() -> {
+                if (getView() != null) {
+                    ForgotPasswordFragmentDirections.ActionForgotPasswordToResetPassword action =
+                        ForgotPasswordFragmentDirections.actionForgotPasswordToResetPassword(currentEmail);
+                    Navigation.findNavController(getView()).navigate(action);
+                }
+            }, 1000);
+        }
     }
 
     /**

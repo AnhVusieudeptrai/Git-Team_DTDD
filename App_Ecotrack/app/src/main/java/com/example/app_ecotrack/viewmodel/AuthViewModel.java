@@ -14,6 +14,7 @@ import com.example.app_ecotrack.api.models.ForgotPasswordRequest;
 import com.example.app_ecotrack.api.models.LoginRequest;
 import com.example.app_ecotrack.api.models.MessageResponse;
 import com.example.app_ecotrack.api.models.RegisterRequest;
+import com.example.app_ecotrack.api.models.ResetPasswordRequest;
 import com.example.app_ecotrack.api.models.UserData;
 import com.example.app_ecotrack.utils.FCMTokenManager;
 import com.example.app_ecotrack.utils.TokenManager;
@@ -46,6 +47,7 @@ public class AuthViewModel extends AndroidViewModel {
     private final MutableLiveData<String> errorMessage = new MutableLiveData<>();
     private final MutableLiveData<UserData> currentUser = new MutableLiveData<>();
     private final MutableLiveData<Boolean> forgotPasswordSuccess = new MutableLiveData<>();
+    private final MutableLiveData<Boolean> resetPasswordSuccess = new MutableLiveData<>();
 
     public AuthViewModel(@NonNull Application application) {
         super(application);
@@ -69,6 +71,10 @@ public class AuthViewModel extends AndroidViewModel {
 
     public LiveData<Boolean> getForgotPasswordSuccess() {
         return forgotPasswordSuccess;
+    }
+
+    public LiveData<Boolean> getResetPasswordSuccess() {
+        return resetPasswordSuccess;
     }
 
     /**
@@ -255,12 +261,60 @@ public class AuthViewModel extends AndroidViewModel {
     }
 
     /**
+     * Đặt lại mật khẩu với mã xác nhận
+     */
+    public void resetPassword(String email, String token, String newPassword) {
+        // Validate input
+        if (email == null || email.trim().isEmpty()) {
+            errorMessage.setValue("Email không hợp lệ");
+            authState.setValue(AuthState.ERROR);
+            return;
+        }
+        if (token == null || token.length() != 6) {
+            errorMessage.setValue("Mã xác nhận phải có 6 chữ số");
+            authState.setValue(AuthState.ERROR);
+            return;
+        }
+        if (newPassword == null || newPassword.length() < 6) {
+            errorMessage.setValue("Mật khẩu phải có ít nhất 6 ký tự");
+            authState.setValue(AuthState.ERROR);
+            return;
+        }
+
+        authState.setValue(AuthState.LOADING);
+        resetPasswordSuccess.setValue(false);
+
+        ResetPasswordRequest request = new ResetPasswordRequest(email.trim(), token, newPassword);
+
+        apiService.resetPassword(request).enqueue(new Callback<MessageResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<MessageResponse> call, @NonNull Response<MessageResponse> response) {
+                if (response.isSuccessful()) {
+                    resetPasswordSuccess.setValue(true);
+                    authState.setValue(AuthState.SUCCESS);
+                } else {
+                    String error = parseErrorMessage(response);
+                    errorMessage.setValue(error);
+                    authState.setValue(AuthState.ERROR);
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<MessageResponse> call, @NonNull Throwable t) {
+                errorMessage.setValue(getNetworkErrorMessage(t));
+                authState.setValue(AuthState.ERROR);
+            }
+        });
+    }
+
+    /**
      * Reset trạng thái về IDLE
      */
     public void resetState() {
         authState.setValue(AuthState.IDLE);
         errorMessage.setValue(null);
         forgotPasswordSuccess.setValue(false);
+        resetPasswordSuccess.setValue(false);
     }
 
     /**

@@ -36,6 +36,7 @@ public class ActivityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     // Category icons mapping
     private static final Map<String, String> CATEGORY_ICONS = new LinkedHashMap<>();
     private static final Map<String, String> CATEGORY_NAMES = new LinkedHashMap<>();
+    private static final Map<String, String> ACTIVITY_ICONS = new LinkedHashMap<>();
     
     static {
         CATEGORY_ICONS.put("transport", "🚴");
@@ -51,6 +52,42 @@ public class ActivityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         CATEGORY_NAMES.put("waste", "Rác thải");
         CATEGORY_NAMES.put("green", "Xanh");
         CATEGORY_NAMES.put("consumption", "Tiêu dùng");
+        
+        // Activity icon mapping (text to emoji)
+        ACTIVITY_ICONS.put("bus", "🚌");
+        ACTIVITY_ICONS.put("bike", "🚴");
+        ACTIVITY_ICONS.put("walk", "🚶");
+        ACTIVITY_ICONS.put("train", "🚆");
+        ACTIVITY_ICONS.put("metro", "🚇");
+        ACTIVITY_ICONS.put("car", "🚗");
+        ACTIVITY_ICONS.put("electric", "⚡");
+        ACTIVITY_ICONS.put("light", "💡");
+        ACTIVITY_ICONS.put("bulb", "💡");
+        ACTIVITY_ICONS.put("computer", "💻");
+        ACTIVITY_ICONS.put("com", "💻");
+        ACTIVITY_ICONS.put("ac", "❄️");
+        ACTIVITY_ICONS.put("fan", "🌀");
+        ACTIVITY_ICONS.put("water", "💧");
+        ACTIVITY_ICONS.put("shower", "🚿");
+        ACTIVITY_ICONS.put("tap", "🚰");
+        ACTIVITY_ICONS.put("bottle", "🍶");
+        ACTIVITY_ICONS.put("recycle", "♻️");
+        ACTIVITY_ICONS.put("trash", "🗑️");
+        ACTIVITY_ICONS.put("bag", "👜");
+        ACTIVITY_ICONS.put("plastic", "🥤");
+        ACTIVITY_ICONS.put("tree", "🌳");
+        ACTIVITY_ICONS.put("plant", "🌱");
+        ACTIVITY_ICONS.put("flower", "🌸");
+        ACTIVITY_ICONS.put("garden", "🏡");
+        ACTIVITY_ICONS.put("shop", "🛒");
+        ACTIVITY_ICONS.put("product", "📦");
+        ACTIVITY_ICONS.put("pro", "📦");
+        ACTIVITY_ICONS.put("local", "🏪");
+        ACTIVITY_ICONS.put("food", "🍽️");
+        ACTIVITY_ICONS.put("vegan", "🥗");
+        ACTIVITY_ICONS.put("meat", "🥩");
+        ACTIVITY_ICONS.put("coffee", "☕");
+        ACTIVITY_ICONS.put("cup", "🥤");
     }
 
     public interface OnActivityClickListener {
@@ -185,10 +222,25 @@ public class ActivityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
 
         void bind(ActivityData activity) {
-            // Set icon
-            String icon = activity.icon != null ? activity.icon : 
-                    CATEGORY_ICONS.getOrDefault(activity.category, "📋");
-            textIcon.setText(icon);
+            // Set icon - convert text icon to emoji
+            String icon = activity.icon;
+            if (icon != null && !icon.isEmpty()) {
+                // Check if it's already an emoji (starts with unicode)
+                if (icon.length() <= 4 && !icon.matches("[a-zA-Z]+")) {
+                    textIcon.setText(icon);
+                } else {
+                    // Convert text icon to emoji
+                    String emoji = ACTIVITY_ICONS.get(icon.toLowerCase());
+                    if (emoji != null) {
+                        textIcon.setText(emoji);
+                    } else {
+                        // Fallback to category icon
+                        textIcon.setText(CATEGORY_ICONS.getOrDefault(activity.category, "📋"));
+                    }
+                }
+            } else {
+                textIcon.setText(CATEGORY_ICONS.getOrDefault(activity.category, "📋"));
+            }
 
             // Set name
             textName.setText(activity.name);
