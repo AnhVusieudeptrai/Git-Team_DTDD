@@ -51,6 +51,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: ''
   },
+  isLocked: {
+    type: Boolean,
+    default: false
+  },
   // Password reset fields
   resetPasswordToken: {
     type: String

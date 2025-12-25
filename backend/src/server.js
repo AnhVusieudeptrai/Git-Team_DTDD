@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const passport = require('passport');
+const path = require('path');
 
 const app = express();
 
@@ -24,6 +25,40 @@ app.get('/api/health', (req, res) => {
   });
 });
 
+// Setup admin (one-time use)
+app.get('/api/setup-admin', async (req, res) => {
+  try {
+    const User = require('./models/User');
+    
+    // Check if admin exists
+    let admin = await User.findOne({ username: 'admin' });
+    
+    if (admin) {
+      admin.role = 'admin';
+      await admin.save();
+      return res.json({ message: 'Admin role updated', username: 'admin' });
+    }
+    
+    // Create new admin
+    admin = new User({
+      username: 'admin',
+      email: 'admin@ecotrack.app',
+      password: 'admin123',
+      fullname: 'Administrator',
+      role: 'admin'
+    });
+    await admin.save();
+    
+    res.json({ 
+      message: 'Admin created successfully',
+      username: 'admin',
+      password: 'admin123'
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // Routes (lazy load sau khi DB connect)
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/users');
@@ -42,6 +77,16 @@ app.use('/api/admin', adminRoutes);
 app.use('/api/badges', badgeRoutes);
 app.use('/api/challenges', challengeRoutes);
 app.use('/api/streaks', streakRoutes);
+
+// Serve Admin Dashboard
+const adminPublicPath = path.join(__dirname, '../public/admin');
+app.use('/admin', express.static(adminPublicPath));
+app.get('/admin', (req, res) => {
+  res.sendFile(path.join(adminPublicPath, 'index.html'));
+});
+app.get('/admin/*', (req, res) => {
+  res.sendFile(path.join(adminPublicPath, 'index.html'));
+});
 
 // Error handling middleware
 app.use((err, req, res, next) => {

@@ -22,6 +22,16 @@
     <string name="create_account">Tạo tài khoản</string>
     <string name="register_subtitle">Đăng ký để bắt đầu hành trình bảo vệ môi trường</string>
     <string name="confirm_password">Xác nhận mật khẩu</string>
+    <string name="reset_password">Đặt lại mật khẩu</string>
+    <string name="reset_password_subtitle">Nhập mã xác nhận từ email và mật khẩu mới</string>
+    <string name="reset_code">Mã xác nhận (6 số)</string>
+    <string name="new_password">Mật khẩu mới</string>
+    <string name="resend_code">Gửi lại mã xác nhận</string>
+    <string name="code_resent">Đã gửi lại mã xác nhận</string>
+    <string name="password_reset_success">Đặt lại mật khẩu thành công! Vui lòng đăng nhập.</string>
+    <string name="error_code_required">Vui lòng nhập mã xác nhận</string>
+    <string name="error_code_invalid">Mã xác nhận phải có 6 chữ số</string>
+    <string name="error_password_min_length">Mật khẩu phải có ít nhất 6 ký tự</string>
     
     <!-- Validation Messages -->
     <string name="error_username_required">Vui lòng nhập tên đăng nhập</string>
