@@ -50,7 +50,7 @@ public class DatabaseManagerActivity extends AppCompatActivity {
         btnResetDatabase.setOnClickListener(v -> {
             new AlertDialog.Builder(this)
                     .setTitle("⚠️ Cảnh báo")
-                    .setMessage("Bạn có chắc chắn muốn reset database?\nTất cả dữ liệu sẽ bị xóa và khôi phục về mặc định.")
+                    .setMessage("Bạn có chắc chắn muốn đặt lại dữ liệu?\nTất cả dữ liệu sẽ bị xóa và khôi phục về mặc định.")
                     .setPositiveButton("Reset", (dialog, which) -> {
                         resetDatabase();
                     })
