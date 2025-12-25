@@ -70,6 +70,11 @@
           <theme>@style/Theme.EcoTrack</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_profile.xml">
+        <config>
+          <theme>@style/Theme.EcoTrack</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_admin_user.xml">
         <config>
           <theme>@style/Theme.EcoTrack</theme>
@@ -82,7 +87,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1d9bcea3-4fd3-434c-bc68-ac49dac06283" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/app_ecotrack/DatabaseManagerActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/app_ecotrack/DatabaseManagerActivity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
