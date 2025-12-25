@@ -45,15 +45,22 @@ public class ActivityAdapter extends RecyclerView.Adapter<ActivityAdapter.Activi
         holder.tvName.setText(activity.getName());
         holder.tvDescription.setText(activity.getDescription());
         holder.tvPoints.setText("+" + activity.getPoints() + " điểm");
-        holder.tvCategory.setText(getCategoryName(activity.getCategory()));
+        holder.tvCategory.setText(getCategoryDisplayName(activity.getCategory()));
+        
+        // Set icon based on category
+        if (holder.tvIcon != null) {
+            holder.tvIcon.setText(getCategoryIcon(activity.getCategory()));
+        }
 
         if (activity.isCompleted()) {
             holder.btnComplete.setEnabled(false);
-            holder.btnComplete.setText("✓ Đã hoàn thành");
-            holder.cardView.setAlpha(0.6f);
+            holder.btnComplete.setText("✓");
+            holder.btnComplete.setAlpha(0.5f);
+            holder.cardView.setAlpha(0.7f);
         } else {
             holder.btnComplete.setEnabled(true);
-            holder.btnComplete.setText("Hoàn thành");
+            holder.btnComplete.setText("✓");
+            holder.btnComplete.setAlpha(1.0f);
             holder.cardView.setAlpha(1.0f);
         }
 
@@ -69,13 +76,37 @@ public class ActivityAdapter extends RecyclerView.Adapter<ActivityAdapter.Activi
         return activityList.size();
     }
 
+    private String getCategoryDisplayName(String category) {
+        switch (category) {
+            case "transport": return "Giao thông";
+            case "energy": return "Năng lượng";
+            case "water": return "Nước";
+            case "waste": return "Rác thải";
+            case "green": return "Cây xanh";
+            case "consumption": return "Tiêu dùng";
+            default: return category;
+        }
+    }
+
+    private String getCategoryIcon(String category) {
+        switch (category) {
+            case "transport": return "🚲";
+            case "energy": return "⚡";
+            case "water": return "💧";
+            case "waste": return "♻️";
+            case "green": return "🌿";
+            case "consumption": return "🛒";
+            default: return "🌱";
+        }
+    }
+
     private String getCategoryName(String category) {
         switch (category) {
-            case "transport": return "🚴 Giao thông";
-            case "energy": return "💡 Năng lượng";
+            case "transport": return "🚲 Giao thông";
+            case "energy": return "⚡ Năng lượng";
             case "water": return "💧 Nước";
             case "waste": return "♻️ Rác thải";
-            case "green": return "🌳 Cây xanh";
+            case "green": return "🌿 Cây xanh";
             case "consumption": return "🛒 Tiêu dùng";
             default: return category;
         }
@@ -83,7 +114,7 @@ public class ActivityAdapter extends RecyclerView.Adapter<ActivityAdapter.Activi
 
     static class ActivityViewHolder extends RecyclerView.ViewHolder {
         CardView cardView;
-        TextView tvName, tvDescription, tvPoints, tvCategory;
+        TextView tvName, tvDescription, tvPoints, tvCategory, tvIcon;
         Button btnComplete;
 
         public ActivityViewHolder(@NonNull View itemView) {
@@ -93,6 +124,7 @@ public class ActivityAdapter extends RecyclerView.Adapter<ActivityAdapter.Activi
             tvDescription = itemView.findViewById(R.id.tvActivityDescription);
             tvPoints = itemView.findViewById(R.id.tvActivityPoints);
             tvCategory = itemView.findViewById(R.id.tvActivityCategory);
+            tvIcon = itemView.findViewById(R.id.tvActivityIcon);
             btnComplete = itemView.findViewById(R.id.btnComplete);
         }
     }

@@ -1,44 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:padding="12dp"
-    android:background="@drawable/bg_search"
-    android:layout_marginBottom="8dp"
-    android:gravity="center_vertical">
+    android:paddingVertical="10dp">
 
+    <!-- Activity Icon -->
+    <View
+        android:layout_width="8dp"
+        android:layout_height="8dp"
+        android:background="@drawable/bg_dot_indicator" />
+
+    <!-- Activity Info -->
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
         android:layout_weight="1"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/tvActivityName"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tên hoạt động"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="@color/gray_dark"/>
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Hoạt động"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="14sp"
+            tools:text="Đi xe đạp đến trường" />
 
         <TextView
             android:id="@+id/tvActivityDate"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="01/01/2024 10:00"
+            android:layout_marginTop="2dp"
+            android:text="--/-- --:--"
+            android:textColor="@color/colorTextSecondary"
             android:textSize="12sp"
-            android:textColor="@color/gray"
-            android:layout_marginTop="4dp"/>
+            tools:text="25/12 08:30" />
+
     </LinearLayout>
 
+    <!-- Points Earned -->
     <TextView
         android:id="@+id/tvActivityPoints"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="+20"
-        android:textSize="18sp"
+        android:background="@drawable/bg_points_badge"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="4dp"
+        android:text="+0"
+        android:textColor="@color/colorPrimary"
+        android:textSize="13sp"
         android:textStyle="bold"
-        android:textColor="@color/green_primary"/>
+        tools:text="+15" />
+
 </LinearLayout>

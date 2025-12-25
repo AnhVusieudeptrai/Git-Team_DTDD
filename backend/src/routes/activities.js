@@ -82,18 +82,15 @@ router.get('/history', auth, async (req, res) => {
     const total = await UserActivity.countDocuments({ user: req.user._id });
 
     res.json({
-      history: history.map(h => ({
+      activities: history.map(h => ({
         id: h._id,
         activity: h.activity,
         pointsEarned: h.pointsEarned,
         completedAt: h.completedAt
       })),
-      pagination: {
-        page: parseInt(page),
-        limit: parseInt(limit),
-        total,
-        pages: Math.ceil(total / limit)
-      }
+      total,
+      page: parseInt(page),
+      limit: parseInt(limit)
     });
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -106,17 +103,34 @@ router.get('/today', auth, async (req, res) => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
+    // Get today's activities
     const todayActivities = await UserActivity.find({
       user: req.user._id,
       completedAt: { $gte: today }
     }).populate('activity', 'name points category');
 
-    const totalPoints = todayActivities.reduce((sum, ua) => sum + ua.pointsEarned, 0);
+    const todayPoints = todayActivities.reduce((sum, ua) => sum + ua.pointsEarned, 0);
+    const todayCount = todayActivities.length;
+
+    // Get week's points
+    const weekAgo = new Date();
+    weekAgo.setDate(weekAgo.getDate() - 7);
+    weekAgo.setHours(0, 0, 0, 0);
+
+    const weekActivities = await UserActivity.find({
+      user: req.user._id,
+      completedAt: { $gte: weekAgo }
+    });
+
+    const weekPoints = weekActivities.reduce((sum, ua) => sum + ua.pointsEarned, 0);
 
     res.json({
       activities: todayActivities,
-      count: todayActivities.length,
-      totalPoints
+      count: todayCount,
+      totalPoints: todayPoints,
+      todayPoints,
+      todayCount,
+      weekPoints
     });
   } catch (error) {
     res.status(500).json({ error: error.message });

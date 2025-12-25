@@ -1,48 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:layout_marginBottom="16dp">
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingVertical="8dp">
 
+    <!-- Category Icon -->
+    <TextView
+        android:id="@+id/tvCategoryIcon"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:background="@drawable/bg_circle_avatar"
+        android:gravity="center"
+        android:text="🚲"
+        android:textSize="18sp"
+        tools:text="🚲" />
+
+    <!-- Category Info -->
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="8dp">
+        android:layout_marginStart="12dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tvCategoryIcon"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="🚴"
-            android:textSize="24sp"
-            android:layout_marginEnd="8dp"/>
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tvCategoryName"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Giao thông"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="@color/gray_dark"/>
+            <TextView
+                android:id="@+id/tvCategoryName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Giao thông"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:text="Giao thông" />
 
-        <TextView
-            android:id="@+id/tvCategoryCount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0 lần"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="@color/green_primary"/>
+            <TextView
+                android:id="@+id/tvCategoryCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0 lần"
+                android:textColor="@color/colorPrimary"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                tools:text="12 lần" />
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progressCategory"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:layout_marginTop="6dp"
+            android:max="20"
+            android:progress="0"
+            android:progressDrawable="@drawable/bg_progress_bar"
+            tools:progress="12" />
+
     </LinearLayout>
-
-    <ProgressBar
-        android:id="@+id/progressCategory"
-        android:layout_width="match_parent"
-        android:layout_height="12dp"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:progressDrawable="@drawable/progress_bar_green"/>
 </LinearLayout>

@@ -2,43 +2,48 @@ package com.example.app_ecotrack.fragments;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
-import com.example.app_ecotrack.DatabaseHelper;
+import com.example.app_ecotrack.LeaderboardActivity;
+import com.example.app_ecotrack.LoginActivity;
 import com.example.app_ecotrack.R;
+import com.example.app_ecotrack.RewardsActivity;
+import com.example.app_ecotrack.SettingsActivity;
+import com.example.app_ecotrack.api.ApiClient;
+import com.example.app_ecotrack.api.models.ProfileResponse;
+import com.google.android.material.card.MaterialCardView;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ProfileFragment extends Fragment {
-    private TextView tvFullname, tvUsername, tvEmail, tvTotalPoints, tvLevel, tvTotalActivities, tvRank;
-    private CardView cardLeaderboard, cardRewards, cardSettings;
+    private TextView tvFullname, tvUsername, tvEmail;
+    private TextView tvTotalPoints, tvLevel, tvTotalActivities, tvRank;
+    private TextView tvAvatarEmoji, tvLevelBadge;
+    private MaterialCardView cardLeaderboard, cardRewards, cardSettings, cardLogout;
     private LinearLayout containerAchievements;
-    private DatabaseHelper db;
     private SharedPreferences prefs;
-    private int userId;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
-
-        db = new DatabaseHelper(requireContext());
         prefs = requireActivity().getSharedPreferences("EcoTrackPrefs", requireContext().MODE_PRIVATE);
-        userId = prefs.getInt("userId", -1);
-
         initViews(view);
-        loadProfileData();
-        loadAchievements();
-//        setupClickListeners();
-
+        loadProfileFromPrefs();
+        loadProfileFromApi();
+        setupClickListeners();
         return view;
     }
 
@@ -50,112 +55,129 @@ public class ProfileFragment extends Fragment {
         tvLevel = view.findViewById(R.id.tvLevel);
         tvTotalActivities = view.findViewById(R.id.tvTotalActivities);
         tvRank = view.findViewById(R.id.tvRank);
-
+        tvAvatarEmoji = view.findViewById(R.id.tvAvatarEmoji);
+        tvLevelBadge = view.findViewById(R.id.tvLevelBadge);
         cardLeaderboard = view.findViewById(R.id.cardLeaderboard);
         cardRewards = view.findViewById(R.id.cardRewards);
         cardSettings = view.findViewById(R.id.cardSettings);
-
+        cardLogout = view.findViewById(R.id.cardLogout);
         containerAchievements = view.findViewById(R.id.containerAchievements);
     }
 
-    private void loadProfileData() {
-        Cursor cursor = db.getUserById(userId);
+    private void loadProfileFromPrefs() {
+        String fullname = prefs.getString("fullname", "User");
+        String username = prefs.getString("username", "user");
+        String email = prefs.getString("email", "");
+        int points = getIntFromPrefs("points", 0);
+        int level = getIntFromPrefs("level", 1);
 
-        if (cursor != null && cursor.moveToFirst()) {
-            String fullname = cursor.getString(cursor.getColumnIndexOrThrow("fullname"));
-            String username = cursor.getString(cursor.getColumnIndexOrThrow("username"));
-            String email = cursor.getString(cursor.getColumnIndexOrThrow("email"));
-            int points = cursor.getInt(cursor.getColumnIndexOrThrow("points"));
-            int level = cursor.getInt(cursor.getColumnIndexOrThrow("level"));
+        tvFullname.setText(fullname);
+        tvUsername.setText("@" + username);
+        tvEmail.setText(email);
+        tvTotalPoints.setText(String.valueOf(points));
+        tvLevel.setText(String.valueOf(level));
+        tvLevelBadge.setText(String.valueOf(level));
+        tvTotalActivities.setText("0");
+        tvRank.setText("#-");
 
-            tvFullname.setText(fullname);
-            tvUsername.setText("@" + username);
-            tvEmail.setText(email);
-            tvTotalPoints.setText(String.valueOf(points));
-            tvLevel.setText(String.valueOf(level));
-
-            cursor.close();
-        }
-
-        // Total activities
-        Cursor actCursor = db.getUserActivities(userId);
-        int totalAct = actCursor != null ? actCursor.getCount() : 0;
-        tvTotalActivities.setText(String.valueOf(totalAct));
-        if (actCursor != null) actCursor.close();
-
-        // Rank
-        int rank = getUserRank();
-        tvRank.setText("#" + rank);
+        // Set avatar emoji based on level
+        setAvatarEmoji(level);
     }
 
-    private int getUserRank() {
-        Cursor leaderboard = db.getLeaderboard();
-        int rank = 1;
-        if (leaderboard != null) {
-            while (leaderboard.moveToNext()) {
-                int id = leaderboard.getInt(leaderboard.getColumnIndexOrThrow("id"));
-                if (id == userId) {
-                    break;
+    private void setAvatarEmoji(int level) {
+        String emoji;
+        if (level >= 10) emoji = "🦸";
+        else if (level >= 7) emoji = "🌟";
+        else if (level >= 5) emoji = "🌳";
+        else if (level >= 3) emoji = "🌱";
+        else emoji = "👤";
+        tvAvatarEmoji.setText(emoji);
+    }
+
+    private void setupClickListeners() {
+        cardLeaderboard.setOnClickListener(v -> {
+            startActivity(new Intent(requireActivity(), LeaderboardActivity.class));
+        });
+
+        cardRewards.setOnClickListener(v -> {
+            startActivity(new Intent(requireActivity(), RewardsActivity.class));
+        });
+
+        cardSettings.setOnClickListener(v -> {
+            startActivity(new Intent(requireActivity(), SettingsActivity.class));
+        });
+
+        cardLogout.setOnClickListener(v -> showLogoutDialog());
+    }
+
+    private void showLogoutDialog() {
+        new AlertDialog.Builder(requireContext())
+                .setTitle("Đăng xuất")
+                .setMessage("Bạn có chắc muốn đăng xuất?")
+                .setPositiveButton("Đăng xuất", (dialog, which) -> logout())
+                .setNegativeButton("Hủy", null)
+                .show();
+    }
+
+    private void logout() {
+        ApiClient.clearAuthToken();
+        prefs.edit().clear().apply();
+        
+        Intent intent = new Intent(requireActivity(), LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        requireActivity().finish();
+    }
+
+    private void loadProfileFromApi() {
+        ApiClient.getApiService().getProfile().enqueue(new Callback<ProfileResponse>() {
+            @Override
+            public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
+                if (response.isSuccessful() && response.body() != null && isAdded()) {
+                    ProfileResponse profile = response.body();
+                    
+                    tvFullname.setText(profile.user.fullname);
+                    tvUsername.setText("@" + profile.user.username);
+                    tvEmail.setText(profile.user.email);
+                    tvTotalPoints.setText(String.valueOf(profile.user.points));
+                    tvLevel.setText(String.valueOf(profile.user.level));
+                    tvLevelBadge.setText(String.valueOf(profile.user.level));
+                    tvTotalActivities.setText(String.valueOf(profile.stats.totalActivities));
+                    tvRank.setText("#" + profile.stats.rank);
+                    
+                    setAvatarEmoji(profile.user.level);
+                    loadAchievements(profile.user.points, profile.stats.totalActivities);
                 }
-                rank++;
             }
-            leaderboard.close();
-        }
-        return rank;
+
+            @Override
+            public void onFailure(Call<ProfileResponse> call, Throwable t) {
+                if (isAdded()) {
+                    Toast.makeText(requireContext(), "Lỗi tải hồ sơ", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
-    private void loadAchievements() {
+    private void loadAchievements(int points, int activitiesCount) {
+        if (containerAchievements == null) return;
         containerAchievements.removeAllViews();
 
-        int points = prefs.getInt("points", 0);
-        Cursor cursor = db.getUserActivities(userId);
-        int activitiesCount = cursor != null ? cursor.getCount() : 0;
-        if (cursor != null) cursor.close();
-
-        // Define achievements
         Achievement[] achievements = {
                 new Achievement("🌟", "Người mới", "Hoàn thành đăng ký", true),
                 new Achievement("🔥", "Nhiệt huyết", "10 hoạt động", activitiesCount >= 10),
                 new Achievement("💯", "Trăm điểm", "Đạt 100 điểm", points >= 100),
-                new Achievement("⚔️", "Chiến binh", "50 hoạt động", activitiesCount >= 50),
+                new Achievement("⚔️", "Chiến binh xanh", "50 hoạt động", activitiesCount >= 50),
                 new Achievement("👑", "Huyền thoại", "500 điểm", points >= 500),
-                new Achievement("🌳", "Cây xanh", "Trồng 5 cây", getCategoryCount("green") >= 5)
+                new Achievement("🌳", "Người trồng cây", "Trồng 5 cây", false)
         };
 
         for (Achievement ach : achievements) {
-            View achView = createAchievementView(ach);
-            containerAchievements.addView(achView);
+            addAchievementItem(ach);
         }
     }
 
-    private int getCategoryCount(String category) {
-        Cursor cursor = db.getUserActivities(userId);
-        int count = 0;
-
-        if (cursor != null) {
-            while (cursor.moveToNext()) {
-                int activityId = cursor.getInt(cursor.getColumnIndexOrThrow("activity_id"));
-                Cursor actCursor = db.getAllActivities();
-
-                if (actCursor != null) {
-                    while (actCursor.moveToNext()) {
-                        if (actCursor.getInt(actCursor.getColumnIndexOrThrow("id")) == activityId) {
-                            String cat = actCursor.getString(actCursor.getColumnIndexOrThrow("category"));
-                            if (cat.equals(category)) {
-                                count++;
-                            }
-                            break;
-                        }
-                    }
-                    actCursor.close();
-                }
-            }
-            cursor.close();
-        }
-        return count;
-    }
-
-    private View createAchievementView(Achievement achievement) {
+    private void addAchievementItem(Achievement achievement) {
         View view = LayoutInflater.from(requireContext()).inflate(R.layout.item_achievement, containerAchievements, false);
 
         TextView tvIcon = view.findViewById(R.id.tvAchievementIcon);
@@ -175,37 +197,30 @@ public class ProfileFragment extends Fragment {
             view.setAlpha(1.0f);
         }
 
-        return view;
+        containerAchievements.addView(view);
     }
 
-//    private void setupClickListeners() {
-//        cardLeaderboard.setOnClickListener(v -> {
-//            Intent intent = new Intent(getActivity(), LeaderboardActivity.class);
-//            startActivity(intent);
-//        });
-//
-//        cardRewards.setOnClickListener(v -> {
-//            Intent intent = new Intent(getActivity(), RewardsActivity.class);
-//            startActivity(intent);
-//        });
-//
-//        cardSettings.setOnClickListener(v -> {
-//            Intent intent = new Intent(getActivity(), SettingsActivity.class);
-//            startActivity(intent);
-//        });
-//    }
+    private int getIntFromPrefs(String key, int defaultValue) {
+        try {
+            return prefs.getInt(key, defaultValue);
+        } catch (ClassCastException e) {
+            String str = prefs.getString(key, String.valueOf(defaultValue));
+            try {
+                return Integer.parseInt(str);
+            } catch (NumberFormatException ex) {
+                return defaultValue;
+            }
+        }
+    }
 
     @Override
     public void onResume() {
         super.onResume();
-        loadProfileData();
-        loadAchievements();
+        loadProfileFromApi();
     }
 
     private static class Achievement {
-        String icon;
-        String name;
-        String description;
+        String icon, name, description;
         boolean unlocked;
 
         Achievement(String icon, String name, String description, boolean unlocked) {

@@ -1,81 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="12dp"
     app:cardCornerRadius="16dp"
-    app:cardElevation="4dp">
+    app:cardElevation="4dp"
+    app:cardBackgroundColor="@color/colorSurface">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical">
 
+        <!-- Category Color Accent Bar -->
+        <View
+            android:id="@+id/viewCategoryAccent"
+            android:layout_width="4dp"
+            android:layout_height="60dp"
+            android:background="@color/colorPrimary"
+            android:layout_marginEnd="12dp" />
+
+        <!-- Icon Section -->
+        <TextView
+            android:id="@+id/tvActivityIcon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:text="🌱"
+            android:textSize="32sp"
+            android:gravity="center"
+            android:background="@drawable/bg_circle_avatar"
+            tools:text="🚲" />
+
+        <!-- Content Section -->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="12dp">
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="12dp">
 
+            <!-- Activity Name -->
             <TextView
                 android:id="@+id/tvActivityName"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:text="Tên hoạt động"
-                android:textSize="18sp"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="16sp"
                 android:textStyle="bold"
-                android:textColor="@color/gray_dark"/>
+                android:maxLines="1"
+                android:ellipsize="end"
+                tools:text="Đi xe đạp đến trường" />
 
+            <!-- Activity Description -->
+            <TextView
+                android:id="@+id/tvActivityDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mô tả hoạt động"
+                android:textColor="@color/colorTextSecondary"
+                android:textSize="13sp"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:layout_marginTop="2dp"
+                tools:text="Sử dụng xe đạp thay vì xe máy để giảm khí thải" />
+
+            <!-- Category Badge -->
+            <TextView
+                android:id="@+id/tvActivityCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Danh mục"
+                android:textColor="@color/colorPrimary"
+                android:textSize="11sp"
+                android:background="@color/colorSurfaceVariant"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="2dp"
+                android:layout_marginTop="4dp"
+                tools:text="Giao thông" />
+        </LinearLayout>
+
+        <!-- Right Section: Points and Button -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <!-- Points Badge -->
             <TextView
                 android:id="@+id/tvActivityPoints"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="+20 điểm"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="@color/green_primary"
-                android:background="@drawable/bg_points_badge"
-                android:padding="8dp"/>
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/tvActivityDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Mô tả hoạt động"
-            android:textSize="14sp"
-            android:textColor="@color/gray"
-            android:layout_marginBottom="12dp"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:id="@+id/tvActivityCategory"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="🚴 Giao thông"
+                android:text="+10 điểm"
+                android:textColor="@color/colorPrimary"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                android:textColor="@color/gray_dark"/>
+                android:background="@color/colorSurfaceVariant"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="4dp"
+                tools:text="+15 điểm" />
 
+            <!-- Complete Button -->
             <Button
                 android:id="@+id/btnComplete"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Hoàn thành"
-                android:textColor="@color/white"
-                android:backgroundTint="@color/green_primary"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"/>
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:text="✓"
+                android:textColor="@color/colorOnPrimary"
+                android:textSize="18sp"
+                android:background="@drawable/bg_button_primary"
+                android:layout_marginTop="8dp"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:padding="0dp" />
         </LinearLayout>
+
     </LinearLayout>
 
-</com.google.android.material.card.MaterialCardView>
+</androidx.cardview.widget.CardView>

@@ -1,45 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/green_primary"
-    android:gravity="center">
+    android:background="@drawable/bg_gradient_green"
+    tools:context=".SplashActivity">
 
+    <!-- Centered Content -->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_gravity="center"
         android:gravity="center"
-        android:layout_centerInParent="true">
+        android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:src="@mipmap/ic_launcher"
-            android:layout_marginBottom="24dp"/>
-
+        <!-- Logo Emoji -->
         <TextView
+            android:id="@+id/tvLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🌱"
+            android:textSize="80sp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- App Name -->
+        <TextView
+            android:id="@+id/tvAppName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="EcoTrack"
-            android:textSize="48sp"
+            android:textColor="@color/colorOnPrimary"
+            android:textSize="32sp"
             android:textStyle="bold"
-            android:textColor="@color/white"
-            android:layout_marginBottom="8dp"/>
+            android:layout_marginBottom="8dp" />
 
+        <!-- Tagline -->
         <TextView
+            android:id="@+id/tvTagline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hành động xanh - Tương lai bền vững"
+            android:text="Bảo vệ môi trường mỗi ngày"
+            android:textColor="@color/colorOnPrimary"
             android:textSize="16sp"
-            android:textColor="@color/white"
-            android:layout_marginBottom="48dp"/>
-
-        <ProgressBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:indeterminateTint="@color/white"/>
+            android:alpha="0.9" />
 
     </LinearLayout>
 
-</RelativeLayout>
+    <!-- ProgressBar at Bottom -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="48dp"
+        android:indeterminateTint="@color/colorOnPrimary" />
+
+</FrameLayout>

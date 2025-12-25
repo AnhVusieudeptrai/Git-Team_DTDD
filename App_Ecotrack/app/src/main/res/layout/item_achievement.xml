@@ -1,58 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="0dp"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_columnWeight="1"
-    android:layout_margin="6dp"
-    app:cardCornerRadius="12dp"
-    app:cardElevation="4dp">
+    android:layout_marginVertical="4dp">
 
-    <FrameLayout
+    <!-- Achievement Content -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:gravity="center_vertical"
+        android:background="@drawable/bg_card_rounded">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp"
-            android:gravity="center">
+        <!-- Achievement Icon -->
+        <FrameLayout
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_circle_avatar">
 
             <TextView
                 android:id="@+id/tvAchievementIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="🌟"
-                android:textSize="48sp"
-                android:layout_marginBottom="8dp"/>
+                android:layout_gravity="center"
+                android:text="🏆"
+                android:textSize="24sp"
+                tools:text="🌟" />
+        </FrameLayout>
+
+        <!-- Achievement Info -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginStart="12dp">
 
             <TextView
                 android:id="@+id/tvAchievementName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Thành tựu"
-                android:textSize="14sp"
+                android:text="Achievement Name"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="16sp"
                 android:textStyle="bold"
-                android:textColor="@color/gray_dark"
-                android:gravity="center"
-                android:layout_marginBottom="4dp"/>
+                tools:text="Người mới" />
 
             <TextView
                 android:id="@+id/tvAchievementDesc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Mô tả"
-                android:textSize="12sp"
-                android:textColor="@color/gray"
-                android:gravity="center"/>
+                android:text="Achievement description"
+                android:textColor="@color/colorTextSecondary"
+                android:textSize="13sp"
+                android:layout_marginTop="2dp"
+                tools:text="Hoàn thành đăng ký" />
         </LinearLayout>
 
-        <View
-            android:id="@+id/achievementOverlay"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#80FFFFFF"
-            android:visibility="gone"/>
-    </FrameLayout>
-</com.google.android.material.card.MaterialCardView>
+        <!-- Unlocked Indicator -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="✅"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <!-- Lock Overlay (shown when achievement is locked) -->
+    <View
+        android:id="@+id/achievementOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorOverlayLight"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+</FrameLayout>

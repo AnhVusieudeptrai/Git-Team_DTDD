@@ -1,4 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">EcoTrack</string>
+    <string name="app_tagline">Bảo vệ môi trường mỗi ngày</string>
+
+    <!-- Authentication -->
+    <string name="login">Đăng nhập</string>
+    <string name="register">Đăng ký</string>
+    <string name="username">Tên đăng nhập</string>
+    <string name="password">Mật khẩu</string>
+    <string name="email">Email</string>
+    <string name="fullname">Họ và tên</string>
+    <string name="no_account">Chưa có tài khoản? Đăng ký</string>
+    <string name="have_account">Đã có tài khoản? Đăng nhập</string>
+    <string name="logout">Đăng xuất</string>
+
+    <!-- Navigation -->
+    <string name="tab_home">Trang chủ</string>
+    <string name="tab_activities">Hoạt động</string>
+    <string name="tab_statistics">Thống kê</string>
+    <string name="tab_profile">Hồ sơ</string>
+
+    <!-- Home -->
+    <string name="greeting">Xin chào, %s!</string>
+    <string name="today_points">Điểm hôm nay</string>
+    <string name="week_points">Điểm tuần</string>
+    <string name="total_points">Tổng điểm</string>
+    <string name="today_activities">Hoạt động hôm nay</string>
+    <string name="total_activities">Tổng hoạt động</string>
+    <string name="rank">Xếp hạng</string>
+    <string name="quick_actions">Truy cập nhanh</string>
+
+    <!-- Activities -->
+    <string name="search_activities">Tìm kiếm hoạt động...</string>
+    <string name="all_categories">Tất cả danh mục</string>
+    <string name="complete">Hoàn thành</string>
+    <string name="completed">Đã hoàn thành</string>
+    <string name="points">điểm</string>
+
+    <!-- Categories -->
+    <string name="category_transport">Giao thông</string>
+    <string name="category_energy">Năng lượng</string>
+    <string name="category_water">Nước</string>
+    <string name="category_waste">Rác thải</string>
+    <string name="category_green">Xanh</string>
+    <string name="category_consumption">Tiêu dùng</string>
+
+    <!-- Statistics -->
+    <string name="level_progress">Tiến độ cấp độ</string>
+    <string name="points_to_next_level">%d/%d điểm đến cấp tiếp theo</string>
+    <string name="category_breakdown">Phân loại theo danh mục</string>
+    <string name="weekly_chart">Biểu đồ tuần</string>
+    <string name="recent_activities">Hoạt động gần đây</string>
+
+    <!-- Profile -->
+    <string name="level">Cấp độ</string>
+    <string name="achievements">Thành tựu</string>
+    <string name="settings">Cài đặt</string>
+
+    <!-- Leaderboard -->
+    <string name="leaderboard">Bảng xếp hạng</string>
+
+    <!-- Rewards -->
+    <string name="rewards">Phần thưởng</string>
+    <string name="your_points">Điểm của bạn</string>
+    <string name="redeem">Đổi thưởng</string>
+
+    <!-- Admin -->
+    <string name="admin_greeting">Xin chào, Admin!</string>
+    <string name="manage_activities">Quản lý hoạt động</string>
+    <string name="manage_users">Quản lý người dùng</string>
+    <string name="statistics">Thống kê</string>
+    <string name="database">Database</string>
+    <string name="total_users">Tổng người dùng</string>
+    <string name="completed_activities">Hoạt động đã hoàn thành</string>
+    <string name="add_activity">Thêm hoạt động</string>
+
+    <!-- Settings -->
+    <string name="notifications">Thông báo</string>
+    <string name="theme">Giao diện</string>
+    <string name="about">Về ứng dụng</string>
+    <string name="privacy_policy">Chính sách bảo mật</string>
+    <string name="version">Phiên bản</string>
+
+    <!-- Common -->
+    <string name="loading">Đang tải...</string>
+    <string name="error">Lỗi</string>
+    <string name="success">Thành công</string>
+    <string name="cancel">Hủy</string>
+    <string name="save">Lưu</string>
+    <string name="delete">Xóa</string>
+    <string name="edit">Sửa</string>
+    <string name="confirm">Xác nhận</string>
+    <string name="no_data">Không có dữ liệu</string>
 </resources>

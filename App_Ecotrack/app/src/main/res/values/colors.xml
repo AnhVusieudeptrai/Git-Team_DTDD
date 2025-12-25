@@ -1,16 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="green_primary">#4CAF50</color>
-    <color name="green_dark">#388E3C</color>
-    <color name="green_light">#81C784</color>
-    <color name="green_accent">#66BB6A</color>
-    <color name="white">#FFFFFF</color>
-    <color name="black">#000000</color>
-    <color name="gray_light">#F5F5F5</color>
-    <color name="gray">#9E9E9E</color>
-    <color name="gray_dark">#616161</color>
-    <color name="red">#F44336</color>
-    <color name="blue">#2196F3</color>
-    <color name="orange">#FF9800</color>
-    <color name="yellow">#FFC107</color>
+    <!-- Primary Colors - Green Theme -->
+    <color name="colorPrimary">#4CAF50</color>
+    <color name="colorPrimaryDark">#2E7D32</color>
+    <color name="colorPrimaryLight">#81C784</color>
+    <color name="colorPrimaryVariant">#2E7D32</color>
+    <color name="colorAccent">#8BC34A</color>
+
+    <!-- On Primary Colors -->
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="colorOnPrimaryContainer">#002106</color>
+
+    <!-- Secondary Colors -->
+    <color name="colorSecondary">#8BC34A</color>
+    <color name="colorSecondaryVariant">#689F38</color>
+    <color name="colorOnSecondary">#FFFFFF</color>
+
+    <!-- Background Colors -->
+    <color name="colorBackground">#F5F5F5</color>
+    <color name="colorSurface">#FFFFFF</color>
+    <color name="colorSurfaceVariant">#E8F5E9</color>
+    <color name="colorOnBackground">#212121</color>
+    <color name="colorOnSurface">#424242</color>
+
+    <!-- Text Colors -->
+    <color name="colorTextPrimary">#212121</color>
+    <color name="colorTextSecondary">#757575</color>
+    <color name="colorTextHint">#9E9E9E</color>
+    <color name="colorTextOnPrimary">#FFFFFF</color>
+
+    <!-- Category Colors -->
+    <color name="colorTransport">#4CAF50</color>
+    <color name="colorEnergy">#FFC107</color>
+    <color name="colorWater">#03A9F4</color>
+    <color name="colorWaste">#8BC34A</color>
+    <color name="colorGreen">#009688</color>
+    <color name="colorConsumption">#9C27B0</color>
+
+    <!-- Admin Colors - Indigo Theme -->
+    <color name="colorAdmin">#3F51B5</color>
+    <color name="colorAdminDark">#303F9F</color>
+    <color name="colorAdminLight">#7986CB</color>
+    <color name="colorOnAdmin">#FFFFFF</color>
+
+    <!-- Rank Badge Colors -->
+    <color name="colorGold">#FFD700</color>
+    <color name="colorSilver">#C0C0C0</color>
+    <color name="colorBronze">#CD7F32</color>
+
+    <!-- UI Element Colors -->
+    <color name="colorCardBackground">#FFFFFF</color>
+    <color name="colorDivider">#E0E0E0</color>
+    <color name="colorInputBorder">#BDBDBD</color>
+    <color name="colorInputBackground">#FAFAFA</color>
+    <color name="colorError">#F44336</color>
+    <color name="colorSuccess">#4CAF50</color>
+    <color name="colorWarning">#FF9800</color>
+
+    <!-- Gradient Colors -->
+    <color name="colorGradientStart">#2E7D32</color>
+    <color name="colorGradientEnd">#4CAF50</color>
+
+    <!-- Overlay Colors -->
+    <color name="colorOverlay">#80000000</color>
+    <color name="colorOverlayLight">#40000000</color>
+
+    <!-- Points Badge Colors -->
+    <color name="colorPointsBadge">#FFC107</color>
+    <color name="colorLevelBadge">#2196F3</color>
+
+    <!-- Highlight Colors -->
+    <color name="colorHighlight">#E8F5E9</color>
+    <color name="colorHighlightStrong">#C8E6C9</color>
+
+    <!-- Button Colors -->
+    <color name="colorButtonPrimary">#4CAF50</color>
+    <color name="colorButtonPrimaryPressed">#388E3C</color>
+    <color name="colorButtonSecondary">#FFFFFF</color>
+    <color name="colorButtonDisabled">#BDBDBD</color>
+
+    <!-- Status Colors -->
+    <color name="colorCompleted">#4CAF50</color>
+    <color name="colorPending">#FFC107</color>
+    <color name="colorLocked">#9E9E9E</color>
 </resources>

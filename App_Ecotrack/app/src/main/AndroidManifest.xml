@@ -27,13 +27,9 @@
         <activity android:name=".LoginActivity" android:exported="false" />
         <activity android:name=".RegisterActivity" android:exported="false" />
         <activity android:name=".MainActivity" android:exported="false" />
-        <activity android:name=".AdminActivity" android:exported="false" />
         <activity android:name=".LeaderboardActivity" android:exported="false" />
         <activity android:name=".RewardsActivity" android:exported="false" />
         <activity android:name=".SettingsActivity" android:exported="false" />
-        <activity android:name=".AdminManageActivitiesActivity" android:exported="false" />
-        <activity android:name=".AdminManageUsersActivity" android:exported="false" />
-        <activity android:name=".AdminStatisticsActivity" android:exported="false" />
         <activity android:name=".DatabaseManagerActivity" android:exported="false" />
     </application>
 

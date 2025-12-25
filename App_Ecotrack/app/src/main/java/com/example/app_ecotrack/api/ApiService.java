@@ -50,4 +50,5 @@ public interface ApiService {
 
     @GET("api/leaderboard/weekly")
     Call<WeeklyLeaderboardResponse> getWeeklyLeaderboard();
+
 }

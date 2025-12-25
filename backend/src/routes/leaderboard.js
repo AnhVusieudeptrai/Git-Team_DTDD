@@ -15,6 +15,24 @@ router.get('/', auth, async (req, res) => {
       .sort({ points: -1 })
       .limit(parseInt(limit));
 
+    // Get activity counts for each user
+    const leaderboardWithActivities = await Promise.all(
+      leaderboard.map(async (user, index) => {
+        const totalActivities = await UserActivity.countDocuments({ user: user._id });
+        return {
+          rank: index + 1,
+          id: user._id,
+          username: user.username,
+          fullname: user.fullname,
+          points: user.points,
+          level: user.level,
+          avatar: user.avatar,
+          totalActivities,
+          isCurrentUser: user._id.toString() === req.user._id.toString()
+        };
+      })
+    );
+
     // Get current user's rank
     const userRank = await User.countDocuments({ 
       role: 'user',
@@ -22,16 +40,7 @@ router.get('/', auth, async (req, res) => {
     }) + 1;
 
     res.json({
-      leaderboard: leaderboard.map((user, index) => ({
-        rank: index + 1,
-        id: user._id,
-        username: user.username,
-        fullname: user.fullname,
-        points: user.points,
-        level: user.level,
-        avatar: user.avatar,
-        isCurrentUser: user._id.toString() === req.user._id.toString()
-      })),
+      leaderboard: leaderboardWithActivities,
       currentUser: {
         rank: userRank,
         points: req.user.points,
