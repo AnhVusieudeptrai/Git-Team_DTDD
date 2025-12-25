@@ -30,10 +30,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hành động xanh - Tương lai bền vững"
-            android:textSize="16sp"
+            android:layout_marginBottom="48dp"
+            android:text="Hành động xanh - Tương lai bền vững !"
             android:textColor="@color/white"
-            android:layout_marginBottom="48dp"/>
+            android:textSize="16sp" />
 
         <ProgressBar
             android:layout_width="wrap_content"
