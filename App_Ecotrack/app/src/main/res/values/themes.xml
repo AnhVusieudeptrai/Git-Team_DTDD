@@ -1,156 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Base application theme - Material Design 3 -->
+    <!-- Base application theme (Light) -->
     <style name="Theme.EcoTrack" parent="Theme.Material3.Light.NoActionBar">
-        <!-- Primary brand color -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
-        <item name="colorOnPrimary">@color/colorOnPrimary</item>
-
-        <!-- Secondary brand color -->
-        <item name="colorSecondary">@color/colorSecondary</item>
-        <item name="colorSecondaryVariant">@color/colorSecondaryVariant</item>
-        <item name="colorOnSecondary">@color/colorOnSecondary</item>
-
-        <!-- Background and Surface colors -->
-        <item name="android:colorBackground">@color/colorBackground</item>
-        <item name="colorSurface">@color/colorSurface</item>
-        <item name="colorOnBackground">@color/colorOnBackground</item>
-        <item name="colorOnSurface">@color/colorOnSurface</item>
-
-        <!-- Status bar color -->
-        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
-        <item name="android:navigationBarColor">@color/colorSurface</item>
-
-        <!-- Error color -->
-        <item name="colorError">@color/colorError</item>
-
-        <!-- Text appearance -->
-        <item name="android:textColorPrimary">@color/colorTextPrimary</item>
-        <item name="android:textColorSecondary">@color/colorTextSecondary</item>
-        <item name="android:textColorHint">@color/colorTextHint</item>
-
-        <!-- Material Components styles -->
-        <item name="materialButtonStyle">@style/Widget.EcoTrack.Button</item>
-        <item name="textInputStyle">@style/Widget.EcoTrack.TextInputLayout</item>
-        <item name="materialCardViewStyle">@style/Widget.EcoTrack.CardView</item>
-        <item name="tabStyle">@style/Widget.EcoTrack.TabLayout</item>
+        <!-- Primary colors -->
+        <item name="colorPrimary">@color/md_theme_light_primary</item>
+        <item name="colorOnPrimary">@color/md_theme_light_onPrimary</item>
+        <item name="colorPrimaryContainer">@color/md_theme_light_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/md_theme_light_onPrimaryContainer</item>
+        
+        <!-- Secondary colors -->
+        <item name="colorSecondary">@color/md_theme_light_secondary</item>
+        <item name="colorOnSecondary">@color/md_theme_light_onSecondary</item>
+        <item name="colorSecondaryContainer">@color/md_theme_light_secondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/md_theme_light_onSecondaryContainer</item>
+        
+        <!-- Tertiary colors -->
+        <item name="colorTertiary">@color/md_theme_light_tertiary</item>
+        <item name="colorOnTertiary">@color/md_theme_light_onTertiary</item>
+        <item name="colorTertiaryContainer">@color/md_theme_light_tertiaryContainer</item>
+        <item name="colorOnTertiaryContainer">@color/md_theme_light_onTertiaryContainer</item>
+        
+        <!-- Error colors -->
+        <item name="colorError">@color/md_theme_light_error</item>
+        <item name="colorOnError">@color/md_theme_light_onError</item>
+        <item name="colorErrorContainer">@color/md_theme_light_errorContainer</item>
+        <item name="colorOnErrorContainer">@color/md_theme_light_onErrorContainer</item>
+        
+        <!-- Background colors -->
+        <item name="android:colorBackground">@color/md_theme_light_background</item>
+        <item name="colorOnBackground">@color/md_theme_light_onBackground</item>
+        <item name="colorSurface">@color/md_theme_light_surface</item>
+        <item name="colorOnSurface">@color/md_theme_light_onSurface</item>
+        <item name="colorSurfaceVariant">@color/md_theme_light_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/md_theme_light_onSurfaceVariant</item>
+        <item name="colorOutline">@color/md_theme_light_outline</item>
+        
+        <!-- Status bar -->
+        <item name="android:statusBarColor">@color/md_theme_light_primary</item>
+        <item name="android:navigationBarColor">@color/md_theme_light_surface</item>
     </style>
-
+    
+    <!-- Auth Activity Theme -->
+    <style name="Theme.EcoTrack.Auth" parent="Theme.EcoTrack">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+    
     <!-- Splash Screen Theme -->
     <style name="Theme.EcoTrack.Splash" parent="Theme.EcoTrack">
-        <item name="android:windowBackground">@color/colorPrimary</item>
-        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
+        <item name="android:windowBackground">@color/md_theme_light_primary</item>
     </style>
-
-    <!-- Admin Theme -->
-    <style name="Theme.EcoTrack.Admin" parent="Theme.EcoTrack">
-        <item name="colorPrimary">@color/colorAdmin</item>
-        <item name="colorPrimaryVariant">@color/colorAdminDark</item>
-        <item name="android:statusBarColor">@color/colorAdminDark</item>
+    
+    <!-- Bottom Navigation Active Indicator Style -->
+    <style name="Widget.EcoTrack.BottomNavigationView.ActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/md_theme_light_primaryContainer</item>
     </style>
-
-    <!-- Button Styles -->
-    <style name="Widget.EcoTrack.Button" parent="Widget.Material3.Button">
-        <item name="android:textAllCaps">false</item>
-        <item name="cornerRadius">12dp</item>
-        <item name="android:paddingTop">12dp</item>
-        <item name="android:paddingBottom">12dp</item>
-        <item name="backgroundTint">@color/colorPrimary</item>
-    </style>
-
-    <style name="Widget.EcoTrack.Button.Outlined" parent="Widget.Material3.Button.OutlinedButton">
-        <item name="android:textAllCaps">false</item>
-        <item name="cornerRadius">12dp</item>
-        <item name="strokeColor">@color/colorPrimary</item>
-        <item name="android:textColor">@color/colorPrimary</item>
-    </style>
-
-    <style name="Widget.EcoTrack.Button.Text" parent="Widget.Material3.Button.TextButton">
-        <item name="android:textAllCaps">false</item>
-        <item name="android:textColor">@color/colorPrimary</item>
-    </style>
-
-    <!-- TextInputLayout Style -->
-    <style name="Widget.EcoTrack.TextInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox">
-        <item name="boxCornerRadiusTopStart">12dp</item>
-        <item name="boxCornerRadiusTopEnd">12dp</item>
-        <item name="boxCornerRadiusBottomStart">12dp</item>
-        <item name="boxCornerRadiusBottomEnd">12dp</item>
-        <item name="boxStrokeColor">@color/colorPrimary</item>
-        <item name="hintTextColor">@color/colorPrimary</item>
-    </style>
-
-    <!-- CardView Style -->
-    <style name="Widget.EcoTrack.CardView" parent="Widget.Material3.CardView.Elevated">
-        <item name="cardCornerRadius">16dp</item>
-        <item name="cardElevation">4dp</item>
-        <item name="cardBackgroundColor">@color/colorCardBackground</item>
-    </style>
-
-    <!-- TabLayout Style -->
-    <style name="Widget.EcoTrack.TabLayout" parent="Widget.Material3.TabLayout">
-        <item name="tabIndicatorColor">@color/colorPrimary</item>
-        <item name="tabSelectedTextColor">@color/colorPrimary</item>
-        <item name="tabTextColor">@color/colorTextSecondary</item>
-        <item name="tabIndicatorHeight">3dp</item>
-        <item name="tabMode">fixed</item>
-        <item name="tabGravity">fill</item>
-    </style>
-
-    <!-- Text Styles -->
-    <style name="TextAppearance.EcoTrack.Headline1" parent="TextAppearance.Material3.HeadlineLarge">
-        <item name="android:textColor">@color/colorTextPrimary</item>
-        <item name="android:textSize">32sp</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
-    </style>
-
-    <style name="TextAppearance.EcoTrack.Headline2" parent="TextAppearance.Material3.HeadlineMedium">
-        <item name="android:textColor">@color/colorTextPrimary</item>
-        <item name="android:textSize">24sp</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
-    </style>
-
-    <style name="TextAppearance.EcoTrack.Title" parent="TextAppearance.Material3.TitleLarge">
-        <item name="android:textColor">@color/colorTextPrimary</item>
-        <item name="android:textSize">20sp</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
-    </style>
-
-    <style name="TextAppearance.EcoTrack.Subtitle" parent="TextAppearance.Material3.TitleMedium">
-        <item name="android:textColor">@color/colorTextSecondary</item>
-        <item name="android:textSize">16sp</item>
-    </style>
-
-    <style name="TextAppearance.EcoTrack.Body" parent="TextAppearance.Material3.BodyLarge">
-        <item name="android:textColor">@color/colorTextPrimary</item>
-        <item name="android:textSize">16sp</item>
-    </style>
-
-    <style name="TextAppearance.EcoTrack.Caption" parent="TextAppearance.Material3.BodySmall">
-        <item name="android:textColor">@color/colorTextSecondary</item>
-        <item name="android:textSize">12sp</item>
-    </style>
-
-    <!-- Points Badge Style -->
-    <style name="Widget.EcoTrack.PointsBadge">
-        <item name="android:background">@color/colorPointsBadge</item>
-        <item name="android:textColor">@color/colorTextPrimary</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
-        <item name="android:paddingStart">12dp</item>
-        <item name="android:paddingEnd">12dp</item>
-        <item name="android:paddingTop">4dp</item>
-        <item name="android:paddingBottom">4dp</item>
-    </style>
-
-    <!-- Toolbar Style -->
-    <style name="Widget.EcoTrack.Toolbar" parent="Widget.Material3.Toolbar">
-        <item name="android:background">@color/colorPrimary</item>
-        <item name="titleTextColor">@color/colorOnPrimary</item>
-        <item name="navigationIconTint">@color/colorOnPrimary</item>
-    </style>
-
-    <!-- Base Widget Style (required for inheritance) -->
-    <style name="Widget.EcoTrack" parent="android:Widget" />
 </resources>

@@ -30,12 +30,18 @@ const userRoutes = require('./routes/users');
 const activityRoutes = require('./routes/activities');
 const leaderboardRoutes = require('./routes/leaderboard');
 const adminRoutes = require('./routes/admin');
+const badgeRoutes = require('./routes/badges');
+const challengeRoutes = require('./routes/challenges');
+const streakRoutes = require('./routes/streaks');
 
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/activities', activityRoutes);
 app.use('/api/leaderboard', leaderboardRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/badges', badgeRoutes);
+app.use('/api/challenges', challengeRoutes);
+app.use('/api/streaks', streakRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
@@ -58,7 +64,13 @@ const mongoOptions = {
 };
 
 mongoose.connect(process.env.MONGODB_URI, mongoOptions)
-  .then(() => console.log('✅ Connected to MongoDB'))
+  .then(() => {
+    console.log('✅ Connected to MongoDB');
+    
+    // Initialize scheduler after DB connection
+    const { initScheduler } = require('./services/schedulerService');
+    initScheduler();
+  })
   .catch(err => {
     console.error('❌ MongoDB connection error:', err.message);
   });

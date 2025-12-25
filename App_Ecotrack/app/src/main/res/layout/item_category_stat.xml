@@ -1,68 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center_vertical"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:paddingVertical="8dp">
 
-    <!-- Category Icon -->
-    <TextView
-        android:id="@+id/tvCategoryIcon"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:background="@drawable/bg_circle_avatar"
-        android:gravity="center"
-        android:text="🚲"
-        android:textSize="18sp"
-        tools:text="🚲" />
-
-    <!-- Category Info -->
     <LinearLayout
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <View
+            android:id="@+id/view_category_color"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:background="@drawable/bg_badge_circle" />
+
+        <TextView
+            android:id="@+id/text_category_name"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:textAppearance="?attr/textAppearanceBodyMedium"
+            android:textColor="?attr/colorOnSurface"
+            tools:text="Giao thông" />
 
-            <TextView
-                android:id="@+id/tvCategoryName"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Giao thông"
-                android:textColor="@color/colorTextPrimary"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                tools:text="Giao thông" />
+        <TextView
+            android:id="@+id/text_category_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:textAppearance="?attr/textAppearanceBodySmall"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            tools:text="5 hoạt động" />
 
-            <TextView
-                android:id="@+id/tvCategoryCount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0 lần"
-                android:textColor="@color/colorPrimary"
-                android:textSize="13sp"
-                android:textStyle="bold"
-                tools:text="12 lần" />
-        </LinearLayout>
-
-        <ProgressBar
-            android:id="@+id/progressCategory"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="6dp"
-            android:layout_marginTop="6dp"
-            android:max="20"
-            android:progress="0"
-            android:progressDrawable="@drawable/bg_progress_bar"
-            tools:progress="12" />
+        <TextView
+            android:id="@+id/text_category_points"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearanceBodyMedium"
+            android:textColor="?attr/colorPrimary"
+            android:textStyle="bold"
+            tools:text="120 điểm" />
 
     </LinearLayout>
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/progress_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        app:trackCornerRadius="4dp"
+        app:trackThickness="6dp"
+        tools:progress="60" />
+
 </LinearLayout>

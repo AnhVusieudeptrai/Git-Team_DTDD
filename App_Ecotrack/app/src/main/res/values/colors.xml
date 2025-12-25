@@ -1,86 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Primary Colors - Green Theme -->
-    <color name="colorPrimary">#4CAF50</color>
-    <color name="colorPrimaryDark">#2E7D32</color>
-    <color name="colorPrimaryLight">#81C784</color>
-    <color name="colorPrimaryVariant">#2E7D32</color>
-    <color name="colorAccent">#8BC34A</color>
-
-    <!-- On Primary Colors -->
-    <color name="colorOnPrimary">#FFFFFF</color>
-    <color name="colorOnPrimaryContainer">#002106</color>
-
-    <!-- Secondary Colors -->
-    <color name="colorSecondary">#8BC34A</color>
-    <color name="colorSecondaryVariant">#689F38</color>
-    <color name="colorOnSecondary">#FFFFFF</color>
-
-    <!-- Background Colors -->
-    <color name="colorBackground">#F5F5F5</color>
-    <color name="colorSurface">#FFFFFF</color>
-    <color name="colorSurfaceVariant">#E8F5E9</color>
-    <color name="colorOnBackground">#212121</color>
-    <color name="colorOnSurface">#424242</color>
-
-    <!-- Text Colors -->
-    <color name="colorTextPrimary">#212121</color>
-    <color name="colorTextSecondary">#757575</color>
-    <color name="colorTextHint">#9E9E9E</color>
-    <color name="colorTextOnPrimary">#FFFFFF</color>
-
+    <!-- Material Design 3 - Eco Green Theme (Light) -->
+    <color name="md_theme_light_primary">#2E7D32</color>
+    <color name="md_theme_light_onPrimary">#FFFFFF</color>
+    <color name="md_theme_light_primaryContainer">#A5D6A7</color>
+    <color name="md_theme_light_onPrimaryContainer">#1B5E20</color>
+    
+    <color name="md_theme_light_secondary">#66BB6A</color>
+    <color name="md_theme_light_onSecondary">#FFFFFF</color>
+    <color name="md_theme_light_secondaryContainer">#C8E6C9</color>
+    <color name="md_theme_light_onSecondaryContainer">#1B5E20</color>
+    
+    <color name="md_theme_light_tertiary">#00897B</color>
+    <color name="md_theme_light_onTertiary">#FFFFFF</color>
+    <color name="md_theme_light_tertiaryContainer">#B2DFDB</color>
+    <color name="md_theme_light_onTertiaryContainer">#004D40</color>
+    
+    <color name="md_theme_light_error">#BA1A1A</color>
+    <color name="md_theme_light_onError">#FFFFFF</color>
+    <color name="md_theme_light_errorContainer">#FFDAD6</color>
+    <color name="md_theme_light_onErrorContainer">#410002</color>
+    
+    <color name="md_theme_light_background">#FAFAFA</color>
+    <color name="md_theme_light_onBackground">#1C1B1F</color>
+    <color name="md_theme_light_surface">#FFFFFF</color>
+    <color name="md_theme_light_onSurface">#1C1B1F</color>
+    <color name="md_theme_light_surfaceVariant">#E7E0EC</color>
+    <color name="md_theme_light_onSurfaceVariant">#49454F</color>
+    <color name="md_theme_light_outline">#79747E</color>
+    
+    <!-- Material Design 3 - Eco Green Theme (Dark) -->
+    <color name="md_theme_dark_primary">#81C784</color>
+    <color name="md_theme_dark_onPrimary">#1B5E20</color>
+    <color name="md_theme_dark_primaryContainer">#2E7D32</color>
+    <color name="md_theme_dark_onPrimaryContainer">#A5D6A7</color>
+    
+    <color name="md_theme_dark_secondary">#A5D6A7</color>
+    <color name="md_theme_dark_onSecondary">#1B5E20</color>
+    <color name="md_theme_dark_secondaryContainer">#388E3C</color>
+    <color name="md_theme_dark_onSecondaryContainer">#C8E6C9</color>
+    
+    <color name="md_theme_dark_tertiary">#80CBC4</color>
+    <color name="md_theme_dark_onTertiary">#00695C</color>
+    <color name="md_theme_dark_tertiaryContainer">#00897B</color>
+    <color name="md_theme_dark_onTertiaryContainer">#B2DFDB</color>
+    
+    <color name="md_theme_dark_error">#FFB4AB</color>
+    <color name="md_theme_dark_onError">#690005</color>
+    <color name="md_theme_dark_errorContainer">#93000A</color>
+    <color name="md_theme_dark_onErrorContainer">#FFDAD6</color>
+    
+    <color name="md_theme_dark_background">#121212</color>
+    <color name="md_theme_dark_onBackground">#E6E1E5</color>
+    <color name="md_theme_dark_surface">#1E1E1E</color>
+    <color name="md_theme_dark_onSurface">#E6E1E5</color>
+    <color name="md_theme_dark_surfaceVariant">#49454F</color>
+    <color name="md_theme_dark_onSurfaceVariant">#CAC4D0</color>
+    <color name="md_theme_dark_outline">#938F99</color>
+    
+    <!-- Badge Rarity Colors -->
+    <color name="rarity_common">#9E9E9E</color>
+    <color name="rarity_rare">#2196F3</color>
+    <color name="rarity_epic">#9C27B0</color>
+    <color name="rarity_legendary">#FFD700</color>
+    
     <!-- Category Colors -->
-    <color name="colorTransport">#4CAF50</color>
-    <color name="colorEnergy">#FFC107</color>
-    <color name="colorWater">#03A9F4</color>
-    <color name="colorWaste">#8BC34A</color>
-    <color name="colorGreen">#009688</color>
-    <color name="colorConsumption">#9C27B0</color>
-
-    <!-- Admin Colors - Indigo Theme -->
-    <color name="colorAdmin">#3F51B5</color>
-    <color name="colorAdminDark">#303F9F</color>
-    <color name="colorAdminLight">#7986CB</color>
-    <color name="colorOnAdmin">#FFFFFF</color>
-
-    <!-- Rank Badge Colors -->
-    <color name="colorGold">#FFD700</color>
-    <color name="colorSilver">#C0C0C0</color>
-    <color name="colorBronze">#CD7F32</color>
-
-    <!-- UI Element Colors -->
-    <color name="colorCardBackground">#FFFFFF</color>
-    <color name="colorDivider">#E0E0E0</color>
-    <color name="colorInputBorder">#BDBDBD</color>
-    <color name="colorInputBackground">#FAFAFA</color>
-    <color name="colorError">#F44336</color>
-    <color name="colorSuccess">#4CAF50</color>
-    <color name="colorWarning">#FF9800</color>
-
-    <!-- Gradient Colors -->
-    <color name="colorGradientStart">#2E7D32</color>
-    <color name="colorGradientEnd">#4CAF50</color>
-
-    <!-- Overlay Colors -->
-    <color name="colorOverlay">#80000000</color>
-    <color name="colorOverlayLight">#40000000</color>
-
-    <!-- Points Badge Colors -->
-    <color name="colorPointsBadge">#FFC107</color>
-    <color name="colorLevelBadge">#2196F3</color>
-
-    <!-- Highlight Colors -->
-    <color name="colorHighlight">#E8F5E9</color>
-    <color name="colorHighlightStrong">#C8E6C9</color>
-
-    <!-- Button Colors -->
-    <color name="colorButtonPrimary">#4CAF50</color>
-    <color name="colorButtonPrimaryPressed">#388E3C</color>
-    <color name="colorButtonSecondary">#FFFFFF</color>
-    <color name="colorButtonDisabled">#BDBDBD</color>
-
-    <!-- Status Colors -->
-    <color name="colorCompleted">#4CAF50</color>
-    <color name="colorPending">#FFC107</color>
-    <color name="colorLocked">#9E9E9E</color>
+    <color name="category_transport">#4CAF50</color>
+    <color name="category_energy">#FFC107</color>
+    <color name="category_water">#2196F3</color>
+    <color name="category_waste">#795548</color>
+    <color name="category_green">#8BC34A</color>
+    <color name="category_consumption">#FF9800</color>
+    
+    <!-- Streak Colors -->
+    <color name="streak_fire">#FF5722</color>
+    <color name="streak_active">#4CAF50</color>
+    <color name="streak_inactive">#9E9E9E</color>
+    
+    <!-- Medal Colors for Leaderboard -->
+    <color name="medal_gold">#FFD700</color>
+    <color name="medal_silver">#C0C0C0</color>
+    <color name="medal_bronze">#CD7F32</color>
+    
+    <!-- Additional UI Colors -->
+    <color name="md_theme_light_outlineVariant">#CAC4D0</color>
+    
+    <!-- Eco Green for notifications -->
+    <color name="eco_green">#2E7D32</color>
+    
+    <!-- Launcher Icon Colors -->
+    <color name="ic_launcher_background">#2E7D32</color>
 </resources>

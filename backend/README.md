@@ -7,6 +7,7 @@ Backend API cho ứng dụng EcoTrack - Theo dõi hoạt động bảo vệ môi
 - MongoDB (Atlas)
 - JWT Authentication
 - Google OAuth2
+- Firebase Cloud Messaging (Push Notifications)
 
 ## Cài đặt
 
@@ -26,12 +27,16 @@ Chỉnh sửa file `.env` với thông tin của bạn:
 - `JWT_SECRET`: Chuỗi bí mật cho JWT
 - `GOOGLE_CLIENT_ID`: Client ID từ Google Cloud Console
 
-### 3. Seed dữ liệu mẫu
+### 3. Cấu hình Firebase (cho Push Notifications)
+- Tải file `firebase-service-account.json` từ Firebase Console
+- Đặt vào thư mục `backend/`
+
+### 4. Seed dữ liệu mẫu
 ```bash
-npm run seed
+npm run seed:all
 ```
 
-### 4. Chạy server
+### 5. Chạy server
 ```bash
 # Development
 npm run dev
@@ -71,6 +76,55 @@ npm start
 |--------|----------|-------------|
 | GET | `/api/leaderboard` | Bảng xếp hạng tổng |
 | GET | `/api/leaderboard/weekly` | Bảng xếp hạng tuần |
+
+### Badges (Huy hiệu)
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/badges` | Lấy tất cả huy hiệu |
+| GET | `/api/badges/my` | Huy hiệu đã đạt được |
+| POST | `/api/badges` | [Admin] Tạo huy hiệu |
+| PUT | `/api/badges/:id` | [Admin] Cập nhật huy hiệu |
+| DELETE | `/api/badges/:id` | [Admin] Xóa huy hiệu |
+
+### Challenges (Thử thách)
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/challenges` | Lấy thử thách đang hoạt động |
+| POST | `/api/challenges/:id/join` | Tham gia thử thách |
+| GET | `/api/challenges/my` | Thử thách của tôi |
+| POST | `/api/challenges` | [Admin] Tạo thử thách |
+| PUT | `/api/challenges/:id` | [Admin] Cập nhật thử thách |
+| DELETE | `/api/challenges/:id` | [Admin] Xóa thử thách |
+
+### Streaks (Chuỗi ngày)
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/streaks` | Lấy thông tin streak |
+| GET | `/api/streaks/leaderboard` | Bảng xếp hạng streak |
+
+## Tính năng mới
+
+### 🏆 Hệ thống Huy hiệu
+- Huy hiệu theo streak (3, 7, 14, 30, 100 ngày)
+- Huy hiệu theo điểm (100, 500, 1000, 5000, 10000 điểm)
+- Huy hiệu theo số hoạt động (10, 50, 100, 500, 1000)
+- Độ hiếm: Common, Rare, Epic, Legendary
+
+### 🎯 Thử thách
+- Thử thách tuần/tháng tự động tạo
+- Theo dõi tiến độ real-time
+- Phần thưởng điểm và huy hiệu
+
+### 🔥 Streak
+- Theo dõi chuỗi ngày hoạt động liên tiếp
+- Kỷ lục streak cá nhân
+- Bảng xếp hạng streak
+
+### 🔔 Push Notifications
+- Nhắc nhở hàng ngày (9:00 AM)
+- Cảnh báo streak sắp mất
+- Thông báo huy hiệu mới
+- Thông báo hoàn thành thử thách
 
 ## Test Accounts
 - **Admin**: admin / admin123

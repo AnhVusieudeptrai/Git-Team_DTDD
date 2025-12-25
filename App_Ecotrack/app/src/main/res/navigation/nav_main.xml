@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/navigation_home">
+
+    <!-- Default animations for all destinations -->
+    <action
+        android:id="@+id/action_global_home"
+        app:destination="@id/navigation_home"
+        app:enterAnim="@anim/fade_in"
+        app:exitAnim="@anim/fade_out"
+        app:popEnterAnim="@anim/fade_in"
+        app:popExitAnim="@anim/fade_out" />
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.app_ecotrack.ui.home.HomeFragment"
+        android:label="@string/nav_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_badges"
+        android:name="com.example.app_ecotrack.ui.badges.BadgesFragment"
+        android:label="@string/nav_badges"
+        tools:layout="@layout/fragment_badges" />
+
+    <fragment
+        android:id="@+id/navigation_challenges"
+        android:name="com.example.app_ecotrack.ui.challenges.ChallengesFragment"
+        android:label="@string/nav_challenges"
+        tools:layout="@layout/fragment_challenges" />
+
+    <fragment
+        android:id="@+id/navigation_leaderboard"
+        android:name="com.example.app_ecotrack.ui.leaderboard.LeaderboardFragment"
+        android:label="@string/nav_leaderboard"
+        tools:layout="@layout/fragment_leaderboard" />
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.example.app_ecotrack.ui.profile.ProfileFragment"
+        android:label="@string/nav_profile"
+        tools:layout="@layout/fragment_profile">
+        
+        <action
+            android:id="@+id/action_profile_to_stats"
+            app:destination="@id/navigation_stats"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_stats"
+        android:name="com.example.app_ecotrack.ui.stats.StatsFragment"
+        android:label="@string/nav_stats"
+        tools:layout="@layout/fragment_stats">
+        
+        <action
+            android:id="@+id/action_stats_to_history"
+            app:destination="@id/navigation_history"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_history"
+        android:name="com.example.app_ecotrack.ui.history.HistoryFragment"
+        android:label="@string/history_title"
+        tools:layout="@layout/fragment_history" />
+
+</navigation>

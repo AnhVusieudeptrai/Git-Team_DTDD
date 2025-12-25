@@ -18,6 +18,18 @@ public interface ApiService {
     @GET("api/auth/me")
     Call<UserResponse> getCurrentUser();
 
+    @POST("api/auth/forgot-password")
+    Call<MessageResponse> forgotPassword(@Body ForgotPasswordRequest request);
+
+    @POST("api/auth/verify-reset-token")
+    Call<MessageResponse> verifyResetToken(@Body VerifyResetTokenRequest request);
+
+    @POST("api/auth/reset-password")
+    Call<MessageResponse> resetPassword(@Body ResetPasswordRequest request);
+
+    @POST("api/auth/change-password")
+    Call<MessageResponse> changePassword(@Body ChangePasswordRequest request);
+
     // ==================== ACTIVITIES ====================
     
     @GET("api/activities")
@@ -31,6 +43,33 @@ public interface ApiService {
 
     @GET("api/activities/history")
     Call<ActivityHistoryResponse> getActivityHistory(@Query("page") int page, @Query("limit") int limit);
+
+    // ==================== BADGES ====================
+
+    @GET("api/badges")
+    Call<BadgesResponse> getBadges();
+
+    @GET("api/badges/my")
+    Call<MyBadgesResponse> getMyBadges();
+
+    // ==================== CHALLENGES ====================
+
+    @GET("api/challenges")
+    Call<ChallengesResponse> getChallenges();
+
+    @POST("api/challenges/{id}/join")
+    Call<JoinChallengeResponse> joinChallenge(@Path("id") String challengeId);
+
+    @GET("api/challenges/my")
+    Call<MyChallengesResponse> getMyChallenges();
+
+    // ==================== STREAKS ====================
+
+    @GET("api/streaks")
+    Call<StreakResponse> getStreak();
+
+    @GET("api/streaks/leaderboard")
+    Call<StreakLeaderboardResponse> getStreakLeaderboard();
 
     // ==================== USERS ====================
     
@@ -50,5 +89,10 @@ public interface ApiService {
 
     @GET("api/leaderboard/weekly")
     Call<WeeklyLeaderboardResponse> getWeeklyLeaderboard();
+
+    // ==================== FCM TOKEN ====================
+    
+    @POST("api/users/fcm-token")
+    Call<MessageResponse> registerFcmToken(@Body FcmTokenRequest request);
 
 }

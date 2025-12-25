@@ -1,113 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_leaderboard_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="8dp"
-    app:cardBackgroundColor="@color/colorSurface"
+    android:layout_marginVertical="4dp"
+    app:cardBackgroundColor="?attr/colorSurface"
     app:cardCornerRadius="12dp"
-    app:cardElevation="2dp">
-
-    <!-- Highlight View for current user -->
-    <View
-        android:id="@+id/highlightView"
-        android:layout_width="4dp"
-        android:layout_height="match_parent"
-        android:background="@color/colorPrimary"
-        android:visibility="gone" />
+    app:cardElevation="1dp"
+    app:strokeColor="?attr/colorOutlineVariant"
+    app:strokeWidth="1dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:gravity="center_vertical"
+        android:orientation="horizontal"
         android:padding="12dp">
 
-        <!-- Rank Badge -->
-        <LinearLayout
-            android:id="@+id/rankBadge"
+        <!-- Rank with special styling for top 3 -->
+        <FrameLayout
             android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:gravity="center"
-            android:background="@drawable/bg_circle_avatar">
+            android:layout_height="40dp">
 
+            <!-- Medal background for top 3 -->
+            <ImageView
+                android:id="@+id/image_medal"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+            <!-- Rank number -->
             <TextView
-                android:id="@+id/tvRank"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:id="@+id/text_rank"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:textAppearance="?attr/textAppearanceTitleMedium"
+                android:textColor="?attr/colorOnSurface"
                 android:textStyle="bold"
-                android:textColor="@color/colorTextPrimary"
-                tools:text="🥇" />
-        </LinearLayout>
+                tools:text="4" />
+
+        </FrameLayout>
+
+        <!-- Avatar -->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/image_avatar"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="8dp"
+            android:background="?attr/colorPrimaryContainer"
+            android:padding="10dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_person"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
+            app:tint="?attr/colorOnPrimaryContainer" />
 
         <!-- User Info -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_marginStart="12dp">
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tvName"
+                android:id="@+id/text_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorTextPrimary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:maxLines="1"
                 android:ellipsize="end"
+                android:maxLines="1"
+                android:textAppearance="?attr/textAppearanceTitleSmall"
+                android:textColor="?attr/colorOnSurface"
                 tools:text="Nguyễn Văn A" />
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/text_level"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="4dp">
+                android:textAppearance="?attr/textAppearanceBodySmall"
+                android:textColor="?attr/colorOnSurfaceVariant"
+                tools:text="Cấp 10" />
 
-                <TextView
-                    android:id="@+id/tvLevel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/colorTextSecondary"
-                    android:textSize="12sp"
-                    tools:text="🌟 Cấp 5" />
-
-                <TextView
-                    android:id="@+id/tvActivities"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:textColor="@color/colorTextSecondary"
-                    android:textSize="12sp"
-                    tools:text="🌱 25 HĐ" />
-            </LinearLayout>
         </LinearLayout>
 
-        <!-- Points -->
+        <!-- Points/Streak Value -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="end">
+            android:gravity="end"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tvPoints"
+                android:id="@+id/text_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorPrimary"
-                android:textSize="20sp"
+                android:textAppearance="?attr/textAppearanceTitleMedium"
+                android:textColor="?attr/colorPrimary"
                 android:textStyle="bold"
-                tools:text="1250" />
+                tools:text="2,500" />
 
             <TextView
+                android:id="@+id/text_value_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="điểm"
-                android:textColor="@color/colorTextSecondary"
-                android:textSize="12sp" />
+                android:textAppearance="?attr/textAppearanceLabelSmall"
+                android:textColor="?attr/colorOnSurfaceVariant"
+                tools:text="điểm" />
+
         </LinearLayout>
 
     </LinearLayout>

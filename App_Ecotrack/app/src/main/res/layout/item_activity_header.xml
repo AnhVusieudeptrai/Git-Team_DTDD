@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:paddingTop="12dp"
+    android:paddingBottom="8dp">
+
+    <TextView
+        android:id="@+id/text_category_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        tools:text="🚴" />
+
+    <TextView
+        android:id="@+id/text_category_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textAppearance="?attr/textAppearanceTitleSmall"
+        android:textColor="?attr/colorPrimary"
+        android:textStyle="bold"
+        tools:text="Giao thông" />
+
+</LinearLayout>

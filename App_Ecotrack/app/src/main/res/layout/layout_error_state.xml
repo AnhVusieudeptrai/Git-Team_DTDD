@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_error"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="32dp">
+
+    <!-- Error Icon -->
+    <ImageView
+        android:id="@+id/image_error"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:alpha="0.6"
+        android:contentDescription="@string/error"
+        android:src="@drawable/ic_error_outline"
+        app:tint="?attr/colorError" />
+
+    <!-- Error Title -->
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/text_error_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="@string/error_occurred"
+        android:textAppearance="?attr/textAppearanceTitleMedium"
+        android:textColor="?attr/colorOnSurface" />
+
+    <!-- Error Message -->
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/text_error_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="@string/error_unknown"
+        android:textAppearance="?attr/textAppearanceBodyMedium"
+        android:textColor="?attr/colorOnSurfaceVariant" />
+
+    <!-- Retry Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_retry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/retry"
+        app:icon="@drawable/ic_refresh" />
+
+</LinearLayout>

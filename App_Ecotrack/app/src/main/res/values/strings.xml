@@ -13,12 +13,41 @@
     <string name="no_account">Chưa có tài khoản? Đăng ký</string>
     <string name="have_account">Đã có tài khoản? Đăng nhập</string>
     <string name="logout">Đăng xuất</string>
+    <string name="forgot_password">Quên mật khẩu?</string>
+    <string name="forgot_password_subtitle">Nhập email của bạn để nhận link đặt lại mật khẩu</string>
+    <string name="send_reset_link">Gửi link đặt lại</string>
+    <string name="reset_email_sent">Email đặt lại mật khẩu đã được gửi. Vui lòng kiểm tra hộp thư của bạn.</string>
+    <string name="back_to_login">Quay lại đăng nhập</string>
+    <string name="back">Quay lại</string>
+    <string name="create_account">Tạo tài khoản</string>
+    <string name="register_subtitle">Đăng ký để bắt đầu hành trình bảo vệ môi trường</string>
+    <string name="confirm_password">Xác nhận mật khẩu</string>
+    
+    <!-- Validation Messages -->
+    <string name="error_username_required">Vui lòng nhập tên đăng nhập</string>
+    <string name="error_password_required">Vui lòng nhập mật khẩu</string>
+    <string name="error_email_required">Vui lòng nhập email</string>
+    <string name="error_email_invalid">Email không hợp lệ</string>
+    <string name="error_fullname_required">Vui lòng nhập họ và tên</string>
+    <string name="error_password_short">Mật khẩu phải có ít nhất 6 ký tự</string>
+    <string name="error_password_mismatch">Mật khẩu xác nhận không khớp</string>
+    <string name="error_login_failed">Đăng nhập thất bại. Vui lòng kiểm tra lại thông tin.</string>
+    <string name="error_register_failed">Đăng ký thất bại. Vui lòng thử lại.</string>
+    <string name="error_network">Không có kết nối mạng</string>
+    <string name="error_unknown">Đã xảy ra lỗi. Vui lòng thử lại.</string>
 
     <!-- Navigation -->
     <string name="tab_home">Trang chủ</string>
     <string name="tab_activities">Hoạt động</string>
     <string name="tab_statistics">Thống kê</string>
     <string name="tab_profile">Hồ sơ</string>
+    
+    <!-- Bottom Navigation -->
+    <string name="nav_home">Trang chủ</string>
+    <string name="nav_badges">Huy hiệu</string>
+    <string name="nav_challenges">Thử thách</string>
+    <string name="nav_leaderboard">Xếp hạng</string>
+    <string name="nav_profile">Hồ sơ</string>
 
     <!-- Home -->
     <string name="greeting">Xin chào, %s!</string>
@@ -56,9 +85,49 @@
     <string name="level">Cấp độ</string>
     <string name="achievements">Thành tựu</string>
     <string name="settings">Cài đặt</string>
+    <string name="profile_avatar">Ảnh đại diện</string>
+    <string name="profile_stats_title">Thống kê</string>
+    <string name="profile_stat_activities">Hoạt động</string>
+    <string name="profile_stat_rank">Xếp hạng</string>
+    <string name="profile_stat_co2">CO2 tiết kiệm</string>
+    <string name="profile_badges_title">Huy hiệu đã đạt</string>
+    <string name="profile_badges_count">%d huy hiệu</string>
+    <string name="profile_no_badges">Chưa có huy hiệu nào</string>
+    <string name="profile_edit">Chỉnh sửa hồ sơ</string>
+    <string name="profile_change_password">Đổi mật khẩu</string>
+    <string name="profile_version">Phiên bản %s</string>
+    <string name="view_detailed_stats">Xem thống kê chi tiết</string>
+    <string name="profile_edit_title">Chỉnh sửa hồ sơ</string>
+    <string name="profile_edit_fullname_hint">Họ và tên</string>
+    <string name="profile_update_success">Cập nhật hồ sơ thành công</string>
+    <string name="profile_update_failed">Cập nhật hồ sơ thất bại</string>
+    <string name="change_password_title">Đổi mật khẩu</string>
+    <string name="change_password_old">Mật khẩu hiện tại</string>
+    <string name="change_password_new">Mật khẩu mới</string>
+    <string name="change_password_confirm">Xác nhận mật khẩu mới</string>
+    <string name="change_password_success">Đổi mật khẩu thành công</string>
+    <string name="change_password_failed">Đổi mật khẩu thất bại</string>
+    <string name="error_old_password_required">Vui lòng nhập mật khẩu hiện tại</string>
+    <string name="error_new_password_required">Vui lòng nhập mật khẩu mới</string>
+    <string name="error_new_password_short">Mật khẩu mới phải có ít nhất 6 ký tự</string>
+    <string name="error_confirm_password_required">Vui lòng xác nhận mật khẩu mới</string>
+    <string name="error_new_password_mismatch">Mật khẩu xác nhận không khớp</string>
+    <string name="logout_confirm_title">Đăng xuất</string>
+    <string name="logout_confirm_message">Bạn có chắc chắn muốn đăng xuất?</string>
 
     <!-- Leaderboard -->
     <string name="leaderboard">Bảng xếp hạng</string>
+    <string name="leaderboard_subtitle">Xem thứ hạng của bạn so với người khác</string>
+    <string name="tab_total">Tổng</string>
+    <string name="tab_weekly">Tuần này</string>
+    <string name="tab_streak">Streak</string>
+    <string name="level_format">Cấp %d</string>
+    <string name="points_value">điểm</string>
+    <string name="streak_value">ngày</string>
+    <string name="you">Bạn</string>
+    <string name="no_leaderboard_data">Chưa có dữ liệu bảng xếp hạng</string>
+    <string name="error_loading_leaderboard">Không thể tải bảng xếp hạng.\nVui lòng thử lại.</string>
+    <string name="retry">Thử lại</string>
 
     <!-- Rewards -->
     <string name="rewards">Phần thưởng</string>
@@ -82,9 +151,110 @@
     <string name="privacy_policy">Chính sách bảo mật</string>
     <string name="version">Phiên bản</string>
 
+    <!-- Home Screen -->
+    <string name="streak_icon">Biểu tượng streak</string>
+    <string name="streak_label">Chuỗi hoạt động liên tiếp</string>
+    <string name="streak_days">%d ngày</string>
+    <string name="longest_streak">Kỷ lục: %d ngày</string>
+    <string name="co2_saved_today">CO2 tiết kiệm hôm nay</string>
+    <string name="co2_kg">%.1f kg</string>
+    <string name="active_challenges">Thử thách đang tham gia</string>
+    <string name="no_active_challenges">Chưa tham gia thử thách nào</string>
+    <string name="eco_activities">Hoạt động xanh</string>
+    <string name="time_remaining_days">Còn %d ngày</string>
+    <string name="time_remaining_hours">Còn %d giờ</string>
+    <string name="progress_format">%d/%d %s</string>
+    <string name="percent_format">%d%%</string>
+    <string name="reward">Phần thưởng</string>
+    <string name="reward_points">+%d điểm</string>
+    <string name="points_format">+%d</string>
+    <string name="activity_completed">Hoàn thành hoạt động!</string>
+    <string name="points_earned">Bạn đã nhận được %d điểm</string>
+    
+    <!-- Badge Dialog -->
+    <string name="congratulations">Chúc mừng!</string>
+    <string name="new_badge_earned">Bạn đã nhận được huy hiệu mới</string>
+    <string name="badge_name">%s</string>
+    <string name="ok">OK</string>
+    
+    <!-- Challenge Dialog -->
+    <string name="challenge_completed">Hoàn thành thử thách!</string>
+    <string name="challenge_reward_message">Bạn đã hoàn thành thử thách và nhận được %d điểm</string>
+
+    <!-- Badges -->
+    <string name="badge_filter_all">Tất cả</string>
+    <string name="badge_filter_streak">Streak</string>
+    <string name="badge_filter_points">Điểm</string>
+    <string name="badge_filter_activities">Hoạt động</string>
+    <string name="badges_earned_count">Đã đạt được %d/%d huy hiệu</string>
+    <string name="no_badges_yet">Chưa có huy hiệu nào.\nHãy hoàn thành hoạt động để nhận huy hiệu!</string>
+    <string name="badge_locked">Huy hiệu chưa mở khóa</string>
+    <string name="badge_requirement">Yêu cầu</string>
+    <string name="badge_progress">Tiến độ</string>
+    <string name="badge_earned_on">Đạt được ngày %s</string>
+    <string name="close">Đóng</string>
+    <string name="rarity_common">Thường</string>
+    <string name="rarity_rare">Hiếm</string>
+    <string name="rarity_epic">Sử thi</string>
+    <string name="rarity_legendary">Huyền thoại</string>
+    <string name="badge_type_streak">Streak %d ngày</string>
+    <string name="badge_type_points">Đạt %d điểm</string>
+    <string name="badge_type_activities">Hoàn thành %d hoạt động</string>
+
+    <!-- Challenges -->
+    <string name="challenges_subtitle">Tham gia thử thách để nhận thêm phần thưởng</string>
+    <string name="tab_active">Đang diễn ra</string>
+    <string name="tab_joined">Đã tham gia</string>
+    <string name="tab_completed">Hoàn thành</string>
+    <string name="join_challenge">Tham gia</string>
+    <string name="joined">Đã tham gia</string>
+    <string name="no_challenges_available">Chưa có thử thách nào.\nHãy quay lại sau!</string>
+    <string name="no_joined_challenges">Bạn chưa tham gia thử thách nào.\nHãy tham gia ngay!</string>
+    <string name="no_completed_challenges">Bạn chưa hoàn thành thử thách nào.\nHãy cố gắng lên!</string>
+    <string name="challenge_type_weekly">Tuần</string>
+    <string name="challenge_type_monthly">Tháng</string>
+    <string name="progress">Tiến độ</string>
+    <string name="challenge_joined_success">Đã tham gia thử thách thành công!</string>
+    <string name="challenge_join_failed">Không thể tham gia thử thách. Vui lòng thử lại.</string>
+    <string name="time_ended">Đã kết thúc</string>
+    <string name="time_remaining_minutes">Còn %d phút</string>
+
+    <!-- Stats & CO2 Report -->
+    <string name="stats_title">Thống kê</string>
+    <string name="stats_subtitle">Theo dõi tiến độ bảo vệ môi trường của bạn</string>
+    <string name="stats_today">Hôm nay</string>
+    <string name="stats_week">Tuần này</string>
+    <string name="stats_month">Tháng này</string>
+    <string name="stats_total">Tổng cộng</string>
+    <string name="stats_points">Điểm</string>
+    <string name="stats_activities">Hoạt động</string>
+    <string name="weekly_activity_chart">Biểu đồ hoạt động tuần</string>
+    <string name="category_breakdown_title">Phân loại theo danh mục</string>
+    <string name="co2_report_title">Báo cáo CO2</string>
+    <string name="co2_total_saved">Tổng CO2 tiết kiệm</string>
+    <string name="co2_kg_format">%.2f kg</string>
+    <string name="co2_trees_equivalent">Tương đương cây trồng</string>
+    <string name="co2_trees_format">%.1f cây</string>
+    <string name="co2_km_not_driven">Km không lái xe</string>
+    <string name="co2_km_format">%.1f km</string>
+    <string name="co2_kwh_saved">kWh tiết kiệm</string>
+    <string name="co2_kwh_format">%.1f kWh</string>
+    <string name="no_stats_data">Chưa có dữ liệu thống kê.\nHãy hoàn thành hoạt động để xem thống kê!</string>
+    <string name="error_loading_stats">Không thể tải thống kê.\nVui lòng thử lại.</string>
+    <string name="nav_stats">Thống kê</string>
+
+    <!-- History -->
+    <string name="history_title">Lịch sử hoạt động</string>
+    <string name="no_history_data">Chưa có lịch sử hoạt động.\nHãy hoàn thành hoạt động để xem lịch sử!</string>
+    <string name="error_loading_history">Không thể tải lịch sử hoạt động.\nVui lòng thử lại.</string>
+    <string name="today_date">Hôm nay</string>
+    <string name="yesterday_date">Hôm qua</string>
+    <string name="view_history">Xem lịch sử</string>
+
     <!-- Common -->
     <string name="loading">Đang tải...</string>
     <string name="error">Lỗi</string>
+    <string name="error_occurred">Đã xảy ra lỗi</string>
     <string name="success">Thành công</string>
     <string name="cancel">Hủy</string>
     <string name="save">Lưu</string>
@@ -92,4 +262,59 @@
     <string name="edit">Sửa</string>
     <string name="confirm">Xác nhận</string>
     <string name="no_data">Không có dữ liệu</string>
+    <string name="error_server">Lỗi máy chủ. Vui lòng thử lại sau.</string>
+    <string name="error_timeout">Kết nối quá thời gian. Vui lòng thử lại.</string>
+    <string name="error_no_internet">Không có kết nối internet</string>
+    <string name="error_session_expired">Phiên đăng nhập hết hạn. Vui lòng đăng nhập lại.</string>
+    
+    <!-- Push Notifications -->
+    <string name="notification_channel_name">Thông báo EcoTrack</string>
+    <string name="notification_channel_description">Nhận thông báo về hoạt động, huy hiệu và thử thách</string>
+    <string name="notification_streak_reminder_title">Đừng quên hoạt động hôm nay!</string>
+    <string name="notification_streak_reminder_body">Bạn đang có chuỗi %d ngày. Hãy tiếp tục!</string>
+    <string name="notification_streak_at_risk_title">Chuỗi hoạt động sắp mất!</string>
+    <string name="notification_streak_at_risk_body">Hoàn thành hoạt động hôm nay để giữ chuỗi %d ngày</string>
+    <string name="notification_new_badge_title">Huy hiệu mới!</string>
+    <string name="notification_new_badge_body">Bạn đã nhận được huy hiệu %s</string>
+    <string name="notification_challenge_completed_title">Hoàn thành thử thách!</string>
+    <string name="notification_challenge_completed_body">Bạn đã hoàn thành thử thách %s và nhận được %d điểm</string>
+    <string name="notification_new_challenge_title">Thử thách mới!</string>
+    <string name="notification_new_challenge_body">Thử thách %s đã bắt đầu. Tham gia ngay!</string>
+    
+    <!-- Accessibility -->
+    <string name="content_description_avatar">Ảnh đại diện người dùng</string>
+    <string name="content_description_badge">Huy hiệu</string>
+    <string name="content_description_streak_fire">Biểu tượng lửa streak</string>
+    <string name="content_description_points">Điểm</string>
+    <string name="content_description_co2">CO2 tiết kiệm</string>
+    <string name="content_description_loading">Đang tải dữ liệu</string>
+    <string name="content_description_error">Đã xảy ra lỗi</string>
+    <string name="content_description_refresh">Làm mới</string>
+    <string name="content_description_back">Quay lại</string>
+    <string name="content_description_close">Đóng</string>
+    
+    <!-- Date/Time -->
+    <string name="date_format">dd/MM/yyyy</string>
+    <string name="time_format">HH:mm</string>
+    <string name="datetime_format">dd/MM/yyyy HH:mm</string>
+    <string name="just_now">Vừa xong</string>
+    <string name="minutes_ago">%d phút trước</string>
+    <string name="hours_ago">%d giờ trước</string>
+    <string name="days_ago">%d ngày trước</string>
+    
+    <!-- Days of week -->
+    <string name="monday">Thứ Hai</string>
+    <string name="tuesday">Thứ Ba</string>
+    <string name="wednesday">Thứ Tư</string>
+    <string name="thursday">Thứ Năm</string>
+    <string name="friday">Thứ Sáu</string>
+    <string name="saturday">Thứ Bảy</string>
+    <string name="sunday">Chủ Nhật</string>
+    <string name="mon">T2</string>
+    <string name="tue">T3</string>
+    <string name="wed">T4</string>
+    <string name="thu">T5</string>
+    <string name="fri">T6</string>
+    <string name="sat">T7</string>
+    <string name="sun">CN</string>
 </resources>

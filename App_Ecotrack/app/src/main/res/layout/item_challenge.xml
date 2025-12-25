@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_challenge"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardBackgroundColor="?attr/colorSurfaceVariant"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="2dp"
+    app:rippleColor="?attr/colorPrimary">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Challenge Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <!-- Challenge Icon -->
+            <FrameLayout
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/bg_badge_circle"
+                android:backgroundTint="?attr/colorPrimaryContainer">
+
+                <TextView
+                    android:id="@+id/text_challenge_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="24sp"
+                    tools:text="🎯" />
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <!-- Challenge Name -->
+                <TextView
+                    android:id="@+id/text_challenge_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:textAppearance="?attr/textAppearanceTitleMedium"
+                    android:textColor="?attr/colorOnSurface"
+                    tools:text="Tuần xanh - Đạt 500 điểm" />
+
+                <!-- Type and Time -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/text_challenge_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_chip_challenge"
+                        android:paddingHorizontal="8dp"
+                        android:paddingVertical="2dp"
+                        android:textAppearance="?attr/textAppearanceLabelSmall"
+                        android:textColor="@android:color/white"
+                        tools:text="Tuần" />
+
+                    <TextView
+                        android:id="@+id/text_time_remaining"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:textAppearance="?attr/textAppearanceLabelSmall"
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        tools:text="Còn 3 ngày" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Join Button (for available challenges) -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_join"
+                style="@style/Widget.Material3.Button.TonalButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/join_challenge"
+                android:textSize="12sp"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+        </LinearLayout>
+
+        <!-- Description -->
+        <TextView
+            android:id="@+id/text_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textAppearance="?attr/textAppearanceBodyMedium"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            tools:text="Hoàn thành các hoạt động xanh để đạt 500 điểm trong tuần này" />
+
+        <!-- Progress Section -->
+        <LinearLayout
+            android:id="@+id/layout_progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
+
+            <!-- Progress Bar -->
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/progress_challenge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:indicatorColor="?attr/colorPrimary"
+                app:trackColor="?attr/colorSurfaceVariant"
+                app:trackCornerRadius="4dp"
+                app:trackThickness="10dp"
+                tools:progress="60" />
+
+            <!-- Progress Text -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/text_progress"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAppearance="?attr/textAppearanceBodySmall"
+                    android:textColor="?attr/colorOnSurfaceVariant"
+                    tools:text="300/500 điểm" />
+
+                <TextView
+                    android:id="@+id/text_progress_percent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?attr/textAppearanceBodyMedium"
+                    android:textColor="?attr/colorPrimary"
+                    android:textStyle="bold"
+                    tools:text="60%" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Reward Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:contentDescription="@string/reward"
+                android:src="@drawable/ic_badge"
+                app:tint="?attr/colorPrimary" />
+
+            <TextView
+                android:id="@+id/text_reward"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:textAppearance="?attr/textAppearanceBodyMedium"
+                android:textColor="?attr/colorOnSurface"
+                tools:text="+100 điểm + Huy hiệu" />
+
+            <!-- Completed Badge -->
+            <TextView
+                android:id="@+id/text_completed_badge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_chip_challenge"
+                android:backgroundTint="?attr/colorPrimary"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="4dp"
+                android:text="@string/completed"
+                android:textAppearance="?attr/textAppearanceLabelSmall"
+                android:textColor="@android:color/white"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

@@ -2,6 +2,9 @@ const express = require('express');
 const Activity = require('../models/Activity');
 const UserActivity = require('../models/UserActivity');
 const { auth, adminOnly } = require('../middleware/auth');
+const { updateStreakOnActivity } = require('../services/streakService');
+const { checkAndAwardBadges } = require('../services/badgeService');
+const { updateChallengeProgress } = require('../services/challengeService');
 
 const router = express.Router();
 
@@ -57,11 +60,23 @@ router.post('/:id/complete', auth, async (req, res) => {
     // Update user points
     await req.user.addPoints(activity.points);
 
+    // Update streak
+    const streakResult = await updateStreakOnActivity(req.user);
+
+    // Check and award badges
+    const newBadges = await checkAndAwardBadges(req.user);
+
+    // Update challenge progress
+    const completedChallenges = await updateChallengeProgress(req.user, activity, activity.points);
+
     res.json({
       message: 'Activity completed!',
       pointsEarned: activity.points,
       totalPoints: req.user.points,
-      level: req.user.level
+      level: req.user.level,
+      streak: streakResult,
+      newBadges,
+      completedChallenges
     });
   } catch (error) {
     res.status(500).json({ error: error.message });

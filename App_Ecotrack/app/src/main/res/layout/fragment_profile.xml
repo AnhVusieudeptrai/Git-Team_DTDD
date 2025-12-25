@@ -1,538 +1,495 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
-    android:fillViewport="true">
+    android:background="?attr/colorSurface"
+    tools:context=".ui.profile.ProfileFragment">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <!-- Loading Indicator -->
+    <ProgressBar
+        android:id="@+id/progress_loading"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_gravity="center"
+        android:visibility="gone" />
 
-        <!-- Avatar Section -->
+    <!-- Error State -->
+    <LinearLayout
+        android:id="@+id/layout_error"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="32dp"
+        android:visibility="gone">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/error_unknown"
+            android:textAppearance="?attr/textAppearanceBodyLarge"
+            android:textColor="?attr/colorOnSurfaceVariant" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_retry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/retry" />
+    </LinearLayout>
+
+    <!-- Main Content -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginBottom="16dp">
+            android:padding="16dp">
 
-            <!-- Avatar with Level Badge -->
-            <FrameLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+            <!-- User Info Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_user_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="0dp">
 
-                <!-- Avatar Circle Background -->
-                <FrameLayout
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:background="@drawable/bg_circle_avatar">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
 
-                    <TextView
-                        android:id="@+id/tvAvatarEmoji"
+                    <!-- Avatar and Basic Info Row -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <!-- Avatar -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            app:cardCornerRadius="40dp"
+                            app:strokeColor="?attr/colorPrimary"
+                            app:strokeWidth="2dp">
+
+                            <ImageView
+                                android:id="@+id/img_avatar"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:contentDescription="@string/profile_avatar"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/ic_account" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <!-- Name, Email, Level -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/text_fullname"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?attr/textAppearanceTitleLarge"
+                                android:textColor="?attr/colorOnSurface"
+                                android:textStyle="bold"
+                                tools:text="Nguyễn Văn A" />
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/text_email"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:textAppearance="?attr/textAppearanceBodyMedium"
+                                android:textColor="?attr/colorOnSurfaceVariant"
+                                tools:text="email@example.com" />
+
+                            <!-- Level Badge -->
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chip_level"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:textColor="@android:color/white"
+                                app:chipBackgroundColor="?attr/colorPrimary"
+                                app:chipMinHeight="28dp"
+                                app:chipStrokeWidth="0dp"
+                                tools:text="Cấp 5" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Total Points -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_eco_leaf"
+                            app:tint="?attr/colorPrimary"
+                            android:contentDescription="@null" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/text_total_points"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:textAppearance="?attr/textAppearanceHeadlineSmall"
+                            android:textColor="?attr/colorPrimary"
+                            android:textStyle="bold"
+                            tools:text="1,250 điểm" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Stats Summary Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <com.google.android.material.textview.MaterialTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="👤"
-                        android:textSize="48sp"
-                        tools:text="🌱" />
-                </FrameLayout>
+                        android:text="@string/profile_stats_title"
+                        android:textAppearance="?attr/textAppearanceTitleMedium"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textStyle="bold" />
 
-                <!-- Level Badge -->
-                <TextView
-                    android:id="@+id/tvLevelBadge"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_gravity="bottom|end"
-                    android:background="@drawable/bg_points_badge"
-                    android:gravity="center"
-                    android:text="1"
-                    android:textColor="@color/colorTextOnPrimary"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    tools:text="5" />
-            </FrameLayout>
+                    <!-- Stats Row -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <!-- Total Activities -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/text_stat_activities"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?attr/textAppearanceHeadlineSmall"
+                                android:textColor="?attr/colorPrimary"
+                                android:textStyle="bold"
+                                tools:text="156" />
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/profile_stat_activities"
+                                android:textAppearance="?attr/textAppearanceLabelSmall"
+                                android:textColor="?attr/colorOnSurfaceVariant" />
+                        </LinearLayout>
+
+                        <!-- Rank -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/text_stat_rank"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?attr/textAppearanceHeadlineSmall"
+                                android:textColor="?attr/colorPrimary"
+                                android:textStyle="bold"
+                                tools:text="#12" />
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/profile_stat_rank"
+                                android:textAppearance="?attr/textAppearanceLabelSmall"
+                                android:textColor="?attr/colorOnSurfaceVariant" />
+                        </LinearLayout>
+
+                        <!-- CO2 Saved -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/text_stat_co2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?attr/textAppearanceHeadlineSmall"
+                                android:textColor="?attr/colorPrimary"
+                                android:textStyle="bold"
+                                tools:text="25.5kg" />
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/profile_stat_co2"
+                                android:textAppearance="?attr/textAppearanceLabelSmall"
+                                android:textColor="?attr/colorOnSurfaceVariant" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- View Stats Button -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_view_stats"
+                        style="@style/Widget.Material3.Button.TextButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/view_detailed_stats"
+                        app:icon="@drawable/ic_arrow_forward"
+                        app:iconGravity="end" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Earned Badges Preview Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_badges"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/profile_badges_title"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textColor="?attr/colorOnSurface"
+                            android:textStyle="bold" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/text_badges_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?attr/textAppearanceLabelMedium"
+                            android:textColor="?attr/colorPrimary"
+                            tools:text="5 huy hiệu" />
+                    </LinearLayout>
+
+                    <!-- Badges RecyclerView (Horizontal) -->
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_badges"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:clipToPadding="false"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+                    <!-- No Badges Message -->
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/text_no_badges"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:gravity="center"
+                        android:text="@string/profile_no_badges"
+                        android:textAppearance="?attr/textAppearanceBodyMedium"
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        android:visibility="gone" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Settings Section -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <!-- Edit Profile -->
+                    <LinearLayout
+                        android:id="@+id/btn_edit_profile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="16dp">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_person"
+                            app:tint="?attr/colorOnSurfaceVariant"
+                            android:contentDescription="@null" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_weight="1"
+                            android:text="@string/profile_edit"
+                            android:textAppearance="?attr/textAppearanceBodyLarge"
+                            android:textColor="?attr/colorOnSurface" />
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_arrow_forward"
+                            app:tint="?attr/colorOnSurfaceVariant"
+                            android:contentDescription="@null" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="56dp"
+                        android:background="?attr/colorOutlineVariant" />
+
+                    <!-- Change Password -->
+                    <LinearLayout
+                        android:id="@+id/btn_change_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="16dp">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_lock"
+                            app:tint="?attr/colorOnSurfaceVariant"
+                            android:contentDescription="@null" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_weight="1"
+                            android:text="@string/profile_change_password"
+                            android:textAppearance="?attr/textAppearanceBodyLarge"
+                            android:textColor="?attr/colorOnSurface" />
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_arrow_forward"
+                            app:tint="?attr/colorOnSurfaceVariant"
+                            android:contentDescription="@null" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="56dp"
+                        android:background="?attr/colorOutlineVariant" />
+
+                    <!-- Logout -->
+                    <LinearLayout
+                        android:id="@+id/btn_logout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="16dp">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_logout"
+                            app:tint="?attr/colorError"
+                            android:contentDescription="@null" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_weight="1"
+                            android:text="@string/logout"
+                            android:textAppearance="?attr/textAppearanceBodyLarge"
+                            android:textColor="?attr/colorError" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- App Version -->
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_version"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="16dp"
+                android:gravity="center"
+                android:textAppearance="?attr/textAppearanceLabelSmall"
+                android:textColor="?attr/colorOnSurfaceVariant"
+                tools:text="Phiên bản 1.0.0" />
+
         </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
-        <!-- User Info Section -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp"
-            app:cardBackgroundColor="@color/colorSurface">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp"
-                android:gravity="center">
-
-                <!-- Fullname -->
-                <TextView
-                    android:id="@+id/tvFullname"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="User Name"
-                    android:textColor="@color/colorTextPrimary"
-                    android:textSize="22sp"
-                    android:textStyle="bold"
-                    tools:text="Nguyễn Văn A" />
-
-                <!-- Username -->
-                <TextView
-                    android:id="@+id/tvUsername"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@username"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="14sp"
-                    android:layout_marginTop="4dp"
-                    tools:text="@nguyenvana" />
-
-                <!-- Email -->
-                <TextView
-                    android:id="@+id/tvEmail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="email@example.com"
-                    android:textColor="@color/colorTextSecondary"
-                    android:textSize="14sp"
-                    android:layout_marginTop="4dp"
-                    android:drawableStart="@android:drawable/ic_dialog_email"
-                    android:drawablePadding="8dp"
-                    tools:text="nguyenvana@email.com" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <!-- Stats Row Section -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="📊 Thống kê"
-            android:textColor="@color/colorTextPrimary"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="12dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="16dp">
-
-            <!-- Points Card -->
-            <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginEnd="6dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="4dp"
-                app:cardBackgroundColor="@color/colorSurface">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="12dp"
-                    android:gravity="center">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="⭐"
-                        android:textSize="20sp" />
-
-                    <TextView
-                        android:id="@+id/tvTotalPoints"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="0"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        tools:text="500" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Điểm"
-                        android:textColor="@color/colorTextSecondary"
-                        android:textSize="11sp" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <!-- Level Card -->
-            <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginHorizontal="3dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="4dp"
-                app:cardBackgroundColor="@color/colorSurface">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="12dp"
-                    android:gravity="center">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="🎯"
-                        android:textSize="20sp" />
-
-                    <TextView
-                        android:id="@+id/tvLevel"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="1"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        tools:text="5" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Cấp độ"
-                        android:textColor="@color/colorTextSecondary"
-                        android:textSize="11sp" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <!-- Activities Card -->
-            <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginHorizontal="3dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="4dp"
-                app:cardBackgroundColor="@color/colorSurface">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="12dp"
-                    android:gravity="center">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="🌱"
-                        android:textSize="20sp" />
-
-                    <TextView
-                        android:id="@+id/tvTotalActivities"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="0"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        tools:text="45" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Hoạt động"
-                        android:textColor="@color/colorTextSecondary"
-                        android:textSize="11sp" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <!-- Rank Card -->
-            <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginStart="6dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="4dp"
-                app:cardBackgroundColor="@color/colorSurface">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="12dp"
-                    android:gravity="center">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="🏅"
-                        android:textSize="20sp" />
-
-                    <TextView
-                        android:id="@+id/tvRank"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="#-"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        tools:text="#5" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Xếp hạng"
-                        android:textColor="@color/colorTextSecondary"
-                        android:textSize="11sp" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-        </LinearLayout>
-
-        <!-- Achievements Section -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="🏆 Thành tựu"
-            android:textColor="@color/colorTextPrimary"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="12dp" />
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp"
-            app:cardBackgroundColor="@color/colorSurface">
-
-            <LinearLayout
-                android:id="@+id/containerAchievements"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="12dp" />
-        </androidx.cardview.widget.CardView>
-
-        <!-- Action Cards Section -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="⚡ Hành động"
-            android:textColor="@color/colorTextPrimary"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="12dp" />
-
-        <!-- Action Cards Grid (2x2) -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <!-- Row 1: Leaderboard & Rewards -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="12dp">
-
-                <!-- Leaderboard Card -->
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cardLeaderboard"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginEnd="6dp"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="4dp"
-                    app:cardBackgroundColor="@color/colorSurface"
-                    android:clickable="true"
-                    android:focusable="true"
-                    app:rippleColor="@color/colorPrimaryLight">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="16dp"
-                        android:gravity="center">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="🏆"
-                            android:textSize="32sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Bảng xếp hạng"
-                            android:textColor="@color/colorTextPrimary"
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:layout_marginTop="8dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Xem top users"
-                            android:textColor="@color/colorTextSecondary"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-                <!-- Rewards Card -->
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cardRewards"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginStart="6dp"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="4dp"
-                    app:cardBackgroundColor="@color/colorSurface"
-                    android:clickable="true"
-                    android:focusable="true"
-                    app:rippleColor="@color/colorPrimaryLight">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="16dp"
-                        android:gravity="center">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="🎁"
-                            android:textSize="32sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Phần thưởng"
-                            android:textColor="@color/colorTextPrimary"
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:layout_marginTop="8dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Đổi điểm lấy quà"
-                            android:textColor="@color/colorTextSecondary"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-            </LinearLayout>
-
-            <!-- Row 2: Settings & Logout -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <!-- Settings Card -->
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cardSettings"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginEnd="6dp"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="4dp"
-                    app:cardBackgroundColor="@color/colorSurface"
-                    android:clickable="true"
-                    android:focusable="true"
-                    app:rippleColor="@color/colorPrimaryLight">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="16dp"
-                        android:gravity="center">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="⚙️"
-                            android:textSize="32sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Cài đặt"
-                            android:textColor="@color/colorTextPrimary"
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:layout_marginTop="8dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Tùy chỉnh app"
-                            android:textColor="@color/colorTextSecondary"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-                <!-- Logout Card -->
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cardLogout"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginStart="6dp"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="4dp"
-                    app:cardBackgroundColor="@color/colorSurface"
-                    android:clickable="true"
-                    android:focusable="true"
-                    app:rippleColor="@color/colorError">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="16dp"
-                        android:gravity="center">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="🚪"
-                            android:textSize="32sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Đăng xuất"
-                            android:textColor="@color/colorError"
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:layout_marginTop="8dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Thoát tài khoản"
-                            android:textColor="@color/colorTextSecondary"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-            </LinearLayout>
-        </LinearLayout>
-
-    </LinearLayout>
-</ScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

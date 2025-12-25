@@ -3,6 +3,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
         android:allowBackup="true"
@@ -26,11 +27,44 @@
 
         <activity android:name=".LoginActivity" android:exported="false" />
         <activity android:name=".RegisterActivity" android:exported="false" />
+        <activity 
+            android:name=".ui.auth.AuthActivity" 
+            android:exported="false"
+            android:theme="@style/Theme.EcoTrack" />
+        <activity 
+            android:name=".ui.main.MainActivity" 
+            android:exported="false"
+            android:theme="@style/Theme.EcoTrack" />
         <activity android:name=".MainActivity" android:exported="false" />
         <activity android:name=".LeaderboardActivity" android:exported="false" />
         <activity android:name=".RewardsActivity" android:exported="false" />
         <activity android:name=".SettingsActivity" android:exported="false" />
+
         <activity android:name=".DatabaseManagerActivity" android:exported="false" />
+        
+        <!-- Firebase Cloud Messaging Service -->
+        <service
+            android:name=".services.EcoTrackMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        
+        <!-- Default notification channel metadata -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="ecotrack_notifications" />
+        
+        <!-- Default notification icon -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_eco_leaf" />
+        
+        <!-- Default notification color -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/eco_green" />
     </application>
 
 </manifest>

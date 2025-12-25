@@ -2,6 +2,7 @@ const express = require('express');
 const { body, validationResult } = require('express-validator');
 const User = require('../models/User');
 const { generateToken, auth } = require('../middleware/auth');
+const emailService = require('../services/emailService');
 
 const router = express.Router();
 
@@ -182,6 +183,159 @@ router.post('/fcm-token', auth, async (req, res) => {
     req.user.fcmToken = fcmToken;
     await req.user.save();
     res.json({ message: 'FCM token updated' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Forgot password - send reset code via email
+router.post('/forgot-password', [
+  body('email').isEmail().withMessage('Invalid email')
+], async (req, res) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const { email } = req.body;
+    
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ error: 'Email not found', message: 'Không tìm thấy tài khoản với email này' });
+    }
+
+    // Generate reset token (6 digit code)
+    const resetToken = user.generateResetToken();
+    await user.save();
+
+    // Try to send email
+    let emailSent = false;
+    try {
+      const emailResult = await emailService.sendPasswordResetEmail(
+        user.email, 
+        resetToken, 
+        user.fullname || user.username
+      );
+      emailSent = emailResult.success;
+    } catch (emailError) {
+      console.error('Email send error:', emailError.message);
+    }
+
+    // Response
+    const response = { 
+      message: emailSent 
+        ? 'Mã xác nhận đã được gửi đến email của bạn.' 
+        : 'Mã xác nhận đã được tạo.',
+      success: true 
+    };
+
+    // In development hoặc nếu email không gửi được, trả về token để test
+    if (process.env.NODE_ENV === 'development' || !emailSent) {
+      response.resetCode = resetToken;
+      response.note = 'Mã xác nhận (chỉ hiển thị khi email không gửi được)';
+    }
+
+    res.json(response);
+  } catch (error) {
+    console.error('Forgot password error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Verify reset token
+router.post('/verify-reset-token', [
+  body('email').isEmail().withMessage('Invalid email'),
+  body('token').isLength({ min: 6, max: 6 }).withMessage('Token must be 6 digits')
+], async (req, res) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const { email, token } = req.body;
+    
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ error: 'User not found', message: 'Không tìm thấy tài khoản' });
+    }
+
+    if (!user.verifyResetToken(token)) {
+      return res.status(400).json({ error: 'Invalid or expired token', message: 'Mã xác nhận không hợp lệ hoặc đã hết hạn' });
+    }
+
+    res.json({ 
+      message: 'Mã xác nhận hợp lệ',
+      success: true,
+      valid: true
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Reset password with token
+router.post('/reset-password', [
+  body('email').isEmail().withMessage('Invalid email'),
+  body('token').isLength({ min: 6, max: 6 }).withMessage('Token must be 6 digits'),
+  body('newPassword').isLength({ min: 6 }).withMessage('Password must be at least 6 characters')
+], async (req, res) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const { email, token, newPassword } = req.body;
+    
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ error: 'User not found', message: 'Không tìm thấy tài khoản' });
+    }
+
+    if (!user.verifyResetToken(token)) {
+      return res.status(400).json({ error: 'Invalid or expired token', message: 'Mã xác nhận không hợp lệ hoặc đã hết hạn' });
+    }
+
+    // Update password and clear reset token
+    user.password = newPassword;
+    user.clearResetToken();
+    await user.save();
+
+    res.json({ 
+      message: 'Đặt lại mật khẩu thành công. Vui lòng đăng nhập với mật khẩu mới.',
+      success: true 
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Change password (requires authentication)
+router.post('/change-password', auth, [
+  body('oldPassword').notEmpty().withMessage('Old password is required'),
+  body('newPassword').isLength({ min: 6 }).withMessage('New password must be at least 6 characters')
+], async (req, res) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const { oldPassword, newPassword } = req.body;
+    
+    // Verify old password
+    const isMatch = await req.user.comparePassword(oldPassword);
+    if (!isMatch) {
+      return res.status(400).json({ error: 'Incorrect old password', message: 'Mật khẩu hiện tại không đúng' });
+    }
+
+    // Update password
+    req.user.password = newPassword;
+    await req.user.save();
+
+    res.json({ message: 'Đổi mật khẩu thành công', success: true });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

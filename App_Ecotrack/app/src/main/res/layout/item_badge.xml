@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_badge"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <!-- Badge Icon Container -->
+        <FrameLayout
+            android:id="@+id/frame_badge_icon"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginBottom="8dp">
+
+            <!-- Rarity Border Circle -->
+            <View
+                android:id="@+id/view_rarity_border"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_badge_circle" />
+
+            <!-- Badge Icon -->
+            <TextView
+                android:id="@+id/text_badge_icon"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textSize="28sp"
+                tools:text="🏆" />
+
+            <!-- Lock Overlay for Unearned -->
+            <ImageView
+                android:id="@+id/icon_lock"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="bottom|end"
+                android:src="@drawable/ic_lock"
+                android:visibility="gone"
+                app:tint="@color/md_theme_light_onSurfaceVariant"
+                android:contentDescription="@string/badge_locked" />
+
+        </FrameLayout>
+
+        <!-- Badge Name -->
+        <TextView
+            android:id="@+id/text_badge_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="2"
+            android:textAppearance="?attr/textAppearanceLabelMedium"
+            android:textColor="?attr/colorOnSurface"
+            tools:text="Người mới bắt đầu" />
+
+        <!-- Rarity Chip -->
+        <TextView
+            android:id="@+id/text_rarity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="2dp"
+            android:textAppearance="?attr/textAppearanceLabelSmall"
+            android:textColor="@android:color/white"
+            tools:text="Hiếm"
+            tools:background="@color/rarity_rare" />
+
+        <!-- Progress (for unearned badges) -->
+        <LinearLayout
+            android:id="@+id/layout_progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/progress_badge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:trackCornerRadius="4dp"
+                app:trackThickness="4dp" />
+
+            <TextView
+                android:id="@+id/text_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceLabelSmall"
+                android:textColor="?attr/colorOnSurfaceVariant"
+                tools:text="5/10" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

@@ -23,6 +23,7 @@ public class StatsResponse {
         public int points;
         public int activities;
         public int level;
+        public int rank;
     }
 
     public static class CategoryStat {
