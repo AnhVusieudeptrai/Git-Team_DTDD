@@ -32,10 +32,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hành động xanh - Tương lai bền vững"
-            android:textSize="14sp"
+            android:layout_marginBottom="32dp"
+            android:text="Hành động xanh - Tương lai bền vững !"
             android:textColor="@color/gray"
-            android:layout_marginBottom="32dp"/>
+            android:textSize="14sp" />
 
         <!-- Login Form -->
         <com.google.android.material.card.MaterialCardView
